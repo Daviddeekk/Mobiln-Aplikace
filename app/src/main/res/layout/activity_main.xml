@@ -6,13 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Zvolte sport"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:textSize="30sp"></TextView>
+
+
+
+
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
     <Button
         android:id="@+id/beh"
         android:layout_width="148dp"
         android:layout_height="96dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:onClick="poStisknuti"
+        android:layout_marginTop="72dp"
+
         android:text="Běh"
 
         app:backgroundTint="@color/purple_500"
@@ -25,8 +48,8 @@
         android:id="@+id/beh3"
         android:layout_width="148dp"
         android:layout_height="96dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="72dp"
         android:onClick="poStisknuti"
         android:text="Běh"
 

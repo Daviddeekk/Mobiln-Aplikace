@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2"
+    android:id="@+id/rootContainer"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="-3dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toTopOf="@+id/timerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Zvolte sport"
+            android:textColor="@color/white"
+            android:textSize="30sp"></TextView>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <Button
+        android:id="@+id/zpet"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="3dp"
+        android:onClick="zpet"
+        android:text="Zpět"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="314dp"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="129dp"
+        android:gravity="center"
+        android:text="00:00:00"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/startStop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/startStop"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+
+        android:layout_centerInParent="true"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="229dp"
+        android:layout_marginEnd="125dp"
+        android:onClick="startStop"
+        android:text="Start"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerText" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="14dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="0dp"
+                android:editable="true"
+                android:fadeScrollbars="false"
+                android:text="Jméno závodníka"
+                tools:layout_editor_absoluteX="37dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="TIME
+" />
+
+            <Button
+
+                android:id="@+id/reset1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:onClick="reset"
+                android:text="Stop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteX="272dp"
+                tools:layout_editor_absoluteY="217dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="0dp"
+                android:editable="true"
+                android:fadeScrollbars="false"
+                android:text="Jméno závodníka"
+                tools:layout_editor_absoluteX="37dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="TIME
+" />
+
+            <Button
+
+                android:id="@+id/reset2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:onClick="reset"
+                android:text="Stop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteX="272dp"
+                tools:layout_editor_absoluteY="217dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="0dp"
+                android:editable="true"
+                android:fadeScrollbars="false"
+                android:text="Jméno závodníka"
+                tools:layout_editor_absoluteX="37dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="TIME
+" />
+
+            <Button
+
+                android:id="@+id/reset3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:onClick="reset"
+                android:text="Stop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteX="272dp"
+                tools:layout_editor_absoluteY="217dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="0dp"
+                android:editable="true"
+                android:fadeScrollbars="false"
+                android:text="Jméno závodníka"
+                tools:layout_editor_absoluteX="37dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="TIME
+" />
+
+            <Button
+
+                android:id="@+id/reset4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:onClick="reset"
+                android:text="Stop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteX="272dp"
+                tools:layout_editor_absoluteY="217dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="0dp"
+                android:editable="true"
+                android:fadeScrollbars="false"
+                android:text="Jméno závodníka"
+                tools:layout_editor_absoluteX="37dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="TIME
+" />
+
+            <Button
+
+                android:id="@+id/reset5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:onClick="reset"
+                android:text="Stop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteX="272dp"
+                tools:layout_editor_absoluteY="217dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="0dp"
+                android:editable="true"
+                android:fadeScrollbars="false"
+                android:text="Jméno závodníka"
+                tools:layout_editor_absoluteX="37dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="TIME
+" />
+
+            <Button
+
+                android:id="@+id/reset6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:onClick="reset"
+                android:text="Stop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteX="272dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="0dp"
+                android:editable="true"
+                android:fadeScrollbars="false"
+                android:text="Jméno závodníka"
+                tools:layout_editor_absoluteX="37dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="TIME
+" />
+
+            <Button
+
+                android:id="@+id/reset7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:onClick="reset"
+                android:text="Stop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteX="272dp"
+                tools:layout_editor_absoluteY="217dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="0dp"
+                android:editable="true"
+                android:fadeScrollbars="false"
+                android:text="Jméno závodníka"
+                tools:layout_editor_absoluteX="37dp"
+                tools:layout_editor_absoluteY="217dp" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="81dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="TIME
+" />
+
+            <Button
+
+                android:id="@+id/reset8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:onClick="reset"
+                android:text="Stop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteX="272dp"
+                tools:layout_editor_absoluteY="217dp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="75dp"
+        android:onClick="odstran"
+        android:text="Button" />
+
+</RelativeLayout>
