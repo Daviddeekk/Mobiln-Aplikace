@@ -1,11 +1,15 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-                openActivity2();
+                dialogButton();
+               // openActivity2();
 
 
             }
@@ -59,6 +63,47 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
 
+    }
+    public void dialogButton(){
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Zadejte počet závodníků (1-8)");
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                int cislo = Integer.parseInt(input.getText().toString());
+                if(cislo < 9 && cislo > 0 //&& input.getText() != null
+                ){
+
+                    MainActivity2 m = new MainActivity2();
+                   m.getNumber(cislo);
+                    openActivity2();
+
+
+
+                }
+                else{
+                dialogButton();
+                }
+
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+       // System.out.println(cislo);
+        builder.show();
     }
     /*public void createButtons(View view)
     {

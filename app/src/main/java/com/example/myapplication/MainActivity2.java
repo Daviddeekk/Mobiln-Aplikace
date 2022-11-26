@@ -1,16 +1,22 @@
 package com.example.myapplication;
 
+import static java.security.AccessController.getContext;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,13 +25,11 @@ import java.util.TimerTask;
 
 public class MainActivity2 extends AppCompatActivity {
     private Button button;
-    private Button odstranB;
-    private Button osm;
-    private TextView osmTime;
-    private TextView osmZav;
+
+    private TableRow odstranRow;
     TextView timerText;
     Button stopStartButton;
-
+    static int u;
     Timer timer;
     TimerTask timerTask;
     Double time = 0.0;
@@ -88,7 +92,7 @@ public class MainActivity2 extends AppCompatActivity {
                 if(timerTask != null)
                 {
                     timerTask.cancel();
-                    setButtonUI("START", R.color.teal_200);
+                    setButtonUI("START");
                     time = 0.0;
                     timerStarted = false;
                     timerText.setText(formatTime(0,0,0));
@@ -116,23 +120,23 @@ public class MainActivity2 extends AppCompatActivity {
         if(timerStarted == false)
         {
             timerStarted = true;
-            setButtonUI("STOP", R.color.purple_200);
+            setButtonUI("STOP");
 
             startTimer();
         }
         else
         {
             timerStarted = false;
-            setButtonUI("START", R.color.teal_200);
+            setButtonUI("START");
 
             timerTask.cancel();
         }
     }
 
-    private void setButtonUI(String start, int color)
+    private void setButtonUI(String start)
     {
         stopStartButton.setText(start);
-        stopStartButton.setTextColor(ContextCompat.getColor(this, color));
+
     }
 
     private void startTimer()
@@ -158,7 +162,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
-    private String getTimerText()
+    public String getTimerText()
     {
         int rounded = (int) Math.round(time);
 
@@ -167,6 +171,7 @@ public class MainActivity2 extends AppCompatActivity {
         int hours = ((rounded % 86400) / 3600);
 
         return formatTime(seconds, minutes, hours);
+
     }
 
     private String formatTime(int seconds, int minutes, int hours)
@@ -174,16 +179,46 @@ public class MainActivity2 extends AppCompatActivity {
         return String.format("%02d",hours) + " : " + String.format("%02d",minutes) + " : " + String.format("%02d",seconds);
     }
 
+    public int getNumber(int i){
+
+        u = i;
+        return u;
+      //  System.out.println(i);
+    }
 
     public void odstran(View view) {
-        odstranB = (Button) findViewById(R.id.test);
+
+      //  int o = 1;
+
+        System.out.println(u);
+        int kolikrat = Math.abs(u-8);
+        int smaz = 8;
+        for (int i = 0; i < kolikrat; i++)
+        {
+
+            Resources res = getResources();
+            int id = res.getIdentifier("row" + smaz, "id", getPackageName());
+
+
+            System.out.println(id);
+
+            odstranRow = (TableRow) findViewById(id);
+            odstranRow.setVisibility(View.INVISIBLE);
+            //dialogButton();
+            u = u + 1;
+            System.out.println("smazano " + smaz );
+            smaz = smaz -1;
+
+        }
+
+        /*odstranB = (Button) findViewById(R.id.test);
         osm = (Button) findViewById(R.id.reset8);
         osm.setVisibility(View.GONE);
         osmTime = (TextView) findViewById(R.id.textView18);
         osmTime.setVisibility(View.GONE);
         osmZav = (TextView)  findViewById(R.id.textView8);
-        //osmZav.setVisibility(View.GONE);
+        osmZav.setVisibility(View.GONE);
 
-        osmZav.setEnabled(true);
+     //   osmZav.setEnabled(true);*/
     }
 }

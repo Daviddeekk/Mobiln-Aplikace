@@ -30,12 +30,12 @@
     </androidx.appcompat.widget.Toolbar>
 
     <Button
-        android:id="@+id/beh"
+        android:id="@+id/beh3"
         android:layout_width="148dp"
         android:layout_height="96dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="184dp"
         android:layout_marginTop="72dp"
-
+        android:onClick="poStisknuti"
         android:text="Běh"
 
         app:backgroundTint="@color/purple_500"
@@ -45,12 +45,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/beh3"
+        android:id="@+id/beh"
         android:layout_width="148dp"
         android:layout_height="96dp"
-        android:layout_marginStart="184dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="72dp"
-        android:onClick="poStisknuti"
+
         android:text="Běh"
 
         app:backgroundTint="@color/purple_500"

@@ -2,11 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2"
-    android:id="@+id/rootContainer"
-    >
+    tools:context=".MainActivity2">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -90,14 +89,15 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="453dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="0dp"
-        android:layout_marginBottom="14dp">
+        android:layout_marginBottom="0dp">
 
         <TableRow
+            android:id="@+id/row1"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -139,6 +139,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/row2"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -180,6 +181,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/row3"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -221,6 +223,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/row4"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -262,6 +265,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/row5"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -303,6 +307,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/row6"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -345,6 +350,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/row7"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -386,6 +392,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/row8"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -434,7 +441,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="105dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="142dp"
         android:layout_marginTop="75dp"
         android:onClick="odstran"
         android:text="Button" />
