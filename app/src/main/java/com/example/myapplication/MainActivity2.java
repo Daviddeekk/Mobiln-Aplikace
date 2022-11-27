@@ -25,62 +25,46 @@ import java.util.TimerTask;
 
 public class MainActivity2 extends AppCompatActivity {
     private Button button;
-
+    private Button b;
     private TableRow odstranRow;
+    TextView textv;
     TextView timerText;
     Button stopStartButton;
-    static int u;
+    private static int u;
     Timer timer;
     TimerTask timerTask;
     Double time = 0.0;
-
+    private int num;
     boolean timerStarted = false;
-
+   int zastavenych;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-
         button = (Button) findViewById(R.id.zpet);
-       // button.setVisibility(View.GONE);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 openActivity1();
-
             }
-
-
         });
-
-
 
         timerText = (TextView) findViewById(R.id.timerText);
         stopStartButton = (Button) findViewById(R.id.startStop);
-
+        buttonReset(false);
         timer = new Timer();
-
-
     }
     public void openActivity1() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-
-    /*public void startStop (View view)
-    {
-
-        Button start = findViewById(R.id.startStop);
-        start.setText("Háráasdfklůals");
-
-
-    }
-    */
     public void reset(View view)
     {
+
+
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(this);
         resetAlert.setTitle("Reset Timer");
         resetAlert.setMessage("Are you sure you want to reset the timer?");
@@ -96,7 +80,9 @@ public class MainActivity2 extends AppCompatActivity {
                     time = 0.0;
                     timerStarted = false;
                     timerText.setText(formatTime(0,0,0));
-
+                    buttonReset(false);
+                   startButtonReset(true);
+                   zastavenych = 0;
                 }
             }
         });
@@ -119,24 +105,28 @@ public class MainActivity2 extends AppCompatActivity {
 
         if(timerStarted == false)
         {
-            timerStarted = true;
-            setButtonUI("STOP");
+            buttonReset(true);
 
+            timerStarted = true;
+            //startButtonReset(false);
             startTimer();
+            System.out.println(zastavenych);
+            System.out.println(u);
+
+
+
         }
         else
         {
+
             timerStarted = false;
             setButtonUI("START");
-
             timerTask.cancel();
         }
     }
-
     private void setButtonUI(String start)
     {
         stopStartButton.setText(start);
-
     }
 
     private void startTimer()
@@ -146,7 +136,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void run()
             {
-                runOnUiThread(new Runnable()
+                runOnUiThread(new Runnable() //okamžité spuštění, nečeká se
                 {
                     @Override
                     public void run()
@@ -165,13 +155,10 @@ public class MainActivity2 extends AppCompatActivity {
     public String getTimerText()
     {
         int rounded = (int) Math.round(time);
-
         int seconds = ((rounded % 86400) % 3600) % 60;
         int minutes = ((rounded % 86400) % 3600) / 60;
         int hours = ((rounded % 86400) / 3600);
-
         return formatTime(seconds, minutes, hours);
-
     }
 
     private String formatTime(int seconds, int minutes, int hours)
@@ -183,42 +170,93 @@ public class MainActivity2 extends AppCompatActivity {
 
         u = i;
         return u;
-      //  System.out.println(i);
+
     }
 
+    public void zavodniciReset (View view){
+        int kolikrat = 8;
+        for (int i = 1; i <= kolikrat; i++){
+            Resources res = getResources();
+            int id = res.getIdentifier("textView" + i, "id", getPackageName());
+
+            textv = (TextView) findViewById(id);
+            textv.setText(null);
+            textv.setHint("Jméno závodníka");
+
+
+
+        }
+    }
     public void odstran(View view) {
 
-      //  int o = 1;
-
+        System.out.println(zastavenych);
+        int k = u;
+        int kolikrat = Math.abs(k-8);
         System.out.println(u);
-        int kolikrat = Math.abs(u-8);
         int smaz = 8;
         for (int i = 0; i < kolikrat; i++)
         {
-
             Resources res = getResources();
             int id = res.getIdentifier("row" + smaz, "id", getPackageName());
 
-
-            System.out.println(id);
-
             odstranRow = (TableRow) findViewById(id);
             odstranRow.setVisibility(View.INVISIBLE);
-            //dialogButton();
-            u = u + 1;
-            System.out.println("smazano " + smaz );
+
+            k = k + 1;
+
             smaz = smaz -1;
 
         }
+    }
 
-        /*odstranB = (Button) findViewById(R.id.test);
-        osm = (Button) findViewById(R.id.reset8);
-        osm.setVisibility(View.GONE);
-        osmTime = (TextView) findViewById(R.id.textView18);
-        osmTime.setVisibility(View.GONE);
-        osmZav = (TextView)  findViewById(R.id.textView8);
-        osmZav.setVisibility(View.GONE);
+    public void stop(View view) {
 
-     //   osmZav.setEnabled(true);*/
+            switch (view.getTag().toString()){
+                case "stop1":
+                    num = 1; view.setEnabled(false);    zastavenych =zastavenych +1; break;
+                case "stop2":
+                    num = 2; view.setEnabled(false); zastavenych =zastavenych +1; break;
+                case "stop3":
+                    num = 3; view.setEnabled(false); zastavenych =zastavenych +1; break;
+                case "stop4":
+                    num = 4; view.setEnabled(false); zastavenych =zastavenych +1; break;
+                case "stop5":
+                    num = 5; view.setEnabled(false); zastavenych =zastavenych +1; break;
+                case "stop6":
+                    num = 6; view.setEnabled(false); zastavenych =zastavenych +1; break;
+                case "stop7":
+                    num = 7; view.setEnabled(false); zastavenych =zastavenych +1; break;
+                case "stop8":
+                    num = 8; view.setEnabled(false);zastavenych =zastavenych +1 ;break;
+
+            }
+        if(u == zastavenych)
+        {
+            timerTask.cancel();
+            System.out.println("canceled");
+        }
+        Resources res = getResources();
+        //System.out.println(zastavenych);
+        int id = res.getIdentifier("textView1" + num, "id", getPackageName());
+
+           textv = (TextView) findViewById(id);
+            textv.setText(getTimerText());
+       ;
+    }
+    public void buttonReset(boolean reset){
+        for (int k = 1; k <=8; k++){
+            Resources res = getResources();
+            int id = res.getIdentifier("stop" + k, "id", getPackageName());
+            int idt = res.getIdentifier("textView1" + k, "id", getPackageName());
+            b = (Button) findViewById(id);
+            b.setEnabled(reset);
+            textv = (TextView) findViewById(idt);
+            textv.setText("TIME");
+        }
+    }
+    public void startButtonReset(boolean resetStart)
+    {
+        b = (Button) findViewById(R.id.startStop);
+        b.setEnabled(resetStart);
     }
 }
