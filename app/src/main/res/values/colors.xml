@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_200">#125EBC</color> //barva a pozadí tlačítek
     <color name="purple_500">#32BECA</color>//barva pozadí a tlačítek
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
+    <color name="teal_700">#102769</color>
+    <color name="black">#FFFFFF</color> //barva textu
     <color name="white">#FFFFFFFF</color> //barva textu
     <color name="grey">#32BECA</color>
 </resources>

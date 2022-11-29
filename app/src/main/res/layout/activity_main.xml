@@ -4,17 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:screenOrientation="portrait"
+    tools:context=".MainActivity"
+
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar3"
-        android:layout_width="0dp"
+        android:layout_width="430dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="23dp"
-        android:background="@color/grey"
+        android:layout_alignParentStart="true"
 
-        app:layout_constraintBottom_toTopOf="@+id/beh3"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-20dp"
+
+        android:background="@color/purple_200"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,47 +30,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:text="Zvolte sport"
             android:textColor="@color/white"
+
             android:textSize="30sp"></TextView>
 
 
     </androidx.appcompat.widget.Toolbar>
 
     <Button
-        android:id="@+id/beh"
-        android:layout_width="0dp"
-        android:layout_height="96dp"
+        android:id="@+id/hromadny"
+        android:layout_width="146dp"
+        android:layout_height="60dp"
 
 
-        android:layout_marginStart="6dp"
-
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:onClick="dialogButton"
+        android:tag="hromadny"
         android:text="Hromadný"
-        app:backgroundTint="@color/purple_500"
+        app:backgroundTint="@color/purple_200"
         app:backgroundTintMode="add"
         app:cornerRadius="?attr/listPreferredItemPaddingEnd"
-        app:layout_constraintBaseline_toBaselineOf="@+id/beh3"
-        app:layout_constraintEnd_toStartOf="@+id/beh3"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/prubezny"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.149" />
 
     <Button
-        android:id="@+id/beh3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/prubezny"
+        android:layout_width="146dp"
+        android:layout_height="60dp"
 
-        android:layout_marginEnd="4dp"
 
-        android:layout_marginBottom="552dp"
-        android:onClick="poStisknuti"
+        android:layout_marginEnd="16dp"
+        android:onClick="dialogButton"
+        android:tag="prubezny"
         android:text="Průběžný"
-
-        app:backgroundTint="@color/purple_500"
+        app:backgroundTint="@color/purple_200"
         app:backgroundTintMode="add"
         app:cornerRadius="?attr/listPreferredItemPaddingEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/beh"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/hromadny"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.149" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

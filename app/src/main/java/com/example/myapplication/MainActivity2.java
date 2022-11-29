@@ -20,6 +20,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -36,7 +38,8 @@ public class MainActivity2 extends AppCompatActivity {
     Double time = 0.0;
     private int num;
     boolean timerStarted = false;
-   int zastavenych;
+    int zastavenych;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class MainActivity2 extends AppCompatActivity {
         stopStartButton = (Button) findViewById(R.id.startStop);
         buttonReset(false);
         timer = new Timer();
+
     }
     public void openActivity1() {
         Intent intent = new Intent(this, MainActivity.class);
@@ -63,12 +67,10 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void reset(View view)
     {
-
-
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(this);
-        resetAlert.setTitle("Reset Timer");
-        resetAlert.setMessage("Are you sure you want to reset the timer?");
-        resetAlert.setPositiveButton("Reset", new DialogInterface.OnClickListener()
+        resetAlert.setMessage("Opravdu chcete resetovat stopky i s výsledky?");
+        resetAlert.setTitle("Resetovat stopky");
+        resetAlert.setPositiveButton("Ano", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
@@ -81,19 +83,17 @@ public class MainActivity2 extends AppCompatActivity {
                     timerStarted = false;
                     timerText.setText(formatTime(0,0,0));
                     buttonReset(false);
-                   startButtonReset(true);
-                   zastavenych = 0;
+                    startButtonReset(true);
+                    zastavenych = 0;
                 }
             }
         });
 
-        resetAlert.setNeutralButton("Cancel", new DialogInterface.OnClickListener()
+        resetAlert.setNeutralButton("Ne", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
-            {
-                //do nothing
-            }
+            {}
         });
 
         resetAlert.show();
@@ -106,19 +106,13 @@ public class MainActivity2 extends AppCompatActivity {
         if(timerStarted == false)
         {
             buttonReset(true);
-
             timerStarted = true;
-            //startButtonReset(false);
+            startButtonReset(false);
             startTimer();
-            System.out.println(zastavenych);
-            System.out.println(u);
-
-
 
         }
         else
         {
-
             timerStarted = false;
             setButtonUI("START");
             timerTask.cancel();
@@ -213,7 +207,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             switch (view.getTag().toString()){
                 case "stop1":
-                    num = 1; view.setEnabled(false);    zastavenych =zastavenych +1; break;
+                    num = 1; view.setEnabled(false); zastavenych =zastavenych +1; break;
                 case "stop2":
                     num = 2; view.setEnabled(false); zastavenych =zastavenych +1; break;
                 case "stop3":
@@ -227,7 +221,7 @@ public class MainActivity2 extends AppCompatActivity {
                 case "stop7":
                     num = 7; view.setEnabled(false); zastavenych =zastavenych +1; break;
                 case "stop8":
-                    num = 8; view.setEnabled(false);zastavenych =zastavenych +1 ;break;
+                    num = 8; view.setEnabled(false); zastavenych =zastavenych +1 ;break;
 
             }
         if(u == zastavenych)

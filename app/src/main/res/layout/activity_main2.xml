@@ -5,6 +5,7 @@
     android:id="@+id/rootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:screenOrientation="portrait"
     tools:context=".MainActivity2">
 
     <androidx.appcompat.widget.Toolbar
@@ -17,37 +18,39 @@
         android:layout_marginStart="-1dp"
         android:layout_marginTop="-3dp"
         android:layout_marginEnd="0dp"
-        android:background="@color/grey"
+        android:background="@color/purple_200"
         app:layout_constraintBottom_toTopOf="@+id/timerText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitleTextColor="@color/teal_700">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Zvolte sport"
+            android:text="Hromadný"
             android:textColor="@color/white"
             android:textSize="30sp"></TextView>
 
+        <Button
+            android:id="@+id/zpet"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+
+
+
+            android:onClick="zpet"
+            android:text="Zpět"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <Button
-        android:id="@+id/zpet"
-        android:layout_width="85dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
 
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="3dp"
-        android:onClick="zpet"
-        android:text="Zpět"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/timerText"
@@ -78,7 +81,6 @@
 
         android:layout_centerInParent="true"
         android:layout_marginStart="207dp"
-
         android:layout_marginTop="207dp"
         android:layout_marginEnd="59dp"
         android:onClick="startStop"
@@ -103,27 +105,27 @@
 
             <EditText
                 android:id="@+id/textView1"
-                android:layout_width="186dp"
+                android:layout_width="177dp"
                 android:layout_height="50dp"
-
-
                 android:layout_marginStart="0dp"
+
                 android:layout_marginBottom="0dp"
-
                 android:fadeScrollbars="false"
-                android:hint="Jméno závodníka"
 
-                android:maxLines="1"
+                android:hint="Jméno závodníka"
                 android:lines="1"
-                android:singleLine="true"
+
+
                 android:maxLength="25"
+                android:maxLines="1"
+                android:singleLine="true"
 
                 tools:layout_editor_absoluteX="37dp"
                 tools:layout_editor_absoluteY="217dp" />
 
             <TextView
                 android:id="@+id/textView11"
-                android:layout_width="81dp"
+                android:layout_width="65dp"
                 android:layout_height="20dp"
                 android:layout_centerHorizontal="true"
                 android:text="TIME
@@ -132,12 +134,13 @@
             <Button
 
                 android:id="@+id/stop1"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:tag="stop1"
-
                 android:onClick="stop"
+
+                android:tag="stop1"
                 android:text="Stop"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteX="272dp"
@@ -151,7 +154,7 @@
 
             <EditText
                 android:id="@+id/textView2"
-                android:layout_width="188dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
 
 
@@ -199,7 +202,7 @@
 
             <EditText
                 android:id="@+id/textView3"
-                android:layout_width="188dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
 
 
@@ -247,7 +250,7 @@
 
             <EditText
                 android:id="@+id/textView4"
-                android:layout_width="188dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
 
 
@@ -295,7 +298,7 @@
 
             <EditText
                 android:id="@+id/textView5"
-                android:layout_width="188dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
 
@@ -344,7 +347,7 @@
 
             <EditText
                 android:id="@+id/textView6"
-                android:layout_width="188dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
 
 
@@ -394,7 +397,7 @@
 
             <EditText
                 android:id="@+id/textView7"
-                android:layout_width="188dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
 
 
