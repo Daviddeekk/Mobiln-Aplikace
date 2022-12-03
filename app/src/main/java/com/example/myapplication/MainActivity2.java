@@ -46,6 +46,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        buttonReset(false);
         button = (Button) findViewById(R.id.zpet);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -56,8 +57,9 @@ public class MainActivity2 extends AppCompatActivity {
 
         timerText = (TextView) findViewById(R.id.timerText);
         stopStartButton = (Button) findViewById(R.id.startStop);
-        buttonReset(false);
+
         timer = new Timer();
+        odstran();
 
     }
     public void openActivity1() {
@@ -65,7 +67,7 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void reset(View view)
+    public void reset(View view) //resetuje stopky i s výsledky
     {
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(this);
         resetAlert.setMessage("Opravdu chcete resetovat stopky i s výsledky?");
@@ -109,6 +111,7 @@ public class MainActivity2 extends AppCompatActivity {
             timerStarted = true;
             startButtonReset(false);
             startTimer();
+            zavodniciEditable(false);
 
         }
         else
@@ -116,6 +119,7 @@ public class MainActivity2 extends AppCompatActivity {
             timerStarted = false;
             setButtonUI("START");
             timerTask.cancel();
+
         }
     }
     private void setButtonUI(String start)
@@ -168,33 +172,34 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public void zavodniciReset (View view){
-        int kolikrat = 8;
-        for (int i = 1; i <= kolikrat; i++){
+        int viewCount = 20;
+        for (int i = 1; i <= viewCount; i++){
             Resources res = getResources();
             int id = res.getIdentifier("textView" + i, "id", getPackageName());
 
             textv = (TextView) findViewById(id);
-            textv.setText(null);
-            textv.setHint("Jméno závodníka");
 
+
+            textv.setHint("Jméno závodníka");
+            textv.setText(null);
 
 
         }
     }
-    public void odstran(View view) {
+    public void odstran() {
 
         System.out.println(zastavenych);
         int k = u;
-        int kolikrat = Math.abs(k-8);
+        int kolikrat = 20-k;
         System.out.println(u);
-        int smaz = 8;
+        int smaz = 20;
         for (int i = 0; i < kolikrat; i++)
         {
             Resources res = getResources();
             int id = res.getIdentifier("row" + smaz, "id", getPackageName());
 
             odstranRow = (TableRow) findViewById(id);
-            odstranRow.setVisibility(View.INVISIBLE);
+            odstranRow.setVisibility(View.GONE);
 
             k = k + 1;
 
@@ -204,53 +209,61 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public void stop(View view) {
-
-            switch (view.getTag().toString()){
-                case "stop1":
-                    num = 1; view.setEnabled(false); zastavenych =zastavenych +1; break;
-                case "stop2":
-                    num = 2; view.setEnabled(false); zastavenych =zastavenych +1; break;
-                case "stop3":
-                    num = 3; view.setEnabled(false); zastavenych =zastavenych +1; break;
-                case "stop4":
-                    num = 4; view.setEnabled(false); zastavenych =zastavenych +1; break;
-                case "stop5":
-                    num = 5; view.setEnabled(false); zastavenych =zastavenych +1; break;
-                case "stop6":
-                    num = 6; view.setEnabled(false); zastavenych =zastavenych +1; break;
-                case "stop7":
-                    num = 7; view.setEnabled(false); zastavenych =zastavenych +1; break;
-                case "stop8":
-                    num = 8; view.setEnabled(false); zastavenych =zastavenych +1 ;break;
-
+        String tag = view.getTag().toString();
+        for (int i = 1; i <=20; i++){
+            if(tag.equals("stop"+i)){
+                num = 20+i;
+                System.out.println(num);
+                view.setEnabled(false);
+                zastavenych = zastavenych + 1;
             }
+
+        }
+
         if(u == zastavenych)
         {
             timerTask.cancel();
             System.out.println("canceled");
+            Button pokracovat = (Button) findViewById(R.id.pokračovat);
+            pokracovat.setVisibility(View.VISIBLE);
         }
         Resources res = getResources();
         //System.out.println(zastavenych);
-        int id = res.getIdentifier("textView1" + num, "id", getPackageName());
+        int id = res.getIdentifier("textView" + num, "id", getPackageName());
 
            textv = (TextView) findViewById(id);
             textv.setText(getTimerText());
        ;
     }
     public void buttonReset(boolean reset){
-        for (int k = 1; k <=8; k++){
+        for (int k = 21; k <=40; k++){
+            int stopid = k-20;
             Resources res = getResources();
-            int id = res.getIdentifier("stop" + k, "id", getPackageName());
-            int idt = res.getIdentifier("textView1" + k, "id", getPackageName());
+            int id = res.getIdentifier("stop" + stopid , "id", getPackageName());
+            int idt = res.getIdentifier("textView" + k, "id", getPackageName());
             b = (Button) findViewById(id);
             b.setEnabled(reset);
             textv = (TextView) findViewById(idt);
-            textv.setText("TIME");
+            textv.setText(getTimerText());
+            zavodniciEditable(true);
         }
     }
     public void startButtonReset(boolean resetStart)
     {
         b = (Button) findViewById(R.id.startStop);
         b.setEnabled(resetStart);
+    }
+    public void zavodniciEditable(boolean edit)
+    {
+        Button tlacitko = (Button) findViewById(R.id.zavodnici);
+        tlacitko.setEnabled(edit);
+        int viewCount = 20;
+        for (int i = 1; i <= viewCount; i++) {
+            Resources res = getResources();
+            int id = res.getIdentifier("textView" + i, "id", getPackageName());
+            textv = (TextView) findViewById(id);
+            textv.setEnabled(edit);
+            System.out.println("made");
+        }
     }
 }

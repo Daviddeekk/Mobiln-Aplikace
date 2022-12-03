@@ -17,10 +17,15 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button prubezny;
     boolean length;
+    boolean back = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); //access to activity_main
+    }
+    @Override
+    public void onBackPressed() {
+        if (back == true) {}
     }
 
     public void openActivity2() {
@@ -36,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Zadejte počet závodníků (1-8)");
+        builder.setTitle("Zadejte počet závodníků (1-20)");
         final EditText input = new EditText(this);
         input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_NUMBER);
         builder.setView(input);
@@ -53,14 +58,14 @@ public class MainActivity extends AppCompatActivity {
 
                 int cislo = Integer.parseInt(input.getText().toString());
 
-                if(cislo < 9 && cislo > 0 //&& input.getText() != null
+                if(cislo <= 20 && cislo > 0 //&& input.getText() != null
                  ){
                     String tag = view.getTag().toString();
-                    System.out.println(tag);
+
                     //openActivity3();
 
                     if(tag.equals("hromadny")){
-                        System.out.println("here");
+
                         MainActivity2 m = new MainActivity2();
                         m.getNumber(cislo);
                         openActivity2();
