@@ -29,7 +29,8 @@ public class MainActivity2 extends AppCompatActivity {
     private Button button;
     private Button b;
     private TableRow odstranRow;
-    TextView textv;
+    private TextView textv;
+    private TextView textv2;
     TextView timerText;
     Button stopStartButton;
     private static int u;
@@ -55,11 +56,16 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
+
+
         timerText = (TextView) findViewById(R.id.timerText);
         stopStartButton = (Button) findViewById(R.id.startStop);
 
         timer = new Timer();
         odstran();
+
+        Button pokracovat = (Button) findViewById(R.id.pokracovat);
+        pokracovat.setVisibility(View.INVISIBLE);
 
     }
     public void openActivity1() {
@@ -182,16 +188,17 @@ public class MainActivity2 extends AppCompatActivity {
 
             textv.setHint("Jméno závodníka");
             textv.setText(null);
-
+            Button pokracovat = (Button) findViewById(R.id.pokracovat);
+            pokracovat.setVisibility(View.INVISIBLE);
 
         }
     }
     public void odstran() {
 
-        System.out.println(zastavenych);
+
         int k = u;
         int kolikrat = 20-k;
-        System.out.println(u);
+
         int smaz = 20;
         for (int i = 0; i < kolikrat; i++)
         {
@@ -213,7 +220,7 @@ public class MainActivity2 extends AppCompatActivity {
         for (int i = 1; i <=20; i++){
             if(tag.equals("stop"+i)){
                 num = 20+i;
-                System.out.println(num);
+
                 view.setEnabled(false);
                 zastavenych = zastavenych + 1;
             }
@@ -223,19 +230,20 @@ public class MainActivity2 extends AppCompatActivity {
         if(u == zastavenych)
         {
             timerTask.cancel();
-            System.out.println("canceled");
-            Button pokracovat = (Button) findViewById(R.id.pokračovat);
+            Button pokracovat = (Button) findViewById(R.id.pokracovat);
             pokracovat.setVisibility(View.VISIBLE);
+
         }
         Resources res = getResources();
-        //System.out.println(zastavenych);
+
         int id = res.getIdentifier("textView" + num, "id", getPackageName());
 
-           textv = (TextView) findViewById(id);
+            textv = (TextView) findViewById(id);
             textv.setText(getTimerText());
+
        ;
     }
-    public void buttonReset(boolean reset){
+    public void buttonReset(boolean reset){ // otevře tlačíka a závodníky
         for (int k = 21; k <=40; k++){
             int stopid = k-20;
             Resources res = getResources();
@@ -263,7 +271,45 @@ public class MainActivity2 extends AppCompatActivity {
             int id = res.getIdentifier("textView" + i, "id", getPackageName());
             textv = (TextView) findViewById(id);
             textv.setEnabled(edit);
-            System.out.println("made");
+
         }
     }
+    public void openEd(){ //otevře stránku s editací
+        Intent intent = new Intent(this, Editace.class);
+        startActivity(intent);
+    }
+        public void openEditace(View view){
+
+            button = (Button) findViewById(R.id.pokracovat);
+            button.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    textv = (TextView) findViewById(R.id.textView1);
+                    textv2 = (TextView) findViewById(R.id.textView21);
+
+                    Editace e = new Editace();
+                    e.getName(textv.getText().toString());
+                    e.getCas(textv2.getText().toString());
+
+                    openEd();
+
+
+
+
+
+
+                }
+            });
+
+
+        }
+
+
+
+
+
+
+
+
+
 }

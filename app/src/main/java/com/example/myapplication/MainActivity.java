@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                  ){
                     String tag = view.getTag().toString();
 
-                    //openActivity3();
+
 
                     if(tag.equals("hromadny")){
 
@@ -72,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if (tag.equals("prubezny")){
                         //MainActivity3 n = new MainActivity3();
-                        openActivity3();
+                        MainActivity2 m = new MainActivity2();
+                        m.getNumber(cislo);
+                        openActivity2();
                     }
 
                 }
