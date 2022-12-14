@@ -117,32 +117,21 @@
                 <TableRow
                     android:id="@+id/row1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-
-                    >
-
+                    android:layout_height="match_parent">
 
                     <EditText
                         android:id="@+id/textView1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
                         android:layout_weight="2"
-
-                        android:fadeScrollbars="false"
                         android:hint="Jméno závodníka"
 
                         android:lines="1"
                         android:maxLength="25"
-
-
                         android:maxLines="1"
                         android:singleLine="true"
                         android:tag="tag1"
-
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                         />
 
                     <TextView
                         android:id="@+id/textView21"
@@ -150,12 +139,9 @@
                         android:layout_height="20dp"
                         android:layout_centerHorizontal="true"
                         android:text="TIME"
-
-
                         />
 
                     <Button
-
                         android:id="@+id/stop1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -164,8 +150,7 @@
                         android:tag="stop1"
                         android:text="Stop"
                         android:visibility="visible"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                         />
                 </TableRow>
 
                 <TableRow

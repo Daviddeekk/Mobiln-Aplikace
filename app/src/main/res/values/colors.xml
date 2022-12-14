@@ -7,5 +7,6 @@
     <color name="teal_700">#102769</color>
     <color name="black">#FFFFFF</color> //barva textu
     <color name="white">#FFFFFFFF</color> //barva textu
-    <color name="grey">#32BECA</color>
+    <color name="grey">#000000</color>
+
 </resources>

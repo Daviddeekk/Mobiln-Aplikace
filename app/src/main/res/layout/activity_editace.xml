@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00FFF1F1"
     tools:context=".Editace">
 
     <androidx.appcompat.widget.Toolbar
@@ -25,6 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:subtitleTextColor="@color/teal_700">
+
 
         <TextView
 
@@ -52,7 +54,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.appcompat.widget.Toolbar>
-/>
+    />
+
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -70,8 +73,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="6"
-            >
+            android:weightSum="6">
 
             <TableLayout
                 android:layout_width="wrap_content"
@@ -79,7 +81,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="69dp"
                 android:layout_weight="6"
-                >
+                android:background="#00FFFFFF">
 
                 <TableRow
                     android:id="@+id/row1"
@@ -96,40 +98,42 @@
                         android:layout_weight="3"
                         android:autoText="true"
                         android:fadeScrollbars="false"
+                        android:gravity="center"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:gravity="center"
-                        >
-                    </EditText>
+                        android:textSize="20sp"></EditText>
 
 
-                    <EditText
+                    <Button
                         android:id="@+id/cas1"
+                        android:onClick="openPicker"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="2"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
                         android:lines="1"
+                        android:maxWidth="10dp"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
+                        android:text="00 : 00 : 00"
                         android:textColor="@color/white"
-                        android:maxWidth="10dp"
-                        android:gravity="center"
-                        android:textSize="20sp"
-                        android:inputType="number"
-                        ></EditText>
+                        android:textSize="14sp"
+                        app:backgroundTint="#00711E1E"></Button>
+
 
                     <ImageButton
-                        android:layout_weight="1"
                         android:id="@+id/lock1"
-                        android:onClick="zavodniciEditable"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
 
 

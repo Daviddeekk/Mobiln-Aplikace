@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
@@ -38,11 +39,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void dialogButton(View view){
-
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(2);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Zadejte počet závodníků (1-20)");
         final EditText input = new EditText(this);
+        input.setFilters(FilterArray);
         input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_NUMBER);
         builder.setView(input);
 
@@ -55,14 +58,10 @@ public class MainActivity extends AppCompatActivity {
                     dialogButton(view);
                 }else{
 
-
                 int cislo = Integer.parseInt(input.getText().toString());
-
-                if(cislo <= 20 && cislo > 0 //&& input.getText() != null
+                if(cislo <= 20 && cislo > 0
                  ){
                     String tag = view.getTag().toString();
-
-
 
                     if(tag.equals("hromadny")){
 
