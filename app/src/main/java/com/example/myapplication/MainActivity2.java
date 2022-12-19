@@ -42,6 +42,11 @@ public class MainActivity2 extends AppCompatActivity {
     int zastavenych;
 
 
+
+    @Override
+    public void onBackPressed() {
+         {openActivity1();}
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +60,6 @@ public class MainActivity2 extends AppCompatActivity {
                 openActivity1();
             }
         });
-
-
 
         timerText = (TextView) findViewById(R.id.timerText);
         stopStartButton = (Button) findViewById(R.id.startStop);
@@ -93,24 +96,30 @@ public class MainActivity2 extends AppCompatActivity {
                     buttonReset(false);
                     startButtonReset(true);
                     zastavenych = 0;
+                    textv.setEnabled(true);
+                    for(int k = 1; k<=20;k++){
+                        num = 20+k;
+                        Resources res = getResources();
+                        int id = res.getIdentifier("textView" + num, "id", getPackageName());
+                        textv = (TextView) findViewById(id);
+                        textv.setEnabled(true);
+                    }
                 }
+                Button pokracovat = (Button) findViewById(R.id.pokracovat);
+                pokracovat.setVisibility(View.INVISIBLE);
             }
         });
-
         resetAlert.setNeutralButton("Ne", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {}
         });
-
         resetAlert.show();
-
     }
 
     public void startStop(View view)
     {
-
         if(timerStarted == false)
         {
             buttonReset(true);
@@ -118,7 +127,6 @@ public class MainActivity2 extends AppCompatActivity {
             startButtonReset(false);
             startTimer();
             zavodniciEditable(false);
-
         }
         else
         {
@@ -147,6 +155,11 @@ public class MainActivity2 extends AppCompatActivity {
                     {
                         time++;
                         timerText.setText(getTimerText());
+                        //aby se čas u závodníků nenastavoval pokaždé ale pouze po jedné sekundě
+                            if(timerText.getText().equals(textv.getText())){
+                            }else{
+                                allTimes();
+                            }
                     }
                 });
             }
@@ -168,15 +181,14 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public int getNumber(int i){
-
         u = i;
         return u;
-
     }
 
     public void zavodniciReset (View view){
         int viewCount = 20;
         for (int i = 1; i <= viewCount; i++){
+
             Resources res = getResources();
             int id = res.getIdentifier("textView" + i, "id", getPackageName());
 
@@ -207,12 +219,18 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void stop(View view) {
         String tag = view.getTag().toString();
-        for (int i = 1; i <=20; i++){
+        for (int i = 1; i <=u; i++){
             if(tag.equals("stop"+i)){
                 num = 20+i;
-
                 view.setEnabled(false);
                 zastavenych = zastavenych + 1;
+                Resources res = getResources();
+                int id = res.getIdentifier("textView" + num, "id", getPackageName());
+
+                textv = (TextView) findViewById(id);
+                textv.setText(getTimerText());
+                textv.setEnabled(false);
+               // textv.setEnabled(false);
             }
         }
         if(u == zastavenych)
@@ -221,12 +239,21 @@ public class MainActivity2 extends AppCompatActivity {
             Button pokracovat = (Button) findViewById(R.id.pokracovat);
             pokracovat.setVisibility(View.VISIBLE);
         }
-        Resources res = getResources();
 
-        int id = res.getIdentifier("textView" + num, "id", getPackageName());
+    }
 
+    public void allTimes(){
+        for(int i = 1; i<=u;i++){
+            num = 20+i;
+            Resources res = getResources();
+            int id = res.getIdentifier("textView" + num, "id", getPackageName());
             textv = (TextView) findViewById(id);
-            textv.setText(getTimerText());
+            if(textv.isEnabled()){
+                textv.setText(getTimerText());
+            }else{
+                System.out.println(textv.getId()+"vyplá");
+            }
+        }
     }
     public void buttonReset(boolean reset){ // otevře tlačíka a závodníky
         for (int k = 21; k <=40; k++){
@@ -255,7 +282,7 @@ public class MainActivity2 extends AppCompatActivity {
             Resources res = getResources();
             int id = res.getIdentifier("textView" + i, "id", getPackageName());
             textv = (TextView) findViewById(id);
-            textv.setEnabled(edit);
+            textv.setEnabled(true);
         }
     }
     public void openEd(){ //otevře stránku s editací

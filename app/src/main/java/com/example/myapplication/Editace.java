@@ -38,6 +38,9 @@ public class Editace extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     //TextView jmeno;
     //static String getName;
+    public void onBackPressed() {
+        {openActivity2();}
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
