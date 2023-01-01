@@ -5,8 +5,8 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#102769</color>
-    <color name="black">#FFFFFF</color> //barva textu
+    <color name="black">#000000</color> //barva textu
     <color name="white">#FFFFFFFF</color> //barva textu
-    <color name="grey">#000000</color>
+    <color name="grey">#5E5959</color>
 
 </resources>

@@ -9,12 +9,14 @@ import androidx.core.content.ContextCompat;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -26,22 +28,20 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity2 extends AppCompatActivity {
-    private Button button;
-    private Button b;
+    private Button button, b, startButton;
     private TableRow odstranRow;
-    private TextView textv;
-    private TextView textv2;
-    TextView timerText;
-    Button stopStartButton;
+    private TextView textv,textv2, timerText;
+    private EditText et;
     private static int u;
+    private ImageButton zpet, pokracovat;
     Timer timer;
     TimerTask timerTask;
     Double time = 0.0;
-    private int num;
+    private int num, zastavenych;
     boolean timerStarted = false;
-    int zastavenych;
+    String[][] newArray = new String[u][3];
 
-
+    //int zastavenych;
 
     @Override
     public void onBackPressed() {
@@ -52,31 +52,30 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        buttonReset(false);
-        button = (Button) findViewById(R.id.zpet);
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                openActivity1();
-            }
-        });
+        buttonReset(false);                                     //na začátku nemohu zmáčknout tlačítka
+        zpet = (ImageButton) findViewById(R.id.zpet);
+        zpet.setColorFilter(Color.rgb(255,7,107));
 
-        timerText = (TextView) findViewById(R.id.timerText);
-        stopStartButton = (Button) findViewById(R.id.startStop);
 
-        timer = new Timer();
-        odstran();
+        timerText = (TextView) findViewById(R.id.timerText);    //definování timerTextu
+        startButton = (Button) findViewById(R.id.startStop);    //definování tlačítka start
+        cisloZavodnika();
+        timer = new Timer();                                    //vytvoření timeru
+        odstran();                                              //odstraní řádky, které nepotřebujeme
 
-        Button pokracovat = (Button) findViewById(R.id.pokracovat);
-        pokracovat.setVisibility(View.INVISIBLE);
+        pokracovat = (ImageButton)findViewById(R.id.pokracovat);
+        pokracovat.setVisibility(View.INVISIBLE);               //tlačítko pro pokračování bude neviditelně
 
+    }
+    public void back(View view){
+        openActivity1();
     }
     public void openActivity1() {
         Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        startActivity(intent);                                  //metoda pro otevření první stránky
     }
 
-    public void reset(View view) //resetuje stopky i s výsledky
+    public void reset(View view)                                //resetuje stopky i s výsledky
     {
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(this);
         resetAlert.setMessage("Opravdu chcete resetovat stopky i s výsledky?");
@@ -89,7 +88,7 @@ public class MainActivity2 extends AppCompatActivity {
                 if(timerTask != null)
                 {
                     timerTask.cancel();
-                    setButtonUI("START");
+                    //setButtonUI("START");
                     time = 0.0;
                     timerStarted = false;
                     timerText.setText(formatTime(0,0,0));
@@ -105,7 +104,7 @@ public class MainActivity2 extends AppCompatActivity {
                         textv.setEnabled(true);
                     }
                 }
-                Button pokracovat = (Button) findViewById(R.id.pokracovat);
+                pokracovat = (ImageButton) findViewById(R.id.pokracovat);
                 pokracovat.setVisibility(View.INVISIBLE);
             }
         });
@@ -131,17 +130,14 @@ public class MainActivity2 extends AppCompatActivity {
         else
         {
             timerStarted = false;
-            setButtonUI("START");
+            //setButtonUI("START");
             timerTask.cancel();
 
         }
     }
-    private void setButtonUI(String start)
-    {
-        stopStartButton.setText(start);
-    }
+    //private void setButtonUI(String start) {startButton.setText(start);}
 
-    private void startTimer()
+    private void startTimer()                 //po začátku timeru
     {
         timerTask = new TimerTask()
         {
@@ -155,12 +151,10 @@ public class MainActivity2 extends AppCompatActivity {
                     {
                         time++;
                         timerText.setText(getTimerText());
-                        //aby se čas u závodníků nenastavoval pokaždé ale pouze po jedné sekundě
+                        //aby se čas u závodníků nenastavoval pokaždé ale pouze po jedné sekundě, zbytečně mnoho operací
                             if(timerText.getText().equals(textv.getText())){
                             }else{
-                                allTimes();
-                            }
-                    }
+                                allTimes();}}
                 });
             }
 
@@ -184,23 +178,23 @@ public class MainActivity2 extends AppCompatActivity {
         u = i;
         return u;
     }
-
+    //resetuje jména závodníků
     public void zavodniciReset (View view){
-        int viewCount = 20;
-        for (int i = 1; i <= viewCount; i++){
 
+        for (int i = 1; i <= u; i++){
             Resources res = getResources();
             int id = res.getIdentifier("textView" + i, "id", getPackageName());
-
             textv = (TextView) findViewById(id);
-
             textv.setHint("Jméno závodníka");
             textv.setText(null);
-            Button pokracovat = (Button) findViewById(R.id.pokracovat);
-            pokracovat.setVisibility(View.INVISIBLE);
 
+            int id2 = res.getIdentifier("cisloZavodnika" + i, "id", getPackageName());
+
+            et = (EditText) findViewById(id2);
+            et.setText(Integer.toString(i));
         }
     }
+    //odstrani přebytečné řádky, nechá jenom ty potřebné
     public void odstran() {
         int k = u;
         int kolikrat = 20-k;
@@ -216,7 +210,7 @@ public class MainActivity2 extends AppCompatActivity {
             smaz = smaz -1;
         }
     }
-
+    //při zastavení času u jenoho závodníka tlačítko a čas se vypnou
     public void stop(View view) {
         String tag = view.getTag().toString();
         for (int i = 1; i <=u; i++){
@@ -230,31 +224,43 @@ public class MainActivity2 extends AppCompatActivity {
                 textv = (TextView) findViewById(id);
                 textv.setText(getTimerText());
                 textv.setEnabled(false);
-               // textv.setEnabled(false);
+
             }
         }
+        //pokud vypl všechny objeví se pokracovat
         if(u == zastavenych)
         {
             timerTask.cancel();
-            Button pokracovat = (Button) findViewById(R.id.pokracovat);
+             pokracovat = (ImageButton) findViewById(R.id.pokracovat);
             pokracovat.setVisibility(View.VISIBLE);
-        }
 
+        }
+    }
+    //nastaví na začátku alespon cislo zavodnika
+    private void cisloZavodnika(){
+        for(int i = 1; i<=u; i++){
+
+            Resources res = getResources();
+            int id = res.getIdentifier("cisloZavodnika" + i, "id", getPackageName());
+
+            et = (EditText) findViewById(id);
+            et.setText(Integer.toString(i));
+        }
     }
 
-    public void allTimes(){
+    private void allTimes(){
         for(int i = 1; i<=u;i++){
+
             num = 20+i;
             Resources res = getResources();
             int id = res.getIdentifier("textView" + num, "id", getPackageName());
+
             textv = (TextView) findViewById(id);
             if(textv.isEnabled()){
                 textv.setText(getTimerText());
-            }else{
-                System.out.println(textv.getId()+"vyplá");
-            }
-        }
-    }
+            }else{}
+        }}
+
     public void buttonReset(boolean reset){ // otevře tlačíka a závodníky
         for (int k = 21; k <=40; k++){
             int stopid = k-20;
@@ -277,42 +283,52 @@ public class MainActivity2 extends AppCompatActivity {
     {
         Button tlacitko = (Button) findViewById(R.id.zavodnici);
         tlacitko.setEnabled(edit);
-        int viewCount = 20;
-        for (int i = 1; i <= viewCount; i++) {
+       // int viewCount = 20;
+        for (int i = 1; i <= u; i++) {
             Resources res = getResources();
             int id = res.getIdentifier("textView" + i, "id", getPackageName());
             textv = (TextView) findViewById(id);
-            textv.setEnabled(true);
+            textv.setEnabled(edit);
+
+            int id2 = res.getIdentifier("cisloZavodnika" +i, "id",getPackageName());
+            et = (EditText) findViewById(id2);
+            et.setEnabled(edit);
         }
     }
+
+
     public void openEd(){ //otevře stránku s editací
+
+        pokracovat = (ImageButton) findViewById(R.id.pokracovat);
+
+        Resources res = getResources();
+
+        int row = 0;
+        for (int i = 1; i <=u; i++){
+
+            int num = 20 +i;
+            int id = res.getIdentifier("textView" + i, "id", getPackageName());
+            int id2 = res.getIdentifier("textView" + num, "id", getPackageName());
+            int id3 = res.getIdentifier("cisloZavodnika" + i, "id", getPackageName());
+
+            textv = (TextView) findViewById(id);    //jmeno
+            textv2 = (TextView) findViewById(id2);  //cas
+            et = (EditText) findViewById(id3); //cislo
+
+            newArray[row][0] = textv.getText().toString();
+            newArray[row][1] = textv2.getText().toString();
+            newArray[row][2] = et.getText().toString();
+            row = row +1;
+
+        }
+        Editace e = new Editace();
+        e.setArray(newArray);
+        e.poc(u);
         Intent intent = new Intent(this, Editace.class);
         startActivity(intent);
+
     }
         public void openEditace(View view){
-            button = (Button) findViewById(R.id.pokracovat);
-            button.setOnClickListener(new View.OnClickListener(){
-
-                @Override
-                public void onClick(View v) {
-                    textv = (TextView) findViewById(R.id.textView1);
-                    textv2 = (TextView) findViewById(R.id.textView21);
-                    Editace e = new Editace();
-                    e.getName(textv.getText().toString());
-                    e.getCas(textv2.getText().toString());
-                    openEd();
-                }
-            });
-
-
-        }
-
-
-
-
-
-
-
-
-
+            openEd();
+            }
 }

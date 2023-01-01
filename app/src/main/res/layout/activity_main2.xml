@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:id="@+id/rootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,20 +34,20 @@
             android:textColor="@color/white"
             android:textSize="30sp"></TextView>
 
-        <Button
+
+        <ImageButton
             android:id="@+id/zpet"
-            android:layout_width="80dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:onClick="back"
+            android:layout_gravity="start"
+
+            android:background="#00FFFFFF"
 
 
-
-            android:onClick="zpet"
-            android:text="Zpět"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="2dp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -64,7 +65,7 @@
         android:layout_marginTop="92dp"
         android:layout_marginEnd="21dp"
         android:gravity="center|center_vertical"
-        android:text="00:00:00"
+        android:text="00 : 00 : 00"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/startStop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,25 +94,26 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+
+
         android:layout_marginTop="260dp"
-        android:fillViewport="true"
-
-
-        >
+        android:layout_marginBottom="5dp"
+        android:fillViewport="true">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="4"
-            >
+            android:weightSum="13">
 
             <TableLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="69dp"
-                android:layout_weight="4">
+                android:layout_weight="13">
 
 
                 <TableRow
@@ -120,10 +122,24 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:id="@+id/cisloZavodnika1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
 
                         android:lines="1"
@@ -131,26 +147,27 @@
                         android:maxLines="1"
                         android:singleLine="true"
                         android:tag="tag1"
-                         />
+
+                        />
 
                     <TextView
                         android:id="@+id/textView21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:layout_weight="3"
                         android:text="TIME"
-                        />
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop1"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
-
                         android:tag="stop1"
                         android:text="Stop"
-                        android:visibility="visible"
-                         />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -159,46 +176,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
-
+                        android:id="@+id/cisloZavodnika2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
 
+                    <EditText
+                        android:id="@+id/textView2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
-
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag2"
-
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView22"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
-
                         android:id="@+id/stop2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
-
                         android:tag="stop2"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteX="272dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -207,46 +227,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
-
+                        android:id="@+id/cisloZavodnika3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:editable="true"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
-
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag3"
-
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView23"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
-
                         android:id="@+id/stop3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop3"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteX="272dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -255,46 +278,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView4"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:editable="true"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
-
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag4"
-
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView24"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
-
                         android:id="@+id/stop4"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop4"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteX="272dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -303,47 +329,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
-
+                        android:id="@+id/cisloZavodnika5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:editable="true"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
-
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag5"
-
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView25"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
-
                         android:id="@+id/stop5"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_weight="3"
                         android:onClick="stop"
-
                         android:tag="stop5"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteX="272dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -352,48 +380,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView6"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
-
+                        android:id="@+id/cisloZavodnika6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:editable="true"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
-
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag6"
-
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView26"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
-
                         android:id="@+id/stop6"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_weight="3"
                         android:onClick="stop"
-
                         android:tag="stop6"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteX="272dp"
-                        tools:layout_editor_absoluteY="217dp" />
-
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -402,49 +431,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView7"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
-
+                        android:id="@+id/cisloZavodnika7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:editable="true"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
-
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag7"
-
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView27"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:layout_weight="3"
                         android:text="TIME"
-
-                        />
+                        android:textAlignment="center" />
 
                     <Button
-
                         android:id="@+id/stop7"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_weight="3"
                         android:onClick="stop"
-
                         android:tag="stop7"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteX="272dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -453,47 +482,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView8"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
-
+                        android:id="@+id/cisloZavodnika8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:editable="true"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
-
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag8"
-
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView28"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
-
                         android:id="@+id/stop8"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_weight="3"
                         android:onClick="stop"
-
                         android:tag="stop8"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteX="272dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -502,47 +533,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView9"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
-
+                        android:id="@+id/cisloZavodnika9"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:editable="true"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView9"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
-
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag9"
-
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView29"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
-
                         android:id="@+id/stop9"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:layout_weight="3"
                         android:onClick="stop"
-
                         android:tag="stop9"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteX="272dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -551,38 +584,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView10"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag10"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView30"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop10"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop10"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -591,38 +635,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView11"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika11"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView11"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag11"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView31"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop11"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop11"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -631,38 +686,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView12"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag12"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView32"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop12"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop12"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -671,38 +737,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView13"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag13"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView33"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop13"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop13"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -711,38 +788,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView14"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag14"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView34"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop14"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop14"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -751,38 +839,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView15"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag15"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView35"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop15"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop15"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -791,38 +890,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView16"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag16"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView36"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop16"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop16"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -831,38 +941,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView17"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika17"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView17"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag17"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView37"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop17"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop17"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -871,38 +992,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView18"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika18"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView18"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag18"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView38"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop18"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop18"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -911,38 +1043,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView19"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika19"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView19"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag19"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView39"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop19"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop19"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -951,38 +1094,49 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/textView20"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
+                        android:id="@+id/cisloZavodnika20"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:fadeScrollbars="false"
+                        android:hint="cislo"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:tag="tag1"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/textView20"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:tag="tag20"
-                        tools:layout_editor_absoluteX="37dp"
-                        tools:layout_editor_absoluteY="217dp" />
+                        android:tag="tag1" />
 
                     <TextView
                         android:id="@+id/textView40"
-                        android:layout_width="81dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="TIME" />
+                        android:layout_weight="3"
+                        android:text="TIME"
+                        android:textAlignment="center" />
 
                     <Button
                         android:id="@+id/stop20"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop20"
                         android:text="Stop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:visibility="visible" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>
@@ -1010,19 +1164,24 @@
         android:onClick="zavodniciReset"
         android:text="Závodníci reset" />
 
-    <Button
+
+    <ImageButton
         android:id="@+id/pokracovat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="17dp"
+
+        android:layout_marginRight="20dp"
+
+
+        android:layout_marginEnd="13dp"
         android:layout_marginBottom="13dp"
-        android:text="pokračovat"
+        android:background="@drawable/roundedbutton"
         android:onClick="openEditace"
+        android:scaleType="fitCenter"
 
-        />
-
+        app:srcCompat="@android:drawable/ic_menu_send" />
 
 
 </RelativeLayout>

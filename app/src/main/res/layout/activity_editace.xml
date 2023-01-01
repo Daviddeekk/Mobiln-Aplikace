@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFF1F1"
+
     tools:context=".Editace">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -14,6 +15,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+
         android:layout_marginStart="-1dp"
         android:layout_marginTop="-3dp"
         android:layout_marginBottom="37dp"
@@ -22,7 +24,7 @@
 
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:subtitleTextColor="@color/teal_700">
@@ -33,29 +35,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+
             android:text="Edit výsledků"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="25dp"
+
             tools:layout_editor_absoluteX="96dp"
             tools:layout_editor_absoluteY="8dp"></TextView>
 
-        <Button
+        <ImageButton
             android:id="@+id/zpet"
-            android:layout_width="80dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:layout_gravity="start"
+            android:background="#00FFFFFF"
+            android:onClick="back"
+
+            android:scaleType="fitCenter"
 
 
-            android:onClick="zpet"
-            android:text="Zpět"
+            app:srcCompat="@android:drawable/ic_delete" />
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/next"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:background="#00FFFFFF"
+            android:onClick="dalsiStranka"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/ic_menu_send"
+            tools:layout_editor_absoluteX="310dp"
+            tools:layout_editor_absoluteY="2dp" />
 
     </androidx.appcompat.widget.Toolbar>
-    />
-
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -71,17 +84,74 @@
 
 
         <LinearLayout
+            android:id="@+id/ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="6">
+            android:weightSum="13">
 
             <TableLayout
+                android:id="@+id/tablelayout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="69dp"
-                android:layout_weight="6"
-                android:background="#00FFFFFF">
+                android:layout_weight="13"
+               >
+
+                <TableRow
+                    android:id="@+id/begin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/cislozavodníka"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:background="#00802C2C"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="Číslo z."
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        >
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/jmenoZavodnika"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="Jméno"
+                        android:textAlignment="center"
+                        android:textSize="17dp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/zavodnikuvCas"
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="Čas."
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold"></TextView>
+
+                    <TextView
+                        android:id="@+id/otevřeno"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="Edit"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold"></TextView>
+
+                </TableRow>
 
                 <TableRow
                     android:id="@+id/row1"
@@ -89,31 +159,43 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/jmeno1"
+                        android:id="@+id/cislo1"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginBottom="0dp"
-                        android:layout_weight="3"
-                        android:autoText="true"
+                        android:layout_weight="2"
                         android:fadeScrollbars="false"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20dp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno1"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:fadeScrollbars="false"
+                        android:gravity="clip_horizontal"
                         android:lines="1"
                         android:maxLength="25"
                         android:maxLines="1"
+                        android:scrollHorizontally="true"
                         android:singleLine="true"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"></EditText>
 
+
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20dp"></EditText>
 
                     <Button
+
                         android:id="@+id/cas1"
-                        android:onClick="openPicker"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="2"
+                        android:layout_weight="4"
+                        android:width="0dp"
                         android:background="@color/purple_500"
                         android:gravity="center"
                         android:inputType="number"
@@ -121,26 +203,1188 @@
                         android:maxWidth="10dp"
                         android:maxLength="25"
                         android:maxLines="1"
+                        android:onClick="openPicker"
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
-
-
                     <ImageButton
                         android:id="@+id/lock1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock"
+
+                        />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/row2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo2"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno2"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                    <EditText
+                        android:id="@+id/cislo3"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
 
+                    <EditText
+                        android:id="@+id/jmeno3"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo4"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno4"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo5"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno5"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo6"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno6"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo7"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno7"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo8"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno8"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo9"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno9"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas9"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock9"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo10"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno10"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row11"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo11"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno11"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas11"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock11"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row12"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo12"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno12"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row13"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo13"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno13"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row14"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo14"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno14"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row15"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo15"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno15"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row16"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo16"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno16"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row17"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo17"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:inputType="number"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno17"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas17"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock17"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row18"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo18"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno18"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas18"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock18"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row19"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo19"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno19"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas19"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock19"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/row20"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/cislo20"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:fadeScrollbars="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <EditText
+                        android:id="@+id/jmeno20"
+                        android:layout_width="0dp"
+                        android:layout_weight="5"
+                        android:autoText="true"
+                        android:fadeScrollbars="false"
+                        android:lines="1"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="20sp"></EditText>
+
+                    <Button
+                        android:id="@+id/cas20"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="4"
+                        android:background="@color/purple_500"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:maxWidth="10dp"
+                        android:maxLength="25"
+                        android:maxLines="1"
+                        android:onClick="openPicker"
+                        android:singleLine="true"
+                        android:text="00 : 00 : 00"
+                        android:textAlignment="center"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="#00711E1E"></Button>
+                    <ImageButton
+                        android:id="@+id/lock20"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:onClick="zavodniciEditable"
+                        app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
 
             </TableLayout>
         </LinearLayout>
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
