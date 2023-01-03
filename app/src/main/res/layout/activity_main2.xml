@@ -6,6 +6,7 @@
     android:id="@+id/rootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00FFFFFF"
     android:screenOrientation="portrait"
     tools:context=".MainActivity2">
 
@@ -39,10 +40,10 @@
             android:id="@+id/zpet"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:onClick="back"
             android:layout_gravity="start"
-
             android:background="#00FFFFFF"
+
+            android:onClick="back"
 
 
             app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
@@ -62,7 +63,7 @@
         android:layout_alignParentEnd="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="21dp"
         android:gravity="center|center_vertical"
         android:text="00 : 00 : 00"
@@ -72,25 +73,66 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="130dp"
+    android:weightSum="4">
+    <TableRow>
+        <ImageButton
 
-    <Button
-        android:id="@+id/startStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
 
-        android:layout_centerInParent="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginTop="182dp"
-        android:layout_marginEnd="22dp"
-        android:onClick="startStop"
-        android:text="Start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerText" />
+            android:id="@+id/zavodnici"
 
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_alignParentStart="true"
+            android:background="#00FFFFFF"
+
+            android:onClick="zavodniciReset"
+            android:src="@android:drawable/ic_menu_delete"
+            android:text="Závodníci reset"
+            android:textColor="?android:attr/textColorPrimary" />
+
+        <ImageButton
+            android:id="@+id/importB"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+
+            android:src="@android:drawable/stat_sys_upload"
+            android:text="Button" />
+
+
+
+
+        <ImageButton
+            android:id="@+id/reset"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:background="#00FFFFFF"
+            android:onClick="reset"
+            android:src="@android:drawable/ic_menu_revert"
+            android:text="Reset"
+            android:textColor="?android:attr/textColorPrimary" />
+        <ImageButton
+            android:id="@+id/startStop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:onClick="startStop"
+            android:src="@android:drawable/ic_media_play"
+            android:text="Start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timerText" />
+    </TableRow>
+</TableLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -98,7 +140,7 @@
         android:layout_alignParentBottom="true"
 
 
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="180dp"
         android:layout_marginBottom="5dp"
         android:fillViewport="true">
 
@@ -157,17 +199,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop1"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop1"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -208,17 +251,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop2"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop2"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -259,17 +303,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop3"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop3"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -310,17 +355,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop4"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop4"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -361,17 +407,21 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop5"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop5"
                         android:text="Stop"
-                        android:visibility="visible" />
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:visibility="visible"
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -412,17 +462,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop6"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop6"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -463,17 +514,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop7"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop7"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -514,17 +566,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop8"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop8"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -565,17 +618,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop9"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop9"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -616,17 +670,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop10"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop10"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -667,17 +722,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop11"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop11"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -718,17 +774,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop12"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop12"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -769,17 +826,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop13"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop13"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -820,17 +878,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop14"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop14"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -871,17 +930,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop15"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop15"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -922,17 +982,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop16"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop16"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -973,17 +1034,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop17"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop17"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -1024,17 +1086,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop18"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop18"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -1075,17 +1138,18 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop19"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop19"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
 
                 <TableRow
@@ -1126,43 +1190,24 @@
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/stop20"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:onClick="stop"
                         android:tag="stop20"
-                        android:text="Stop"
-                        android:visibility="visible" />
+                        android:background="#00FFFFFF"
+                        android:src="@android:drawable/ic_media_pause"/>
                 </TableRow>
             </TableLayout>
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="182dp"
-        android:onClick="reset"
-        android:text="Reset" />
 
-    <Button
-        android:id="@+id/zavodnici"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="13dp"
-        android:onClick="zavodniciReset"
-        android:text="Závodníci reset" />
 
 
     <ImageButton
@@ -1172,16 +1217,18 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
 
-        android:layout_marginRight="20dp"
-
-
         android:layout_marginEnd="13dp"
+
+
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="13dp"
         android:background="@drawable/roundedbutton"
         android:onClick="openEditace"
         android:scaleType="fitCenter"
 
         app:srcCompat="@android:drawable/ic_menu_send" />
+
+
 
 
 </RelativeLayout>

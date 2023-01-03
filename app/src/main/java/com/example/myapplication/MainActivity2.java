@@ -33,7 +33,7 @@ public class MainActivity2 extends AppCompatActivity {
     private TextView textv,textv2, timerText;
     private EditText et;
     private static int u;
-    private ImageButton zpet, pokracovat;
+    private ImageButton zpet, pokracovat, start, resetButton, importB, zavodnici, stopB;
     Timer timer;
     TimerTask timerTask;
     Double time = 0.0;
@@ -52,13 +52,26 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        zavodnici = (ImageButton) findViewById(R.id.zavodnici);
+        zavodnici.setColorFilter(Color.rgb(50, 190, 202));
+
+        start = (ImageButton) findViewById(R.id.startStop);
+        start.setColorFilter(Color.rgb(50, 190, 202));
+
+        importB= (ImageButton) findViewById(R.id.importB);
+        importB.setColorFilter(Color.rgb(50, 190, 202));
+
         buttonReset(false);                                     //na začátku nemohu zmáčknout tlačítka
         zpet = (ImageButton) findViewById(R.id.zpet);
         zpet.setColorFilter(Color.rgb(255,7,107));
 
+        resetButton = (ImageButton) findViewById(R.id.reset);
+        resetButton.setEnabled(false);
+        resetButton.setColorFilter(Color.GRAY);
+
 
         timerText = (TextView) findViewById(R.id.timerText);    //definování timerTextu
-        startButton = (Button) findViewById(R.id.startStop);    //definování tlačítka start
+           //definování tlačítka start
         cisloZavodnika();
         timer = new Timer();                                    //vytvoření timeru
         odstran();                                              //odstraní řádky, které nepotřebujeme
@@ -103,6 +116,8 @@ public class MainActivity2 extends AppCompatActivity {
                         textv = (TextView) findViewById(id);
                         textv.setEnabled(true);
                     }
+                    resetButton.setEnabled(false);
+                    resetButton.setColorFilter(Color.GRAY);
                 }
                 pokracovat = (ImageButton) findViewById(R.id.pokracovat);
                 pokracovat.setVisibility(View.INVISIBLE);
@@ -121,6 +136,8 @@ public class MainActivity2 extends AppCompatActivity {
     {
         if(timerStarted == false)
         {
+            resetButton.setEnabled(true);
+            resetButton.setColorFilter(Color.rgb(50, 190, 202));
             buttonReset(true);
             timerStarted = true;
             startButtonReset(false);
@@ -129,6 +146,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
         else
         {
+
             timerStarted = false;
             //setButtonUI("START");
             timerTask.cancel();
@@ -217,8 +235,22 @@ public class MainActivity2 extends AppCompatActivity {
             if(tag.equals("stop"+i)){
                 num = 20+i;
                 view.setEnabled(false);
-                zastavenych = zastavenych + 1;
+
                 Resources res = getResources();
+                int id1 = res.getIdentifier("stop" + i, "id", getPackageName());
+                stopB = (ImageButton) findViewById(id1);
+
+                if(view.isEnabled()){
+
+                    stopB.setColorFilter(Color.rgb(50, 190, 202));
+
+                }
+                else{
+                    stopB.setColorFilter(Color.GRAY);
+
+                }
+                zastavenych = zastavenych + 1;
+
                 int id = res.getIdentifier("textView" + num, "id", getPackageName());
 
                 textv = (TextView) findViewById(id);
@@ -263,12 +295,28 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void buttonReset(boolean reset){ // otevře tlačíka a závodníky
         for (int k = 21; k <=40; k++){
+
+
+
             int stopid = k-20;
             Resources res = getResources();
             int id = res.getIdentifier("stop" + stopid , "id", getPackageName());
             int idt = res.getIdentifier("textView" + k, "id", getPackageName());
-            b = (Button) findViewById(id);
-            b.setEnabled(reset);
+            stopB = (ImageButton) findViewById(id);
+
+            stopB.setEnabled(reset);
+
+            if(stopB.isEnabled()){
+
+                stopB.setColorFilter(Color.rgb(50, 190, 202));
+
+            }
+            else{
+                stopB.setColorFilter(Color.GRAY);
+
+            }
+
+
             textv = (TextView) findViewById(idt);
             textv.setText(getTimerText());
             zavodniciEditable(true);
@@ -276,13 +324,26 @@ public class MainActivity2 extends AppCompatActivity {
     }
     public void startButtonReset(boolean resetStart)
     {
-        b = (Button) findViewById(R.id.startStop);
-        b.setEnabled(resetStart);
+
+        start.setEnabled(resetStart);
+        System.out.println(resetStart);
+        if(resetStart == true){
+            start.setColorFilter(Color.rgb(50, 190, 202));
+            importB.setColorFilter(Color.rgb(50, 190, 202));
+            zavodnici.setColorFilter(Color.rgb(50, 190, 202));
+        }else
+        {
+            start.setColorFilter(Color.GRAY);
+            importB.setColorFilter(Color.GRAY);
+            zavodnici.setColorFilter(Color.GRAY);
+        }
     }
     public void zavodniciEditable(boolean edit)
     {
-        Button tlacitko = (Button) findViewById(R.id.zavodnici);
-        tlacitko.setEnabled(edit);
+
+       zavodnici.setEnabled(edit);
+
+
        // int viewCount = 20;
         for (int i = 1; i <= u; i++) {
             Resources res = getResources();
@@ -295,7 +356,6 @@ public class MainActivity2 extends AppCompatActivity {
             et.setEnabled(edit);
         }
     }
-
 
     public void openEd(){ //otevře stránku s editací
 
@@ -331,4 +391,6 @@ public class MainActivity2 extends AppCompatActivity {
         public void openEditace(View view){
             openEd();
             }
+
+
 }

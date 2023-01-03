@@ -211,7 +211,9 @@
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
+
                         android:id="@+id/lock1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

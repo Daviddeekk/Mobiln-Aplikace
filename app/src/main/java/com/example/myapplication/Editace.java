@@ -122,16 +122,23 @@ public class Editace extends AppCompatActivity {
 
             int id = res.getIdentifier("lock" + i, "id", getPackageName());
             imgb = (ImageButton) findViewById(id);
-            System.out.println(imgb.getColorFilter().toString());
+            System.out.println(imgb.isActivated());
+
+
             if(view.getId()==imgb.getId()){
 
-                if (imgb.getColorFilter().toString().equals("android.graphics.PorterDuffColorFilter@cf4fc6fd")) {
-                    viewsEditable(true, i);
-                    imgb.setColorFilter(Color.rgb(7, 255, 148));
+                if (imgb.isActivated()) {
+                    viewsEditable(false, i);
+
+                    imgb.setColorFilter(Color.rgb(255, 7, 107));
+                    imgb.setActivated(false);
 
                 } else {
-                    viewsEditable(false, i);
-                    imgb.setColorFilter(Color.rgb(255, 7, 107));
+                    viewsEditable(true, i);
+
+                    imgb.setColorFilter(Color.rgb(7, 255, 148));
+
+                    imgb.setActivated(true);
 
             }
         }
