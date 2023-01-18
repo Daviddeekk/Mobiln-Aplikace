@@ -6,12 +6,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,11 +27,19 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity2 extends AppCompatActivity {
+    private static final int READ_REQUEST_CODE = 42;
     private Button button, b, startButton;
+    private String TAG ="MainActivity2";
     private TableRow odstranRow;
     private TextView textv,textv2, timerText;
     private EditText et;
@@ -40,6 +51,7 @@ public class MainActivity2 extends AppCompatActivity {
     private int num, zastavenych;
     boolean timerStarted = false;
     String[][] newArray = new String[u][3];
+    String[][] csvData;
 
     //int zastavenych;
 
@@ -342,7 +354,7 @@ public class MainActivity2 extends AppCompatActivity {
     {
 
        zavodnici.setEnabled(edit);
-
+        importB.setEnabled(edit);
 
        // int viewCount = 20;
         for (int i = 1; i <= u; i++) {
@@ -390,7 +402,60 @@ public class MainActivity2 extends AppCompatActivity {
     }
         public void openEditace(View view){
             openEd();
+        }
+        public void upload(View view){
+        launchFilePicker();
+
+        }
+    public void launchFilePicker() {
+        // Create an intent for selecting a file via the file manager
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+
+        startActivityForResult(intent, READ_REQUEST_CODE);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        System.out.println("GOT HERE");
+        super.onActivityResult(requestCode, resultCode, resultData);
+
+        // If the selection worked, we have a URI pointing to the file
+        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // Get the URI of the selected file
+            Uri uri = null;
+            if (resultData != null) {
+                uri = resultData.getData();
+                try {
+                    InputStream is = getContentResolver().openInputStream(uri);
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                    List<String[]> data = new ArrayList<>();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        data.add(line.split(","));
+                    }
+                    String[][] arrayData = data.toArray(new String[data.size()][]);
+
+                    int dataLength = arrayData.length;
+                    Resources res = getResources();
+                    for (int i = 1; i <=dataLength; i++){
+                        if(i <= u){
+                            System.out.println(arrayData[0][0]);
+                            int id = res.getIdentifier("textView" + i, "id", getPackageName());
+                            et = (EditText) findViewById(id);
+                            et.setText(arrayData[i-1][0]);
+                            System.out.println(et.getText().toString());
+
+                    }
+                    }
+
+                } catch (IOException e) {
+                    Toast.makeText(this, "Error reading file", Toast.LENGTH_SHORT).show();
+                }
             }
+        }
+    }
+
 
 
 }

@@ -96,6 +96,7 @@
             android:textColor="?android:attr/textColorPrimary" />
 
         <ImageButton
+            android:onClick="upload"
             android:id="@+id/importB"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -181,7 +182,7 @@
                         android:id="@+id/textView1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
 
                         android:lines="1"
@@ -206,11 +207,11 @@
                         android:id="@+id/stop1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop1"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop1" />
                 </TableRow>
 
                 <TableRow
@@ -236,7 +237,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -258,11 +259,11 @@
                         android:id="@+id/stop2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop2"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop2" />
                 </TableRow>
 
                 <TableRow
@@ -288,7 +289,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -310,11 +311,11 @@
                         android:id="@+id/stop3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop3"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop3" />
                 </TableRow>
 
                 <TableRow
@@ -340,7 +341,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -362,11 +363,11 @@
                         android:id="@+id/stop4"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop4"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop4" />
                 </TableRow>
 
                 <TableRow
@@ -392,7 +393,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -414,14 +415,14 @@
                         android:id="@+id/stop5"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
+                        android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
                         android:tag="stop5"
                         android:text="Stop"
                         android:textColor="?android:attr/textColorPrimary"
-                        android:visibility="visible"
-                        android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:visibility="visible" />
                 </TableRow>
 
                 <TableRow
@@ -447,7 +448,7 @@
                         android:id="@+id/textView6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -469,11 +470,11 @@
                         android:id="@+id/stop6"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop6"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop6" />
                 </TableRow>
 
                 <TableRow
@@ -499,7 +500,7 @@
                         android:id="@+id/textView7"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -521,11 +522,11 @@
                         android:id="@+id/stop7"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop7"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop7" />
                 </TableRow>
 
                 <TableRow
@@ -551,7 +552,7 @@
                         android:id="@+id/textView8"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -573,11 +574,11 @@
                         android:id="@+id/stop8"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop8"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop8" />
                 </TableRow>
 
                 <TableRow
@@ -603,7 +604,7 @@
                         android:id="@+id/textView9"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -625,11 +626,11 @@
                         android:id="@+id/stop9"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop9"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop9" />
                 </TableRow>
 
                 <TableRow
@@ -655,7 +656,7 @@
                         android:id="@+id/textView10"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -677,11 +678,11 @@
                         android:id="@+id/stop10"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop10"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop10" />
                 </TableRow>
 
                 <TableRow
@@ -707,7 +708,7 @@
                         android:id="@+id/textView11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -729,11 +730,11 @@
                         android:id="@+id/stop11"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop11"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop11" />
                 </TableRow>
 
                 <TableRow
@@ -759,7 +760,7 @@
                         android:id="@+id/textView12"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -781,11 +782,11 @@
                         android:id="@+id/stop12"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop12"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop12" />
                 </TableRow>
 
                 <TableRow
@@ -811,7 +812,7 @@
                         android:id="@+id/textView13"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -833,11 +834,11 @@
                         android:id="@+id/stop13"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop13"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop13" />
                 </TableRow>
 
                 <TableRow
@@ -863,7 +864,7 @@
                         android:id="@+id/textView14"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -885,11 +886,11 @@
                         android:id="@+id/stop14"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop14"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop14" />
                 </TableRow>
 
                 <TableRow
@@ -915,7 +916,7 @@
                         android:id="@+id/textView15"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -937,11 +938,11 @@
                         android:id="@+id/stop15"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop15"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop15" />
                 </TableRow>
 
                 <TableRow
@@ -967,7 +968,7 @@
                         android:id="@+id/textView16"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -989,11 +990,11 @@
                         android:id="@+id/stop16"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop16"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop16" />
                 </TableRow>
 
                 <TableRow
@@ -1019,7 +1020,7 @@
                         android:id="@+id/textView17"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -1041,11 +1042,11 @@
                         android:id="@+id/stop17"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop17"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop17" />
                 </TableRow>
 
                 <TableRow
@@ -1071,7 +1072,7 @@
                         android:id="@+id/textView18"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -1093,11 +1094,11 @@
                         android:id="@+id/stop18"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop18"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop18" />
                 </TableRow>
 
                 <TableRow
@@ -1123,7 +1124,7 @@
                         android:id="@+id/textView19"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -1145,11 +1146,11 @@
                         android:id="@+id/stop19"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop19"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop19" />
                 </TableRow>
 
                 <TableRow
@@ -1175,7 +1176,7 @@
                         android:id="@+id/textView20"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
+                        android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
                         android:maxLength="25"
@@ -1197,11 +1198,11 @@
                         android:id="@+id/stop20"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
-                        android:onClick="stop"
-                        android:tag="stop20"
+                        android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:src="@android:drawable/ic_media_pause"/>
+                        android:onClick="stop"
+                        android:src="@android:drawable/ic_media_pause"
+                        android:tag="stop20" />
                 </TableRow>
             </TableLayout>
         </LinearLayout>

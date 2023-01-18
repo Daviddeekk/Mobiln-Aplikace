@@ -116,7 +116,7 @@ public class Vysledky extends AppCompatActivity {
         for (int i = 0; i < array.length; i++) {
             for (int j = i+1; j < array.length; j++) {
                 if (Integer.parseInt(array[i][column].replaceAll(" : ","")) > Integer.parseInt(array[j][column].replaceAll(" : ",""))) {
-// swap values
+
                     String[] temp = array[i];
                     array[i] = array[j];
                     array[j] = temp;
@@ -144,28 +144,24 @@ public class Vysledky extends AppCompatActivity {
     }
     //seřadí podle čísla závodníka sestupně
     public void sortByCisloS(){
-        int column = 2; // column to sort by
         for (int i = 0; i < fullArray.length; i++) {
-            for (int j = i+1; j < fullArray.length; j++) {
-                if (Integer.parseInt(fullArray[i][column].replaceAll(" : ","")) < Integer.parseInt(fullArray[j][column].replaceAll(" : ",""))) {
-
-                    String[] temp = fullArray[i];
-                    fullArray[i] = fullArray[j];
-                    fullArray[j] = temp;}}}
+            for (int j = 0; j < fullArray.length - 1; j++) {
+                if (fullArray[j][2].compareTo(fullArray[j + 1][2]) > 0) {
+                    String[] temp = fullArray[j];
+                    fullArray[j] = fullArray[j + 1];
+                    fullArray[j + 1] = temp;}}}
         setData();
+
     }
 
     //seřadí podle čísla závodníka vzestupně
     public void sortByCisloVz(){
-        int column = 2;
         for (int i = 0; i < fullArray.length; i++) {
-            for (int j = i+1; j < fullArray.length; j++) {
-                if (Integer.parseInt(fullArray[i][column].replaceAll(" : ","")) > Integer.parseInt(fullArray[j][column].replaceAll(" : ",""))) {
-
-                    String[] temp = fullArray[i];
-                    fullArray[i] = fullArray[j];
-                    fullArray[j] = temp;
-                }}}
+            for (int j = 0; j < fullArray.length - 1; j++) {
+                if (fullArray[j][2].compareTo(fullArray[j + 1][2]) < 0) {
+                    String[] temp = fullArray[j];
+                    fullArray[j] = fullArray[j + 1];
+                    fullArray[j + 1] = temp;}}}
         setData();
     }
     public void sortByNameAlph(){
@@ -273,7 +269,7 @@ public class Vysledky extends AppCompatActivity {
 
         // create a unique file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-        String fileName = "data_" + timeStamp + ".csv";
+        String fileName = "data_" + timeStamp + ".txt";
         File file = new File(dir, fileName);
         // get the file path as a string
         String filePath = file.getAbsolutePath();
