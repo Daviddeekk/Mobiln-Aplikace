@@ -6,6 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -66,7 +69,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
     public void displayAllData(LinearLayout layout) {
         SQLiteDatabase db = getReadableDatabase();
-
         String[] columns = { COLUMN_ID, COLUMN_NAME };
         Cursor cursor = db.query(TABLE_NAME, columns, null, null, null, null, null);
 
@@ -74,15 +76,58 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
             @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
 
-            TextView textView = new TextView(layout.getContext());
-            textView.setText(id + ": " + name);
+            LinearLayout horizontalLayout = new LinearLayout(layout.getContext());
+            horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
+            LinearLayout.LayoutParams horizontalLayoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            horizontalLayout.setLayoutParams(horizontalLayoutParams);
+
+           TextView textView = new TextView(layout.getContext());
+
+
+            LinearLayout.LayoutParams textViewParams = new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    0.7f);
+            textView.setLayoutParams(textViewParams);
+            textView.setText("  "+name);
             textView.setTextSize(25);
+            textView.setSingleLine();
 
 
-            layout.addView(textView);
+            Button button = new Button(layout.getContext());
+            LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    0.3f
+            );
+
+            button.setText("delete");
+            buttonParams.gravity = Gravity.END;
+            button.setLayoutParams(buttonParams);
+
+            horizontalLayout.addView(textView);
+            horizontalLayout.addView(button);
+            layout.addView(horizontalLayout);
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SQLiteDatabase db = getWritableDatabase();
+                    db.delete(TABLE_NAME, COLUMN_ID + "=?", new String[] { String.valueOf(id) });
+                    db.close();
+
+                    layout.removeView(horizontalLayout);
+                }
+            });
+
         }
 
         cursor.close();
         db.close();
+
+
     }
 }

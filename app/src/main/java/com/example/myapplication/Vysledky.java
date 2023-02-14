@@ -281,7 +281,7 @@ public class Vysledky extends AppCompatActivity {
 // write each row to the file
         for (String[] row : fullArray) {
             // write the values, separated by commas
-            bufferedWriter.write(String.join(",", row));
+            bufferedWriter.write(String.join(":", row));
             // add a newline character
             bufferedWriter.newLine();
         }
