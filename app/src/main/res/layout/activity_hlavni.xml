@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:screenOrientation="portrait"
+    tools:context=".Hlavni"
+
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="-3dp"
+        android:layout_marginBottom="37dp"
+
+        android:background="@color/purple_200"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitleTextColor="@color/teal_700">
+        <ImageButton
+            android:onClick="openDatabase"
+            android:id="@+id/dtbs"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+
+            app:srcCompat="?android:attr/actionModeFindDrawable"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="2dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:text="Zvolte sport"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="30sp"></TextView>
+
+
+    </androidx.appcompat.widget.Toolbar>
+<LinearLayout
+    android:layout_marginTop="60dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="13"
+    >
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="13"
+        >
+    <TableRow>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:onClick="dialogButton"
+            android:tag="rychlyHromadny"
+            android:text="Běh s hromadným startem"
+            app:backgroundTint="@color/purple_200"
+            app:cornerRadius="?attr/listPreferredItemPaddingEnd"
+
+            />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:onClick="dialogButton"
+            android:tag="rychlyPrubezny"
+            android:text="Běh (průbězně)"
+            app:backgroundTint="@color/purple_200"
+            app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </TableRow>
+        <TableRow>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:onClick="dialogButton"
+                android:tag="hromadny"
+                android:text="přespolní běh"
+                app:backgroundTint="@color/purple_200"
+                app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:onClick="dialogButton"
+                android:tag="prubezny"
+                android:text="orientační běh"
+                app:backgroundTint="@color/purple_200"
+                app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </TableRow>
+        <TableRow>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:onClick="dialogButton"
+                android:tag="rychlyPrubezny"
+                android:text="Sjezdové lyžování"
+                app:backgroundTint="@color/purple_200"
+                app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:onClick="dialogButton"
+                android:tag="rychlyPrubezny"
+                android:text="Rychlo- bruslení"
+                app:backgroundTint="@color/purple_200"
+                app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </TableRow><TableRow>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:onClick="dialogButton"
+            android:tag="hromadny"
+            android:text="cyklistika"
+            app:backgroundTint="@color/purple_200"
+            app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:onClick="dialogButton"
+            android:tag="rychlyPrubezny"
+            android:text="závody aut"
+            app:backgroundTint="@color/purple_200"
+            app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </TableRow><TableRow>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:onClick="dialogButton"
+            android:tag="rychlyHromadny"
+            android:text="motocross"
+            app:backgroundTint="@color/purple_200"
+            app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:onClick="dialogButton"
+            android:tag="prubezny"
+            android:text="Průběžný běh"
+            app:backgroundTint="@color/purple_200"
+            app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </TableRow>
+
+
+    </TableLayout>
+</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

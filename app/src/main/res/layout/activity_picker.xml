@@ -22,7 +22,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="5"
 
             >
 
@@ -31,7 +31,8 @@
                 android:layout_height="50dp"
                 android:id="@+id/hodiny"
                 android:layout_weight="1"
-                android:text="Hodiny"
+                android:layout_width="0dp"
+
 
                 android:textSize="25dp"
                 android:textStyle="bold"
@@ -39,9 +40,9 @@
 
             <TextView
                 android:id="@+id/minuty"
-                android:layout_weight="1"
-
-                android:text="Minuty"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:text="Změna výsledků "
                 android:textAlignment="center"
                 android:textSize="25dp"
                 android:textStyle="bold"
@@ -50,7 +51,7 @@
             <TextView
                 android:id="@+id/vteriny"
                 android:layout_weight="1"
-                android:text="Vteřiny"
+               android:layout_width="0dp"
                 android:textAlignment="center"
                 android:textSize="25dp"
                 android:textStyle="bold"

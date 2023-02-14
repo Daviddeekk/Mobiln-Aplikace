@@ -1,10 +1,7 @@
 package com.example.myapplication;
 
-import static java.security.AccessController.getContext;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -13,91 +10,110 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity2 extends AppCompatActivity {
+public class Prubezny extends AppCompatActivity {
     private static final int READ_REQUEST_CODE = 42;
-    private Button button, b, startButton;
+    private Button  b, startButton;
     private String TAG ="MainActivity2";
     private TableRow odstranRow;
-    private TextView textv,textv2, timerText;
+    private TextView textv,textv2, jmenoSportu, casy;
     private EditText et;
     private static int u;
+    private static String sport, casTag;
     private ImageButton zpet, pokracovat, start, resetButton, importB, zavodnici, stopB;
+    boolean k = true;
+
+    MyTimer[] timers = new MyTimer[u];
     Timer timer;
-    TimerTask timerTask;
     Double time = 0.0;
     private int num, zastavenych;
     boolean timerStarted = false;
     String[][] newArray = new String[u][3];
-    String[][] csvData;
 
+
+    Button button;
+    boolean isRunning;
+    int counter;
     //int zastavenych;
 
     @Override
     public void onBackPressed() {
-         {openActivity1();}
+        {openActivity1();}
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_prubezny);
+        onCreateView();
+        timer = new Timer();
 
-        zavodnici = (ImageButton) findViewById(R.id.zavodnici);
-        zavodnici.setColorFilter(Color.rgb(50, 190, 202));
+    }
 
-        start = (ImageButton) findViewById(R.id.startStop);
-        start.setColorFilter(Color.rgb(50, 190, 202));
-
-        importB= (ImageButton) findViewById(R.id.importB);
-        importB.setColorFilter(Color.rgb(50, 190, 202));
-
-        buttonReset(false);                                     //na začátku nemohu zmáčknout tlačítka
+    //jak bude vypadat stránka po spuštění
+    private void onCreateView(){
+        zastavenych = 0;
+        
+        jmenoSportu = (TextView) findViewById(R.id.hromadny);
         zpet = (ImageButton) findViewById(R.id.zpet);
+        zavodnici = (ImageButton) findViewById(R.id.zavodnici);
+        importB= (ImageButton) findViewById(R.id.importB);
+        zavodniciEditable(true);
+        jmenoSportu.setText(sport);
+        System.out.println(sport);
+
+
         zpet.setColorFilter(Color.rgb(255,7,107));
 
         resetButton = (ImageButton) findViewById(R.id.reset);
-        resetButton.setEnabled(false);
-        resetButton.setColorFilter(Color.GRAY);
-
-
-        timerText = (TextView) findViewById(R.id.timerText);    //definování timerTextu
-           //definování tlačítka start
-        cisloZavodnika();
-        timer = new Timer();                                    //vytvoření timeru
-        odstran();                                              //odstraní řádky, které nepotřebujeme
+        resetButton.setColorFilter(Color.rgb(50, 190, 202));
 
         pokracovat = (ImageButton)findViewById(R.id.pokracovat);
-        pokracovat.setVisibility(View.INVISIBLE);               //tlačítko pro pokračování bude neviditelně
+        pokracovat.setVisibility(View.INVISIBLE);
+
+        cisloZavodnika();
+        odstran();
+        buttonReset(true);
+        startTimerManyTimes();
+        //odstraní řádky, které nepotřebujeme
+        for(int i =1; i<=u; i++){
+            int num = i +20;
+            Resources res = getResources();
+            int id = res.getIdentifier("textView" + num , "id", getPackageName());
+            casy = (TextView) findViewById(id);
+            casy.setText("00 : 00 : 00");
+        }
+
+
 
     }
     public void back(View view){
         openActivity1();
     }
+
     public void openActivity1() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Hlavni.class);
         startActivity(intent);                                  //metoda pro otevření první stránky
+    }
+    public void changeImageStopButton(){
+
     }
 
     public void reset(View view)                                //resetuje stopky i s výsledky
@@ -110,29 +126,31 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
-                if(timerTask != null)
-                {
-                    timerTask.cancel();
-                    //setButtonUI("START");
                     time = 0.0;
                     timerStarted = false;
-                    timerText.setText(formatTime(0,0,0));
-                    buttonReset(false);
-                    startButtonReset(true);
+
                     zastavenych = 0;
                     textv.setEnabled(true);
-                    for(int k = 1; k<=20;k++){
+                    for(int k = 1; k<=u;k++){
                         num = 20+k;
                         Resources res = getResources();
                         int id = res.getIdentifier("textView" + num, "id", getPackageName());
-                        textv = (TextView) findViewById(id);
-                        textv.setEnabled(true);
-                    }
-                    resetButton.setEnabled(false);
-                    resetButton.setColorFilter(Color.GRAY);
+                        casy = (TextView) findViewById(id);
+                        casy.setEnabled(true);
+                        casy.setText("00 : 00 : 00");
+                       // timers[k-1].counter = 0;
+                        timers[k-1] = new MyTimer(textv, casTag);
+                        timers[k-1].counter=0;
+
+
+
+
                 }
                 pokracovat = (ImageButton) findViewById(R.id.pokracovat);
                 pokracovat.setVisibility(View.INVISIBLE);
+                startTimerManyTimes();
+                zavodniciEditable(true);
+
             }
         });
         resetAlert.setNeutralButton("Ne", new DialogInterface.OnClickListener()
@@ -144,64 +162,26 @@ public class MainActivity2 extends AppCompatActivity {
         resetAlert.show();
     }
 
-    public void startStop(View view)
-    {
-        if(timerStarted == false)
-        {
-            resetButton.setEnabled(true);
-            resetButton.setColorFilter(Color.rgb(50, 190, 202));
-            buttonReset(true);
-            timerStarted = true;
-            startButtonReset(false);
-            startTimer();
-            zavodniciEditable(false);
-        }
-        else
-        {
+    private void startTimerManyTimes(){
+        for (int i = 1; i <=u; i++){
+            Resources res = getResources();
+            int id = res.getIdentifier("stop" + i, "id", getPackageName());
 
-            timerStarted = false;
-            //setButtonUI("START");
-            timerTask.cancel();
-
+            stopB = (ImageButton) findViewById(id);
+            stopB.setImageResource(R.drawable.playimage_foreground);
+            stopB.setColorFilter(Color.rgb(50, 190, 201));
+            stopB.setEnabled(true);
+            stopB.setTag("stop" +i);
         }
     }
-    //private void setButtonUI(String start) {startButton.setText(start);}
 
-    private void startTimer()                 //po začátku timeru
-    {
-        timerTask = new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                runOnUiThread(new Runnable() //okamžité spuštění, nečeká se
-                {
-                    @Override
-                    public void run()
-                    {
-                        time++;
-                        timerText.setText(getTimerText());
-                        //aby se čas u závodníků nenastavoval pokaždé ale pouze po jedné sekundě, zbytečně mnoho operací
-                            if(timerText.getText().equals(textv.getText())){
-                            }else{
-                                allTimes();}}
-                });
-            }
-
-        };
-        timer.scheduleAtFixedRate(timerTask, 0 ,1000);
+    public String getSport(String s){
+        sport = s;
+        return sport;
     }
-    public String getTimerText()
-    {
-        int rounded = (int) Math.round(time);
-        int seconds = ((rounded % 86400) % 3600) % 60;
-        int minutes = ((rounded % 86400) % 3600) / 60;
-        int hours = ((rounded % 86400) / 3600);
-        return formatTime(seconds, minutes, hours);
-    }
-    private String formatTime(int seconds, int minutes, int hours)
-    {
-        return String.format("%02d",hours) + " : " + String.format("%02d",minutes) + " : " + String.format("%02d",seconds);
+    public String getTag(String gtag){
+        casTag = gtag;
+        return casTag;
     }
 
     public int getNumber(int i){
@@ -240,44 +220,58 @@ public class MainActivity2 extends AppCompatActivity {
             smaz = smaz -1;
         }
     }
+
     //při zastavení času u jenoho závodníka tlačítko a čas se vypnou
     public void stop(View view) {
+
+        zavodniciEditable(false);
         String tag = view.getTag().toString();
         for (int i = 1; i <=u; i++){
-            if(tag.equals("stop"+i)){
-                num = 20+i;
-                view.setEnabled(false);
 
+            if(tag.equals("stop"+i)){
+                resetButton.setEnabled(false);
+                resetButton.setColorFilter(Color.GRAY);
+                num = 20+i;
                 Resources res = getResources();
+                int id2 = res.getIdentifier("textView" + num, "id", getPackageName());
+                textv = (TextView) findViewById(id2);
+
                 int id1 = res.getIdentifier("stop" + i, "id", getPackageName());
                 stopB = (ImageButton) findViewById(id1);
 
-                if(view.isEnabled()){
+                timers[i-1] = new MyTimer(textv, casTag);
+                final int index = i-1;
 
-                    stopB.setColorFilter(Color.rgb(50, 190, 202));
+                timers[index].start();
 
-                }
-                else{
-                    stopB.setColorFilter(Color.GRAY);
+                stopB.setImageResource(R.drawable.stopimage_foreground);
+                stopB.setTag("started" + i);
 
-                }
+
+            }
+            else if(tag.equals("started" +i)){
+                Resources res = getResources();
+                String o = view.getTag().toString().replaceAll("[^0-9]+", "");
+                int k = Integer.parseInt(o);
+
+                int id1 = res.getIdentifier("stop" + o, "id", getPackageName());
+                stopB = (ImageButton) findViewById(id1);
+
+                timers[k-1].stop();
                 zastavenych = zastavenych + 1;
 
-                int id = res.getIdentifier("textView" + num, "id", getPackageName());
-
-                textv = (TextView) findViewById(id);
-                textv.setText(getTimerText());
-                textv.setEnabled(false);
-
+                stopB.setColorFilter(Color.GRAY);
+                stopB.setEnabled(false);
+                System.out.println(zastavenych);
             }
         }
         //pokud vypl všechny objeví se pokracovat
         if(u == zastavenych)
         {
-            timerTask.cancel();
-             pokracovat = (ImageButton) findViewById(R.id.pokracovat);
+            resetButton.setEnabled(true);
+            resetButton.setColorFilter(Color.rgb(50, 190, 201));
+            pokracovat = (ImageButton) findViewById(R.id.pokracovat);
             pokracovat.setVisibility(View.VISIBLE);
-
         }
     }
     //nastaví na začátku alespon cislo zavodnika
@@ -292,28 +286,14 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
-    private void allTimes(){
-        for(int i = 1; i<=u;i++){
-
-            num = 20+i;
-            Resources res = getResources();
-            int id = res.getIdentifier("textView" + num, "id", getPackageName());
-
-            textv = (TextView) findViewById(id);
-            if(textv.isEnabled()){
-                textv.setText(getTimerText());
-            }else{}
-        }}
-
     public void buttonReset(boolean reset){ // otevře tlačíka a závodníky
         for (int k = 21; k <=40; k++){
-
-
 
             int stopid = k-20;
             Resources res = getResources();
             int id = res.getIdentifier("stop" + stopid , "id", getPackageName());
             int idt = res.getIdentifier("textView" + k, "id", getPackageName());
+
             stopB = (ImageButton) findViewById(id);
 
             stopB.setEnabled(reset);
@@ -327,36 +307,27 @@ public class MainActivity2 extends AppCompatActivity {
                 stopB.setColorFilter(Color.GRAY);
 
             }
-
-
             textv = (TextView) findViewById(idt);
-            textv.setText(getTimerText());
+
             zavodniciEditable(true);
         }
     }
-    public void startButtonReset(boolean resetStart)
-    {
 
-        start.setEnabled(resetStart);
-        System.out.println(resetStart);
-        if(resetStart == true){
-            start.setColorFilter(Color.rgb(50, 190, 202));
-            importB.setColorFilter(Color.rgb(50, 190, 202));
-            zavodnici.setColorFilter(Color.rgb(50, 190, 202));
-        }else
-        {
-            start.setColorFilter(Color.GRAY);
-            importB.setColorFilter(Color.GRAY);
-            zavodnici.setColorFilter(Color.GRAY);
-        }
-    }
     public void zavodniciEditable(boolean edit)
     {
-
-       zavodnici.setEnabled(edit);
+        zavodnici.setEnabled(edit);
         importB.setEnabled(edit);
 
-       // int viewCount = 20;
+        if(edit){
+            zavodnici.setColorFilter(Color.rgb(50, 190, 202));
+            importB.setColorFilter(Color.rgb(50, 190, 202));
+        }
+        else{
+            zavodnici.setColorFilter(Color.GRAY);
+            importB.setColorFilter(Color.GRAY);
+        }
+
+        // int viewCount = 20;
         for (int i = 1; i <= u; i++) {
             Resources res = getResources();
             int id = res.getIdentifier("textView" + i, "id", getPackageName());
@@ -372,7 +343,6 @@ public class MainActivity2 extends AppCompatActivity {
     public void openEd(){ //otevře stránku s editací
 
         pokracovat = (ImageButton) findViewById(R.id.pokracovat);
-
         Resources res = getResources();
 
         int row = 0;
@@ -395,18 +365,19 @@ public class MainActivity2 extends AppCompatActivity {
         }
         Editace e = new Editace();
         e.setArray(newArray);
+        e.getTag(casTag);
         e.poc(u);
         Intent intent = new Intent(this, Editace.class);
         startActivity(intent);
 
     }
-        public void openEditace(View view){
-            openEd();
-        }
-        public void upload(View view){
+    public void openEditace(View view){
+        openEd();
+    }
+    public void upload(View view){
         launchFilePicker();
 
-        }
+    }
     public void launchFilePicker() {
         // Create an intent for selecting a file via the file manager
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -417,7 +388,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-        System.out.println("GOT HERE");
+
         super.onActivityResult(requestCode, resultCode, resultData);
 
         // If the selection worked, we have a URI pointing to the file
@@ -446,7 +417,7 @@ public class MainActivity2 extends AppCompatActivity {
                             et.setText(arrayData[i-1][0]);
                             System.out.println(et.getText().toString());
 
-                    }
+                        }
                     }
 
                 } catch (IOException e) {
@@ -455,7 +426,6 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }
     }
-
 
 
 }

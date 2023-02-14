@@ -1,37 +1,27 @@
 package com.example.myapplication;
 
 import static android.app.PendingIntent.getActivity;
-import static android.text.format.DateFormat.getTimeFormat;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.content.res.Resources;
-
-import java.util.Date;
-
 
 
 public class Editace extends AppCompatActivity {
     private TextView view1, view2, view3;
-    private static String u, w, cislo;
+    private static String u, w, cislo, casTag;
     public static int pocetZavodniku;
     private Button button;
     private ImageButton button2;
@@ -87,10 +77,14 @@ public class Editace extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public String getTag(String gtag){
+        casTag = gtag;
+        return casTag;
+    }
 
 
     public void openActivity2() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Hlavni.class);
         startActivity(intent);
     }
     public void setData(){
@@ -215,7 +209,14 @@ public class Editace extends AppCompatActivity {
 
         NumberPicker picker3 = (NumberPicker) view.findViewById(R.id.picker3);
         picker3.setMinValue(0);
-        picker3.setMaxValue(59);
+        if (casTag.equals("rychlyHromadny") || casTag.equals("rychlyPrubezny")){
+            picker3.setMaxValue(99);
+        }
+        else{
+            picker3.setMaxValue(59);
+        }
+
+
         TextView t = (TextView) view.findViewById(R.id.hodiny);
         TextView t2 = (TextView) view.findViewById(R.id.minuty);
         TextView t3 = (TextView) view.findViewById(R.id.vteriny);

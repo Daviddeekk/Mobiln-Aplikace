@@ -33,16 +33,23 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity3"
+            android:name=".Prubezny"
             android:exported="false"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
-            android:name=".MainActivity2"
+            android:name=".Databaze"
+            android:exported="false"
+            android:screenOrientation="portrait">
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="" />
+        </activity>
+        <activity
+            android:name=".Hromadny"
             android:exported="false"
             android:screenOrientation="portrait"
             >
@@ -51,7 +58,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Hlavni"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
