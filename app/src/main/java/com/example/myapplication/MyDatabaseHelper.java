@@ -1,18 +1,31 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.UiModeManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "mydatabase.db";
@@ -78,6 +91,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
             LinearLayout horizontalLayout = new LinearLayout(layout.getContext());
             horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
+            horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
+            horizontalLayout.setGravity(Gravity.CENTER_VERTICAL);
+            horizontalLayout.setPadding(0, 16, 0, 16);
+
+
             LinearLayout.LayoutParams horizontalLayoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -97,22 +115,29 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             textView.setSingleLine();
 
 
-            Button button = new Button(layout.getContext());
+            Button delete = new Button(layout.getContext());
             LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     0.3f
             );
 
-            button.setText("delete");
+            TypedValue typedValue = new TypedValue();
+
+            int textColor = typedValue.data;
+
+            delete.setText("odstranit");
+            delete.setTextColor(isDarkMode(layout.getContext())? Color.WHITE : Color.BLACK);
+            delete.setBackgroundColor(Color.TRANSPARENT);
+
             buttonParams.gravity = Gravity.END;
-            button.setLayoutParams(buttonParams);
+            delete.setLayoutParams(buttonParams);
 
             horizontalLayout.addView(textView);
-            horizontalLayout.addView(button);
+            horizontalLayout.addView(delete);
             layout.addView(horizontalLayout);
 
-            button.setOnClickListener(new View.OnClickListener() {
+            delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     SQLiteDatabase db = getWritableDatabase();
@@ -127,7 +152,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         db.close();
-
-
     }
+    public boolean isDarkMode(Context context) {
+        UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+        return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
+    }
+
 }

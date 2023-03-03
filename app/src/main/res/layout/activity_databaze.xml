@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?colorPrimary"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Databaze">
 
@@ -78,6 +79,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/my_linear_layout"
-        ></LinearLayout>
+        />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

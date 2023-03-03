@@ -2,145 +2,141 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.UiModeManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
+import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class Hlavni extends AppCompatActivity {
-    private ImageButton datButton;
-    private Button button;
-    private Button prubezny;
-    boolean length;
-    boolean back = true;
+    private ImageButton datButton, continu;
+    private TextView sportView;
+    private SeekBar mSeekBar;
+    private TextView mSelectedValueTextView;
+    private RadioButton b1, b2, c1, c2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hlavni); //access to activity_main
-        defineButton();
+        setContentView(R.layout.activity_hlavni);
+        defineButtons();
 
     }
-
-    public void defineButton(){
+    public boolean isDarkMode(Context context) { //vrátí boolean jestli je dark mode
+        UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+        return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
+    }
+    //definuje barvu imageButtons
+    public void defineButtons(){
         datButton = findViewById(R.id.dtbs);
+        sportView = findViewById(R.id.zvolteSport);
 
-        int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-        boolean isDarkMode = nightModeFlags == Configuration.UI_MODE_NIGHT_YES;
+        b1 = findViewById(R.id.formatButton1);
+        b2 = findViewById(R.id.formatButton2);
+        c1 = findViewById(R.id.radioButton1);
+        c2 = findViewById(R.id.radioButton2);
 
-// Set the tint color based on the theme mode
-        if (isDarkMode) {
-            datButton.setColorFilter(ContextCompat.getColor(this, R.color.black));
-        } else {
-            datButton.setColorFilter(ContextCompat.getColor(this, R.color.white));
-        }
+        mSeekBar = findViewById(R.id.seekBar);
+        mSelectedValueTextView = findViewById(R.id.selectedValueTextView);
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // Update the selected value TextView
+                int value = progress + 1;
+                mSelectedValueTextView.setText(String.valueOf(value));
+
+                // Show the selected value in a tooltip
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    mSeekBar.setTooltipText(String.valueOf(value));
+                } else {
+                    TooltipCompat.setTooltipText(mSeekBar, String.valueOf(value));
+                }
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+        continu = findViewById(R.id.continueButton);
+        continu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(b1.isChecked() && c1.isChecked()){
+                    Hromadny m = new Hromadny();
+                    m.getNumber(Integer.parseInt(mSelectedValueTextView.getText().toString()));
+
+                    m.getTag("hromadny");
+                    hromadny();
+                }
+                else if(b1.isChecked() && c2.isChecked()){
+                    Hromadny m = new Hromadny();
+                    m.getNumber(Integer.parseInt(mSelectedValueTextView.getText().toString()));
+
+                    m.getTag("rychlyHromadny");
+                    hromadny();
+
+                }
+                else if(b2.isChecked() && c1.isChecked()){
+                    Prubezny p = new Prubezny();
+                    p.getTag("prubezny");
+                    p.getNumber(Integer.parseInt(mSelectedValueTextView.getText().toString()));
+
+                    prubezny();
+                    System.out.println("prubezny");
+                }
+                else if(b2.isChecked() && c2.isChecked()){
+                    Prubezny p = new Prubezny();
+                    p.getTag("rychlyPrubezny");
+                    p.getNumber(Integer.parseInt(mSelectedValueTextView.getText().toString()));
+                    prubezny();
+
+                }
+            }
+        });
 
     }
+    //otevře class database
     public void openDatabase(View view){
         Intent intent = new Intent(this, Databaze.class);
         startActivity(intent);
     }
-    @Override
+    @Override //pokud je stisknuto back button ukončí se aplikace
     public void onBackPressed() {
         this.finishAffinity();
     }
-
-    public void openActivity2() {
+    //metoda která otevře hromadny class
+    public void hromadny() {
         Intent intent = new Intent(this, Hromadny.class);
         startActivity(intent);
-
     }
-
-    public void openActivity3(){
+    //metoda která otevře prubezny class
+    public void prubezny(){
         Intent intent = new Intent(this, Prubezny.class);
         startActivity(intent);
     }
-    public void dialogButton(View view){
-        InputFilter[] FilterArray = new InputFilter[1];
-        FilterArray[0] = new InputFilter.LengthFilter(2);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Zadejte počet závodníků (1-20)");
-        final EditText input = new EditText(this);
-        input.setFilters(FilterArray);
-        input.setGravity(Gravity.CENTER_HORIZONTAL);
-        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_CLASS_NUMBER);
-        builder.setView(input);
-
-        MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
-
-        ArrayList<String> dataList = dbHelper.getAllData();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataList);
-
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-                if(input.length() == 0){
-                    dialogButton(view);
-                    }else{
-                    int cislo = Integer.parseInt(input.getText().toString());
-                        if(cislo <= 20 && cislo > 0
-                             ){
-                            Button button = (Button) view;
-                                String tag = view.getTag().toString();
-
-                                if(tag.equals("hromadny")||tag.equals("rychlyHromadny")){
-
-                                    Hromadny m = new Hromadny();
-                                    m.getNumber(cislo);
-                                    m.getSport(button.getText().toString());
-                                    m.getTag(tag);
-
-                                   // dbHelper.addData("David Daněk");
-
-                                    openActivity2();
-
-
-                                }
-                                else if (tag.equals("prubezny")||tag.equals("rychlyPrubezny")){
-                                    //MainActivity3 n = new MainActivity3();
-                                    Prubezny p = new Prubezny();
-                                    p.getTag(tag);
-                                    p.getNumber(cislo);
-                                    p.getSport(button.getText().toString());
-                                    openActivity3();
-                                }
-                            }
-
-                else{
-                dialogButton(view);
-                }
-                }
-            }
-        });
-
-        builder.setNegativeButton("Zpět", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.show();
-    }
-
-
+    //metoda která spustí dialog, s následujícími parametry
 
 }

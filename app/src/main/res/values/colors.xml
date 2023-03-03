@@ -8,5 +8,6 @@
     <color name="black">#000000</color> //barva textu
     <color name="white">#FFFFFFFF</color> //barva textu
     <color name="grey">#5E5959</color>
-
+    <color name="lightblue">#34C3D6</color>
+    <color name="lighterblue">#ADD8E6</color>
 </resources>

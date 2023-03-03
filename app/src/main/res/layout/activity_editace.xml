@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="?colorPrimary"
     tools:context=".Editace">
 
 
@@ -169,7 +169,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20dp"></EditText>
 
                     <EditText
@@ -185,7 +184,6 @@
                         android:singleLine="true"
 
 
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20dp"></EditText>
 
                     <Button
@@ -207,17 +205,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
 
                     <ImageButton
-
                         android:id="@+id/lock1"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock"
 
@@ -240,7 +237,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -253,7 +249,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -273,15 +268,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12dp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock2"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -301,7 +297,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -314,7 +309,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -334,15 +328,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock3"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -362,7 +357,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -375,7 +369,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -395,15 +388,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock4"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -423,7 +417,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -436,7 +429,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -456,15 +448,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock5"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -484,7 +477,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -497,7 +489,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -517,15 +508,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock6"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -545,7 +537,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -558,7 +549,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -578,15 +568,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock7"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -606,7 +597,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -619,7 +609,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -639,15 +628,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock8"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -667,7 +657,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -680,7 +669,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -700,15 +688,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock9"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -728,7 +717,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -741,7 +729,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -761,15 +748,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock10"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -789,7 +777,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -802,7 +789,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -822,15 +808,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock11"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -850,7 +837,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -863,7 +849,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -883,15 +868,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock12"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -911,7 +897,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -924,7 +909,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -944,15 +928,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock13"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -972,7 +957,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -985,7 +969,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -1005,15 +988,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock14"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -1033,7 +1017,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -1046,7 +1029,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -1066,15 +1048,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock15"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -1094,7 +1077,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -1107,7 +1089,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -1127,15 +1108,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock16"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -1149,13 +1131,12 @@
                         android:layout_width="0dp"
                         android:layout_weight="2"
                         android:fadeScrollbars="false"
-                        android:inputType="number"
                         android:gravity="center"
+                        android:inputType="number"
                         android:lines="1"
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -1168,7 +1149,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -1188,15 +1168,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock17"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -1216,7 +1197,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -1229,7 +1209,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -1249,15 +1228,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock18"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -1277,7 +1257,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -1290,7 +1269,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -1310,15 +1288,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock19"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>
@@ -1338,7 +1317,6 @@
                         android:maxLength="3"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <EditText
@@ -1351,7 +1329,6 @@
                         android:maxLength="25"
                         android:maxLines="1"
                         android:singleLine="true"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="20sp"></EditText>
 
                     <Button
@@ -1371,15 +1348,16 @@
                         android:singleLine="true"
                         android:text="00 : 00 : 00"
                         android:textAlignment="center"
-                        android:textColor="?android:attr/textColorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         app:backgroundTint="#00711E1E"></Button>
+
                     <ImageButton
                         android:id="@+id/lock20"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
+                        android:background="#00FFFFFF"
                         android:onClick="zavodniciEditable"
                         app:srcCompat="@android:drawable/ic_lock_lock" />
                 </TableRow>

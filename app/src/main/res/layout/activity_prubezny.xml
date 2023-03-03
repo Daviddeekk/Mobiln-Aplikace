@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:id="@+id/rootContainer"
+    android:id="@+id/prubeznylayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF"
+    android:background="?colorPrimary"
     android:screenOrientation="portrait"
     tools:context=".Prubezny">
 
@@ -30,9 +30,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Prubezny"
+            android:text="Průběžný"
+            android:textStyle="bold"
             android:textColor="@color/white"
-            android:textSize="30sp"></TextView>
+            android:textSize="24dp"></TextView>
 
 
         <ImageButton
@@ -42,7 +43,7 @@
             android:layout_gravity="start"
             android:background="#00FFFFFF"
 
-            android:onClick="back"
+            android:onClick="backButton"
 
 
             app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
@@ -70,7 +71,7 @@
                 android:layout_alignParentStart="true"
                 android:background="#00FFFFFF"
 
-                android:onClick="zavodniciReset"
+                android:onClick="jmenaZavodnikuReset"
                 android:src="@android:drawable/ic_menu_delete"
                 android:text="Závodníci reset"
                 android:textColor="?android:attr/textColorPrimary" />
@@ -96,7 +97,7 @@
                 android:layout_weight="1"
 
                 android:background="#00FFFFFF"
-                android:onClick="reset"
+                android:onClick="resetVysledky"
                 android:src="@android:drawable/ic_menu_revert"
                 android:text="Reset"
                />
@@ -136,7 +137,8 @@
                     <EditText
                         android:id="@+id/cisloZavodnika1"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -153,6 +155,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
+                        android:layout_gravity="bottom"
 
                         android:lines="1"
                         android:maxLength="25"
@@ -163,9 +166,10 @@
                         />
 
                     <TextView
+                        android:gravity="center"
                         android:id="@+id/textView21"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
                         android:layout_weight="3"
                         android:text="TIME"
@@ -175,7 +179,7 @@
                     <ImageButton
                         android:id="@+id/stop1"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -192,6 +196,7 @@
                         android:id="@+id/cisloZavodnika2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -206,6 +211,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -217,9 +223,11 @@
                     <TextView
                         android:id="@+id/textView22"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -227,7 +235,7 @@
                     <ImageButton
                         android:id="@+id/stop2"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -244,6 +252,7 @@
                         android:id="@+id/cisloZavodnika3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -258,6 +267,7 @@
                         android:id="@+id/textView3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -269,9 +279,11 @@
                     <TextView
                         android:id="@+id/textView23"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -279,7 +291,7 @@
                     <ImageButton
                         android:id="@+id/stop3"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -296,6 +308,7 @@
                         android:id="@+id/cisloZavodnika4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -310,6 +323,7 @@
                         android:id="@+id/textView4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -321,9 +335,11 @@
                     <TextView
                         android:id="@+id/textView24"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -331,7 +347,7 @@
                     <ImageButton
                         android:id="@+id/stop4"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -348,6 +364,7 @@
                         android:id="@+id/cisloZavodnika5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -362,6 +379,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -373,9 +391,11 @@
                     <TextView
                         android:id="@+id/textView25"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -383,7 +403,7 @@
                     <ImageButton
                         android:id="@+id/stop5"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -403,6 +423,7 @@
                         android:id="@+id/cisloZavodnika6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -417,6 +438,7 @@
                         android:id="@+id/textView6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -428,9 +450,11 @@
                     <TextView
                         android:id="@+id/textView26"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -438,7 +462,7 @@
                     <ImageButton
                         android:id="@+id/stop6"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -455,6 +479,7 @@
                         android:id="@+id/cisloZavodnika7"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -469,6 +494,7 @@
                         android:id="@+id/textView7"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -480,9 +506,11 @@
                     <TextView
                         android:id="@+id/textView27"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -490,7 +518,7 @@
                     <ImageButton
                         android:id="@+id/stop7"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -507,6 +535,7 @@
                         android:id="@+id/cisloZavodnika8"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -521,6 +550,7 @@
                         android:id="@+id/textView8"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -532,9 +562,11 @@
                     <TextView
                         android:id="@+id/textView28"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -542,7 +574,7 @@
                     <ImageButton
                         android:id="@+id/stop8"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -559,6 +591,7 @@
                         android:id="@+id/cisloZavodnika9"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -573,6 +606,7 @@
                         android:id="@+id/textView9"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -584,9 +618,11 @@
                     <TextView
                         android:id="@+id/textView29"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -594,7 +630,7 @@
                     <ImageButton
                         android:id="@+id/stop9"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -611,6 +647,7 @@
                         android:id="@+id/cisloZavodnika10"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -625,6 +662,7 @@
                         android:id="@+id/textView10"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -636,9 +674,11 @@
                     <TextView
                         android:id="@+id/textView30"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -646,7 +686,7 @@
                     <ImageButton
                         android:id="@+id/stop10"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -663,6 +703,7 @@
                         android:id="@+id/cisloZavodnika11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -677,6 +718,7 @@
                         android:id="@+id/textView11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -688,9 +730,11 @@
                     <TextView
                         android:id="@+id/textView31"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -698,7 +742,7 @@
                     <ImageButton
                         android:id="@+id/stop11"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -715,6 +759,7 @@
                         android:id="@+id/cisloZavodnika12"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -729,6 +774,7 @@
                         android:id="@+id/textView12"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -740,9 +786,11 @@
                     <TextView
                         android:id="@+id/textView32"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -750,7 +798,7 @@
                     <ImageButton
                         android:id="@+id/stop12"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -767,6 +815,7 @@
                         android:id="@+id/cisloZavodnika13"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -781,6 +830,7 @@
                         android:id="@+id/textView13"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -792,9 +842,11 @@
                     <TextView
                         android:id="@+id/textView33"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -802,7 +854,7 @@
                     <ImageButton
                         android:id="@+id/stop13"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -819,6 +871,7 @@
                         android:id="@+id/cisloZavodnika14"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -833,6 +886,7 @@
                         android:id="@+id/textView14"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -844,9 +898,11 @@
                     <TextView
                         android:id="@+id/textView34"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -854,7 +910,7 @@
                     <ImageButton
                         android:id="@+id/stop14"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -871,6 +927,7 @@
                         android:id="@+id/cisloZavodnika15"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -885,6 +942,7 @@
                         android:id="@+id/textView15"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -896,9 +954,11 @@
                     <TextView
                         android:id="@+id/textView35"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -906,7 +966,7 @@
                     <ImageButton
                         android:id="@+id/stop15"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -923,6 +983,7 @@
                         android:id="@+id/cisloZavodnika16"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -937,6 +998,7 @@
                         android:id="@+id/textView16"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -948,9 +1010,11 @@
                     <TextView
                         android:id="@+id/textView36"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -958,7 +1022,7 @@
                     <ImageButton
                         android:id="@+id/stop16"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -975,6 +1039,7 @@
                         android:id="@+id/cisloZavodnika17"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -989,6 +1054,7 @@
                         android:id="@+id/textView17"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -1000,9 +1066,11 @@
                     <TextView
                         android:id="@+id/textView37"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -1010,7 +1078,7 @@
                     <ImageButton
                         android:id="@+id/stop17"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -1027,6 +1095,7 @@
                         android:id="@+id/cisloZavodnika18"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -1041,6 +1110,7 @@
                         android:id="@+id/textView18"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -1052,9 +1122,11 @@
                     <TextView
                         android:id="@+id/textView38"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -1062,7 +1134,7 @@
                     <ImageButton
                         android:id="@+id/stop18"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -1079,6 +1151,7 @@
                         android:id="@+id/cisloZavodnika19"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -1093,6 +1166,7 @@
                         android:id="@+id/textView19"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -1104,9 +1178,11 @@
                     <TextView
                         android:id="@+id/textView39"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -1114,7 +1190,7 @@
                     <ImageButton
                         android:id="@+id/stop19"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -1131,6 +1207,7 @@
                         android:id="@+id/cisloZavodnika20"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="2"
                         android:hint="cislo"
                         android:inputType="number"
@@ -1145,6 +1222,7 @@
                         android:id="@+id/textView20"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:layout_weight="6"
                         android:hint="Jméno závodníka"
                         android:lines="1"
@@ -1156,9 +1234,11 @@
                     <TextView
                         android:id="@+id/textView40"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -1166,7 +1246,7 @@
                     <ImageButton
                         android:id="@+id/stop20"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"

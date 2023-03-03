@@ -1,27 +1,21 @@
 package com.example.myapplication;
-
 import android.widget.TextView;
-
 public class MyTimer {
     TextView textv;
     boolean isRunning, ended;
     double counter;
     String tag;
-
-
     public MyTimer(TextView button, String tags) {
         tag = tags;
         this.textv = button;
         isRunning = false;
         counter = 0;
         ended = false;
-
     }
     public String getT (String gtag){
         tag = gtag;
         return tag;
     }
-
     public void start() {
         System.out.println(tag);
         isRunning=true;
@@ -46,10 +40,7 @@ public class MyTimer {
                         }
                         counter = counter +1.666666;
                     }
-                }
-            });
-
-    }
+                }});}
     public void stop() {
         isRunning = false;
     }

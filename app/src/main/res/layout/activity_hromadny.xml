@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:id="@+id/rootContainer"
+    android:id="@+id/hromadnyLayoutt"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF"
+    android:background="?colorPrimary"
     android:screenOrientation="portrait"
     tools:context=".Hromadny">
 
@@ -32,13 +32,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Hromadný"
+            android:text="Stopky"
+            android:textStyle="bold"
             android:textColor="@color/white"
             app:autoSizeTextType="uniform"
+            android:textSize="24dp"
 
-            android:autoSizeMinTextSize="50dp"
-            android:autoSizeMaxTextSize="200sp"
-            android:autoSizeStepGranularity="5sp"
             ></TextView>
 
 
@@ -49,7 +48,7 @@
             android:layout_gravity="start"
             android:background="#00FFFFFF"
 
-            android:onClick="back"
+            android:onClick="backButton"
 
 
             app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
@@ -96,13 +95,13 @@
             android:layout_alignParentStart="true"
             android:background="#00FFFFFF"
 
-            android:onClick="zavodniciReset"
+            android:onClick="jmenaZavodnikuReset"
             android:src="@android:drawable/ic_menu_delete"
             android:text="Závodníci reset"
             android:textColor="?android:attr/textColorPrimary" />
 
         <ImageButton
-            android:onClick="upload"
+            android:onClick="uploadJmena"
             android:id="@+id/importB"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -122,7 +121,7 @@
             android:layout_weight="1"
 
             android:background="#00FFFFFF"
-            android:onClick="reset"
+            android:onClick="resetVysledky"
             android:src="@android:drawable/ic_menu_revert"
             android:text="Reset"
             android:textColor="?android:attr/textColorPrimary" />
@@ -132,7 +131,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#00FFFFFF"
-            android:onClick="startStop"
+            android:onClick="startButton"
             android:src="@android:drawable/ic_media_play"
             android:text="Start"
             app:layout_constraintEnd_toEndOf="parent"
@@ -149,12 +148,14 @@
 
         android:layout_marginTop="180dp"
         android:layout_marginBottom="5dp"
+
         android:fillViewport="true">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:weightSum="13">
 
             <TableLayout
@@ -202,9 +203,11 @@
                     <TextView
                         android:id="@+id/textView21"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -212,7 +215,7 @@
                     <ImageButton
                         android:id="@+id/stop1"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -254,9 +257,11 @@
                     <TextView
                         android:id="@+id/textView22"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -264,7 +269,7 @@
                     <ImageButton
                         android:id="@+id/stop2"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -306,9 +311,11 @@
                     <TextView
                         android:id="@+id/textView23"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -316,7 +323,7 @@
                     <ImageButton
                         android:id="@+id/stop3"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -358,9 +365,11 @@
                     <TextView
                         android:id="@+id/textView24"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -368,7 +377,7 @@
                     <ImageButton
                         android:id="@+id/stop4"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -410,9 +419,11 @@
                     <TextView
                         android:id="@+id/textView25"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -420,7 +431,7 @@
                     <ImageButton
                         android:id="@+id/stop5"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -465,9 +476,11 @@
                     <TextView
                         android:id="@+id/textView26"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -475,7 +488,7 @@
                     <ImageButton
                         android:id="@+id/stop6"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -517,9 +530,11 @@
                     <TextView
                         android:id="@+id/textView27"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -527,7 +542,7 @@
                     <ImageButton
                         android:id="@+id/stop7"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -569,9 +584,11 @@
                     <TextView
                         android:id="@+id/textView28"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -579,7 +596,7 @@
                     <ImageButton
                         android:id="@+id/stop8"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -621,9 +638,11 @@
                     <TextView
                         android:id="@+id/textView29"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -631,7 +650,7 @@
                     <ImageButton
                         android:id="@+id/stop9"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -673,9 +692,11 @@
                     <TextView
                         android:id="@+id/textView30"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -683,7 +704,7 @@
                     <ImageButton
                         android:id="@+id/stop10"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -725,9 +746,11 @@
                     <TextView
                         android:id="@+id/textView31"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -735,7 +758,7 @@
                     <ImageButton
                         android:id="@+id/stop11"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -777,9 +800,11 @@
                     <TextView
                         android:id="@+id/textView32"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -787,7 +812,7 @@
                     <ImageButton
                         android:id="@+id/stop12"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -829,9 +854,11 @@
                     <TextView
                         android:id="@+id/textView33"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -839,7 +866,7 @@
                     <ImageButton
                         android:id="@+id/stop13"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -881,9 +908,11 @@
                     <TextView
                         android:id="@+id/textView34"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -891,7 +920,7 @@
                     <ImageButton
                         android:id="@+id/stop14"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -933,9 +962,11 @@
                     <TextView
                         android:id="@+id/textView35"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -943,7 +974,7 @@
                     <ImageButton
                         android:id="@+id/stop15"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -985,9 +1016,11 @@
                     <TextView
                         android:id="@+id/textView36"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -995,7 +1028,7 @@
                     <ImageButton
                         android:id="@+id/stop16"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -1037,9 +1070,11 @@
                     <TextView
                         android:id="@+id/textView37"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -1047,7 +1082,7 @@
                     <ImageButton
                         android:id="@+id/stop17"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -1089,9 +1124,11 @@
                     <TextView
                         android:id="@+id/textView38"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -1099,7 +1136,7 @@
                     <ImageButton
                         android:id="@+id/stop18"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -1141,9 +1178,11 @@
                     <TextView
                         android:id="@+id/textView39"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -1151,7 +1190,7 @@
                     <ImageButton
                         android:id="@+id/stop19"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
@@ -1193,9 +1232,11 @@
                     <TextView
                         android:id="@+id/textView40"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_weight="3"
+                        android:gravity="center"
                         android:text="TIME"
                         android:textAlignment="center"
                         android:textStyle="bold" />
@@ -1203,7 +1244,7 @@
                     <ImageButton
                         android:id="@+id/stop20"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
                         android:onClick="stop"
