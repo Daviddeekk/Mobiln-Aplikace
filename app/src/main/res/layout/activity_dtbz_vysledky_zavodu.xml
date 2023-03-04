@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?colorPrimary"
+    android:screenOrientation="portrait"
+    tools:context=".VysledkyZavoduZDatabaze"
+    android:id="@+id/zavodniciVysledky"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="-3dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/purple_200"
+        app:layout_constraintBottom_toTopOf="@+id/timerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitleTextColor="@color/teal_700">
+
+        <TextView
+            android:id="@+id/hromadny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Detail závodu"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:autoSizeTextType="uniform"
+            android:textSize="24dp"
+
+            ></TextView>
+
+
+        <ImageButton
+            android:id="@+id/zpet"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:background="#00FFFFFF"
+
+            android:onClick="zpet"
+
+
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="2dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+
+        >
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+            <TextView
+
+                android:id="@+id/nadpisPozice"
+                android:text="Pozice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                >
+
+            </TextView>
+            <TextView
+                android:id="@+id/nadpisJmeno"
+                android:text="Jméno"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                >
+            </TextView>
+            <TextView
+                android:id="@+id/nadpisCislo"
+                android:text="Číslo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                >
+            </TextView>
+            <TextView
+                android:id="@+id/nadpisCas"
+                android:text="Čas"
+                android:layout_weight="7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                >
+            </TextView>
+
+        </TableRow>
+
+    </TableLayout>
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clickable="false"
+        >
+
+
+        <LinearLayout
+
+            android:weightSum="1"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/my_linear_layout"
+            android:orientation="horizontal" />
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

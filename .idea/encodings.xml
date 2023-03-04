@@ -2,5 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$USER_HOME$/AppData/Local/Google/AndroidStudio2021.3/device-explorer/New_Device_API_30_2 [emulator-5554]/data/data/com.example.myapplication/databases/mydatabase.db" charset="ISO-8859-1" />
+    <file url="file://$USER_HOME$/AppData/Local/Google/AndroidStudio2021.3/device-explorer/New_Device_API_30_2 [emulator-5554]/data/data/com.example.myapplication/databases/race_database" charset="UTF-8" />
+    <file url="file://$USER_HOME$/AppData/Local/Google/AndroidStudio2021.3/device-explorer/New_Device_API_30_2 [emulator-5554]/data/data/com.example.myapplication/databases/racer_database" charset="ISO-8859-1" />
   </component>
 </project>

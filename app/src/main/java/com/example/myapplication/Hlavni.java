@@ -1,33 +1,18 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.TooltipCompat;
-import androidx.core.content.ContextCompat;
 
 import android.app.UiModeManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.InputType;
-import android.util.Log;
-import android.view.ContextThemeWrapper;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class Hlavni extends AppCompatActivity {
     private ImageButton datButton, continu;
@@ -41,6 +26,7 @@ public class Hlavni extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hlavni);
         defineButtons();
+        DatabazeZavodu z = new DatabazeZavodu(this);
 
     }
     public boolean isDarkMode(Context context) { //vrátí boolean jestli je dark mode
@@ -120,7 +106,7 @@ public class Hlavni extends AppCompatActivity {
     }
     //otevře class database
     public void openDatabase(View view){
-        Intent intent = new Intent(this, Databaze.class);
+        Intent intent = new Intent(this, NacteniZavodnikuDoDatabaze.class);
         startActivity(intent);
     }
     @Override //pokud je stisknuto back button ukončí se aplikace
@@ -135,6 +121,10 @@ public class Hlavni extends AppCompatActivity {
     //metoda která otevře prubezny class
     public void prubezny(){
         Intent intent = new Intent(this, Prubezny.class);
+        startActivity(intent);
+    }
+    public void vysledky(View view){
+        Intent intent = new Intent(this, VysledkyDatabaze.class);
         startActivity(intent);
     }
     //metoda která spustí dialog, s následujícími parametry

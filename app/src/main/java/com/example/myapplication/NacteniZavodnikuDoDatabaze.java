@@ -1,29 +1,16 @@
 package com.example.myapplication;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,9 +22,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Databaze extends AppCompatActivity {
+public class NacteniZavodnikuDoDatabaze extends AppCompatActivity {
     private static final int READ_REQUEST_CODE = 42;
-    MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
+    DatabazeZavodniku dbHelper = new DatabazeZavodniku(this);
     private boolean isToastDisplayed = false;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +52,7 @@ public class Databaze extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Dialog zapsatDialog = new Dialog(Databaze.this);
+                Dialog zapsatDialog = new Dialog(NacteniZavodnikuDoDatabaze.this);
                 zapsatDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 zapsatDialog.setContentView(R.layout.zapsatjmeno);
 

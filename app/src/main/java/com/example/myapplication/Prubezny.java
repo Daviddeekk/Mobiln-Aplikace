@@ -395,8 +395,8 @@ public class Prubezny extends AppCompatActivity {
                 zapsatDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 zapsatDialog.setContentView(R.layout.load);
 
-                Intent intent = new Intent(Prubezny.this, DatabazeSelector.class);
-                DatabazeSelector ds = new DatabazeSelector();
+                Intent intent = new Intent(Prubezny.this, NacitaniZavodnikuZDatabaze.class);
+                NacitaniZavodnikuZDatabaze ds = new NacitaniZavodnikuZDatabaze();
                 ds.getNumber(pocetZavodniku);
                 startActivityForResult(intent,REQUEST_CODE);
                 dialog.cancel();}

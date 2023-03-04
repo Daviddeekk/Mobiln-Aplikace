@@ -1,44 +1,42 @@
 package com.example.myapplication;
 
 import static android.app.ProgressDialog.show;
+import static android.view.View.INVISIBLE;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.UiModeManager;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -52,6 +50,7 @@ public class Vysledky extends AppCompatActivity {
     public static int pocetZavodniku;
     String[][] fullArray = new String[pocetZavodniku][4];
     private TextView[] poziceArray, zavodniciArray, cisloZavodnikaArray, casArray;
+    private ImageButton imgb;
 
 
     @Override
@@ -77,10 +76,15 @@ public class Vysledky extends AppCompatActivity {
 
         }
 
-
+        imgb = (ImageButton) findViewById(R.id.odejit);
+        imgb.setVisibility(INVISIBLE);
         odstran();
         table = findViewById(R.id.table);
         sortByCasVz();
+    }
+    public void zpetNaHlavni(View view) {
+        Intent intent = new Intent(this, Hlavni.class);
+        startActivity(intent);
     }
     public int poc(int i){
         pocetZavodniku= i;
@@ -249,12 +253,7 @@ public class Vysledky extends AppCompatActivity {
         dialog.setContentView(R.layout.export);
 
         TableRow t1 = dialog.findViewById(R.id.row1);
-       // TableRow t2 = dialog.findViewById(R.id.row2);
-        //t2.setEnabled(false);
-        //t2.setBackgroundColor(Color.rgb(50,50,50));
-
-     // ImageView imgv = dialog.findViewById(R.id.imageView2);
-        //imgv.setColorFilter(Color.rgb(100,100,100));
+        TableRow t2 = dialog.findViewById(R.id.row2);
 
         t1.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -264,18 +263,97 @@ public class Vysledky extends AppCompatActivity {
                     exportToCSV(fullArray, v.getContext());
                     dialog.dismiss();
                     SnackBar();
+                    imgb.setVisibility(View.VISIBLE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }});
-        /*t2.setOnClickListener(new View.OnClickListener(){
+        t2.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                System.out.println("clicked");
+
+                Dialog zapsatDialog = new Dialog(Vysledky.this);
+                zapsatDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                zapsatDialog.setContentView(R.layout.zapsatjmeno);
+
+                TextView txtv = zapsatDialog.findViewById(R.id.textView);
+                txtv.setText("Pojmenujte výsledek");
+                EditText et1 = zapsatDialog.findViewById(R.id.jmeno);
+                et1.setHint("Běh na 100m");
+
+
+                ImageButton cancel = zapsatDialog.findViewById(R.id.cancel);
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        zapsatDialog.cancel();
+                    }
+                });
+
+                    EditText et = zapsatDialog.findViewById(R.id.jmeno);
+                    ImageButton zapsat = zapsatDialog.findViewById(R.id.zapsat);
+                    zapsat.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        DatabazeVysledkuZavodu rdb = new DatabazeVysledkuZavodu(v.getContext());
+                        SQLiteDatabase db1 = rdb.getWritableDatabase();
+
+                        DatabazeZavodu dtbz = new DatabazeZavodu(v.getContext());
+                        SQLiteDatabase db2 = dtbz.getWritableDatabase();
+                        ContentValues values1 = new ContentValues();
+
+                        Cursor cursor = db2.rawQuery("SELECT MAX(id) FROM race", null);
+                        int lastId = cursor.moveToFirst() ? cursor.getInt(0) : 0;
+                        cursor.close();
+
+
+                        String raceId = Integer.toString(lastId + 1);
+
+
+
+
+                        Calendar calendar = Calendar.getInstance();
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd. MM. yyyy HH:mm");
+                        String currentDateTime = sdf.format(new Date());
+
+
+                        values1.put("time", currentDateTime); // Set the race time
+                        values1.put("id", raceId); // Set the race ID
+                        values1.put("name", String.valueOf(et1.getText())); // Set the race name
+                        db2.insert("race", null, values1);
+                        db2.close();
+
+                        for (int i = 0; i < fullArray.length; i++) {
+                            ContentValues values2 = new ContentValues();
+                            values2.put("racer_name", fullArray[i][0]);
+                            values2.put("racer_time", fullArray[i][1]);
+                            values2.put("racer_number", fullArray[i][2]);
+                            values2.put("position",fullArray[i][3]);
+
+
+                            values2.put("race_id", raceId); // Set the race ID from the selected race
+
+                            db1.insert("racer", null, values2);
+                            zapsatDialog.dismiss();
+                        }
+                        System.out.println("uloženo");
+                        db1.close();
+
+
+                        dialog.cancel();
+
+                        imgb.setVisibility(View.VISIBLE);
+                    }
+
+                });
+                zapsatDialog.show();
+
             }
+
         });
-*/
+
         dialog.show();
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.CENTER);
@@ -306,10 +384,10 @@ public class Vysledky extends AppCompatActivity {
         fileOutputStream.close();
     }
     public void SnackBar(){
-        ConstraintLayout constraintLayout = findViewById(R.id.layoutR);
+        RelativeLayout constraintLayout = findViewById(R.id.layoutR);
 
         Snackbar.make(constraintLayout, "Uloženo do složky Documents", Snackbar.LENGTH_LONG)
-                .setDuration(5000)
+                .setDuration(2000)
                 .show();
     }
 }

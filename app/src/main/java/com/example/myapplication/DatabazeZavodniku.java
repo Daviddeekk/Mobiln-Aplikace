@@ -1,33 +1,24 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.UiModeManager;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
+import android.text.method.ScrollingMovementMethod;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
-public class MyDatabaseHelper extends SQLiteOpenHelper {
+public class DatabazeZavodniku extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "mydatabase.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -36,7 +27,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_NAME = "name";
 
-    public MyDatabaseHelper(Context context) {
+    public DatabazeZavodniku(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -111,9 +102,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                     0.7f);
             textView.setLayoutParams(textViewParams);
             textView.setText("  "+name);
-            textView.setTextSize(25);
+            textView.setTextSize(20);
             textView.setSingleLine();
-
+            textView.setTextColor(isDarkMode(layout.getContext())? Color.WHITE : Color.BLACK);
+            textView.setHorizontallyScrolling(true);
+            textView.setMovementMethod(new ScrollingMovementMethod());
 
             Button delete = new Button(layout.getContext());
             LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(

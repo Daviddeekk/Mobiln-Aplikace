@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.UiModeManager;
@@ -12,22 +11,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -254,21 +245,19 @@ public class Hromadny extends AppCompatActivity {
                     @Override
                     public void run() {
                         time++;
-                        timerText.setText(getTimerText());
+
                         //aby se čas pocetZavodnikuzávodníků nenastavoval pokaždé ale pouze po jedné sekundě, zbytečně mnoho operací
                         if (!timerText.getText().equals(timesArray[0].getText())) {
                             setCasToAll();
                         }
+                        timerText.setText(getTimerText());
                     }
                 });
             }
         };
-        if (casTag.equals("hromadny")) {
+
             timer.scheduleAtFixedRate(timerTask, 0, 10);
-        }
-        if (casTag.equals("rychlyHromadny")) {
-            timer.scheduleAtFixedRate(timerTask, 0, 10);
-        }
+
     }
 
     private String getTimerText() { //z time dostane minuty, hodiny, sekundy, setiny
@@ -341,7 +330,9 @@ public class Hromadny extends AppCompatActivity {
         }
         //pokud vypl všechny objeví se pokracovat
         if (pocetZavodniku == zastavenych) {
+
             timerTask.cancel();
+
             ImageButton pokracovat = findViewById(R.id.pokracovat);
             pokracovat.setVisibility(View.VISIBLE);
             zpet.setEnabled(true);
@@ -461,8 +452,8 @@ public class Hromadny extends AppCompatActivity {
                 zapsatDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 zapsatDialog.setContentView(R.layout.load);
 
-                Intent intent = new Intent(Hromadny.this, DatabazeSelector.class);
-                DatabazeSelector ds = new DatabazeSelector();
+                Intent intent = new Intent(Hromadny.this, NacitaniZavodnikuZDatabaze.class);
+                NacitaniZavodnikuZDatabaze ds = new NacitaniZavodnikuZDatabaze();
                 ds.getNumber(pocetZavodniku);
                 startActivityForResult(intent, REQUEST_CODE);
                 dialog.cancel();

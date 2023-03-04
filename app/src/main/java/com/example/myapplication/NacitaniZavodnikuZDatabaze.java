@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DatabazeSelector extends AppCompatActivity {
+public class NacitaniZavodnikuZDatabaze extends AppCompatActivity {
     private boolean isToastDisplayed = false;
     private static final int READ_REQUEST_CODE = 42;
     private static final int REQUEST_CODE = 1;
@@ -31,7 +31,7 @@ public class DatabazeSelector extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
+        DatabazeZavodniku dbHelper = new DatabazeZavodniku(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         final String tableName = "mytable";
         final String columnId = "_id";

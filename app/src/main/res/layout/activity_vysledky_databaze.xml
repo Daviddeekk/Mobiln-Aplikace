@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?colorPrimary"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".NacteniZavodnikuDoDatabaze">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".VysledkyDatabaze"
+    android:background="?colorPrimary"
+    >
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -36,7 +36,12 @@
 
             android:src="@android:drawable/ic_menu_revert"
             tools:layout_editor_absoluteX="16dp"
+
             tools:layout_editor_absoluteY="3dp" />
+
+
+
+
 
 
         <TextView
@@ -45,24 +50,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Databáze závodníků"
+            android:text="Výsledky"
             android:textColor="?android:textColorPrimary"
             android:textSize="25dp"></TextView>
-        <ImageButton
-            android:onClick="newData"
-            android:id="@+id/imageButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="end"
-            android:background="#00FFFFFF"
-            android:scaleType="fitCenter"
-            android:layout_marginEnd="10dp"
-            app:srcCompat="@android:drawable/ic_input_add" />
+
 
 
     </androidx.appcompat.widget.Toolbar>
-
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_marginTop="60dp"
@@ -72,13 +66,13 @@
         android:clickable="false"
         >
 
-    <LinearLayout
+        <LinearLayout
 
-        android:weightSum="1"
+            android:weightSum="1"
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/my_linear_layout"
-        />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/my_linear_layout"
+            android:orientation="horizontal" />
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
