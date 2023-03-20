@@ -45,20 +45,16 @@ public class NacteniZavodnikuDoDatabaze extends AppCompatActivity {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.load);
-
         ImageButton nacteniZCsv = dialog.findViewById(R.id.importZCsv);
         ImageButton zapsatButton = dialog.findViewById(R.id.zapsat);
         zapsatButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Dialog zapsatDialog = new Dialog(NacteniZavodnikuDoDatabaze.this);
                 zapsatDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 zapsatDialog.setContentView(R.layout.zapsatjmeno);
-
                 ImageButton cancel = zapsatDialog.findViewById(R.id.cancel);
                 cancel.setOnClickListener(new View.OnClickListener() {
-
                     @Override
                     public void onClick(View v) {
                         zapsatDialog.cancel();
@@ -76,7 +72,6 @@ public class NacteniZavodnikuDoDatabaze extends AppCompatActivity {
                         displayData();
                     }
                 });
-
                 zapsatDialog.show();
                 dialog.cancel();
             }
@@ -97,13 +92,12 @@ public class NacteniZavodnikuDoDatabaze extends AppCompatActivity {
         // Create an intent for selecting a file via the file manager
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("*/*");
+        intent.setType("text/*");
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-        System.out.println("GOT HERE");
         super.onActivityResult(requestCode, resultCode, resultData);
         // If the selection worked, we have a URI pointing to the file
         if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {

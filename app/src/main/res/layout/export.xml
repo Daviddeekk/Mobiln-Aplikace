@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:gravity="center"
-                android:text="Export do csv"
+                android:text="Export do csv  "
                 android:textAlignment="center"
                 android:textColor="?colorOnPrimary"
                 android:textSize="25dp"
@@ -46,6 +46,7 @@
             >
 
             <ImageView
+
                 android:id="@+id/imageView2"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -53,7 +54,9 @@
                 app:srcCompat="?attr/actionModeCopyDrawable"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="70dp"
-                android:background="@color/grey"
+                android:background="#00FFFFFF"
+
+
                 />
 
             <TextView
@@ -62,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:gravity="center"
-                android:text="Uložit do databáze"
+                android:text="Uložit do databáze  "
                 android:textAlignment="center"
                 android:textColor="?colorOnPrimary"
                 android:textSize="25dp"

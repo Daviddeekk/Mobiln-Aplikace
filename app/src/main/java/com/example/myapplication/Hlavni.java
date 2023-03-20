@@ -6,6 +6,7 @@ import androidx.appcompat.widget.TooltipCompat;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -17,47 +18,41 @@ import android.widget.TextView;
 public class Hlavni extends AppCompatActivity {
     private ImageButton datButton, continu;
     private TextView sportView;
-    private SeekBar mSeekBar;
-    private TextView mSelectedValueTextView;
-    private RadioButton b1, b2, c1, c2;
+    private SeekBar slider;
+    private TextView value, zavodnici, vysledky;
+    private RadioButton formatRB1, formatRB2,casRB1, casRB2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hlavni);
         defineButtons();
-        DatabazeZavodu z = new DatabazeZavodu(this);
-
-    }
-    public boolean isDarkMode(Context context) { //vrátí boolean jestli je dark mode
-        UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
-        return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
     //definuje barvu imageButtons
-    public void defineButtons(){
+    private void defineButtons(){
         datButton = findViewById(R.id.dtbs);
         sportView = findViewById(R.id.zvolteSport);
 
-        b1 = findViewById(R.id.formatButton1);
-        b2 = findViewById(R.id.formatButton2);
-        c1 = findViewById(R.id.radioButton1);
-        c2 = findViewById(R.id.radioButton2);
+        formatRB1 = findViewById(R.id.formatButton1);
+        formatRB2 = findViewById(R.id.formatButton2);
 
-        mSeekBar = findViewById(R.id.seekBar);
-        mSelectedValueTextView = findViewById(R.id.selectedValueTextView);
-        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        casRB1 = findViewById(R.id.radioButton1);
+        casRB2 = findViewById(R.id.radioButton2);
+
+        zavodnici = (TextView) findViewById(R.id.databaze_zavodnici);
+        zavodnici.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
+
+        vysledky = (TextView) findViewById(R.id.databaze_zavody);
+        vysledky.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
+
+        slider = findViewById(R.id.seekBar);
+        value = findViewById(R.id.selectedValueTextView);
+        slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Update the selected value TextView
-                int value = progress + 1;
-                mSelectedValueTextView.setText(String.valueOf(value));
-
-                // Show the selected value in a tooltip
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    mSeekBar.setTooltipText(String.valueOf(value));
-                } else {
-                    TooltipCompat.setTooltipText(mSeekBar, String.valueOf(value));
-                }
+                int hodnota = progress + 1;
+                value.setText(String.valueOf(hodnota));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -70,56 +65,45 @@ public class Hlavni extends AppCompatActivity {
         continu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(b1.isChecked() && c1.isChecked()){
+                if(formatRB1.isChecked() &&  casRB1.isChecked()){
                     Hromadny m = new Hromadny();
-                    m.getNumber(Integer.parseInt(mSelectedValueTextView.getText().toString()));
-
+                    m.getNumber(Integer.parseInt(value.getText().toString()));
                     m.getTag("hromadny");
-                    hromadny();
+                    startHromadny();
                 }
-                else if(b1.isChecked() && c2.isChecked()){
+                else if(formatRB1.isChecked() &&  casRB2.isChecked()){
                     Hromadny m = new Hromadny();
-                    m.getNumber(Integer.parseInt(mSelectedValueTextView.getText().toString()));
-
+                    m.getNumber(Integer.parseInt(value.getText().toString()));
                     m.getTag("rychlyHromadny");
-                    hromadny();
-
+                    startHromadny();
                 }
-                else if(b2.isChecked() && c1.isChecked()){
+                else if(formatRB2.isChecked() &&  casRB1.isChecked()){
                     Prubezny p = new Prubezny();
                     p.getTag("prubezny");
-                    p.getNumber(Integer.parseInt(mSelectedValueTextView.getText().toString()));
+                    p.getNumber(Integer.parseInt(value.getText().toString()));
 
-                    prubezny();
+                    startPrubezny();
                     System.out.println("prubezny");
                 }
-                else if(b2.isChecked() && c2.isChecked()){
+                else if(formatRB2.isChecked() &&  casRB2.isChecked()){
                     Prubezny p = new Prubezny();
                     p.getTag("rychlyPrubezny");
-                    p.getNumber(Integer.parseInt(mSelectedValueTextView.getText().toString()));
-                    prubezny();
-
-                }
-            }
-        });
-
+                    p.getNumber(Integer.parseInt(value.getText().toString()));
+                    startPrubezny();
+                }}});
     }
-    //otevře class database
-    public void openDatabase(View view){
-        Intent intent = new Intent(this, NacteniZavodnikuDoDatabaze.class);
-        startActivity(intent);
+    public boolean isDarkMode(Context context) {
+        UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+        return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
-    @Override //pokud je stisknuto back button ukončí se aplikace
     public void onBackPressed() {
         this.finishAffinity();
     }
-    //metoda která otevře hromadny class
-    public void hromadny() {
+    public void startHromadny() {
         Intent intent = new Intent(this, Hromadny.class);
         startActivity(intent);
     }
-    //metoda která otevře prubezny class
-    public void prubezny(){
+    public void startPrubezny(){
         Intent intent = new Intent(this, Prubezny.class);
         startActivity(intent);
     }
@@ -127,6 +111,9 @@ public class Hlavni extends AppCompatActivity {
         Intent intent = new Intent(this, VysledkyDatabaze.class);
         startActivity(intent);
     }
-    //metoda která spustí dialog, s následujícími parametry
+    public void zavodnici(View view){
+        Intent intent = new Intent(this, NacteniZavodnikuDoDatabaze.class);
+        startActivity(intent);
+    }
 
 }

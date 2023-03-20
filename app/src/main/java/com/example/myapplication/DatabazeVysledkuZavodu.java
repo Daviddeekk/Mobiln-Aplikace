@@ -6,10 +6,19 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
+import android.os.Environment;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class DatabazeVysledkuZavodu extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "racer_database.db";
@@ -21,7 +30,8 @@ public class DatabazeVysledkuZavodu extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_RACER_TABLE = "CREATE TABLE racer (id INTEGER PRIMARY KEY, racer_name TEXT, position TEXT, racer_number TEXT, racer_time TEXT, race_id INTEGER, FOREIGN KEY(race_id) REFERENCES race(id))";
+        String CREATE_RACER_TABLE = "CREATE TABLE racer " +
+                "(id INTEGER PRIMARY KEY, racer_name TEXT, position INT, racer_number INT, racer_time TEXT, race_id INTEGER, FOREIGN KEY(race_id) REFERENCES race(id))";
         db.execSQL(CREATE_RACER_TABLE);
     }
 
@@ -30,12 +40,13 @@ public class DatabazeVysledkuZavodu extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS racer");
         onCreate(db);
     }
-    public void displayDataByForeignId(LinearLayout layout, int foreignId) {
+    public void displayDataByForeignId(LinearLayout layout, int foreignId, String columnName, String sortOrder) {
         SQLiteDatabase db = getReadableDatabase();
-        String[] columns = {"position", "racer_name", "racer_number", "racer_time"}; // replace with your column names
+        String[] columns = {"position", "racer_name", "racer_number", "racer_time"};
         String selection = "race_id = ?";
-        String[] selectionArgs = {String.valueOf(foreignId)};
-        Cursor cursor = db.query("racer", columns, selection, selectionArgs, null, null, null);
+        String[] selekce = {String.valueOf(foreignId)};
+        String orderBy = columnName + " " + sortOrder;
+        Cursor cursor = db.query("racer", columns, selection, selekce, null, null,  orderBy);
 
         while (cursor.moveToNext()) {
             // get values from cursor
@@ -112,22 +123,55 @@ public class DatabazeVysledkuZavodu extends SQLiteOpenHelper {
             column4TextView.setGravity(Gravity.CENTER);
             column4TextView.setTextColor(isDarkMode(layout.getContext())? Color.WHITE : Color.BLACK);
 
-            // add the text views to the row layout
             rowLayout.addView(column1TextView);
             rowLayout.addView(column2TextView);
             rowLayout.addView(column3TextView);
             rowLayout.addView(column4TextView);
-
-            // add the row layout to the parent layout
             layout.addView(rowLayout);
+            System.out.println(pozice);
         }
-
-// close the cursor and the database connection
         cursor.close();
         db.close();
+    }
+    public void exportDataByForeignId(int foreignId, String columnName, String sortOrder, Context context) {
+        SQLiteDatabase db = getReadableDatabase();
+        String selection = "race_id = ?";
+        String[] selectionArgs = {String.valueOf(foreignId)};
+        String orderBy = columnName + " " + sortOrder;
+        Cursor cursor = db.query("racer", null, selection, selectionArgs, null, null,  orderBy);
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        String fileName = "data_" + timeStamp + ".csv";
+        StringBuilder csvData = new StringBuilder();
+        File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+
+        while (cursor.moveToNext()) {
+            // get values from cursor
+            @SuppressLint("Range") String pozice = cursor.getString(cursor.getColumnIndex("position"));
+            @SuppressLint("Range") String jmeno = cursor.getString(cursor.getColumnIndex("racer_name"));
+            @SuppressLint("Range") String cisloZavodnika = cursor.getString(cursor.getColumnIndex("racer_number"));
+            @SuppressLint("Range") String cas = cursor.getString(cursor.getColumnIndex("racer_time"));
+
+            csvData.append(pozice).append(";")
+                    .append(jmeno).append(";")
+                    .append(cisloZavodnika).append(";")
+                    .append(cas).append("\n");
+        }
+        cursor.close();
+        db.close();
+        try {
+            File file = new File(dir, fileName + ".csv");
+            FileWriter writer = new FileWriter(file);
+            writer.append(csvData);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public boolean isDarkMode(Context context) {
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
         return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
+
+
 }

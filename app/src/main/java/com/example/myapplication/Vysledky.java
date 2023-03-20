@@ -17,11 +17,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -57,8 +59,11 @@ public class Vysledky extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vysledky);
+        defineButtons();
 
 
+    }
+    public void defineButtons(){
         poziceArray = new TextView[pocetZavodniku];
         zavodniciArray = new TextView[pocetZavodniku];
         cisloZavodnikaArray = new TextView[pocetZavodniku];
@@ -118,7 +123,6 @@ public class Vysledky extends AppCompatActivity {
     }
 
     public void setData(){
-        Resources res = getResources();
         int k = 0;
         for(int i = 1; i<=pocetZavodniku;i++){
 
@@ -127,19 +131,14 @@ public class Vysledky extends AppCompatActivity {
             TextView txv3 = cisloZavodnikaArray[i-1];
             TextView txv4 = poziceArray[i-1];
 
-
             txv1.setText(fullArray[k][0]);
-            txv1.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
-
             txv2.setText(fullArray[k][1]);
-            txv2.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
-
-
             txv3.setText(fullArray[k][2]);
-            txv3.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
-
-
             txv4.setText(fullArray[k][3]);
+
+            txv1.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
+            txv2.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
+            txv3.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
             txv4.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
             k = k+1;
         }}
@@ -148,8 +147,8 @@ public class Vysledky extends AppCompatActivity {
         int column = 1; // column to sort by
         for (int i = 0; i < array.length; i++) {
             for (int j = i+1; j < array.length; j++) {
-                if (Integer.parseInt(array[i][column].replaceAll(" : ","")) > Integer.parseInt(array[j][column].replaceAll(" : ",""))) {
-
+                if (Integer.parseInt(array[i][column].replaceAll(" : ",""))
+                        > Integer.parseInt(array[j][column].replaceAll(" : ",""))) {
                     String[] temp = array[i];
                     array[i] = array[j];
                     array[j] = temp;
@@ -166,8 +165,8 @@ public class Vysledky extends AppCompatActivity {
         int column = 3; // column to sort by
         for (int i = 0; i < fullArray.length; i++) {
             for (int j = i+1; j < fullArray.length; j++) {
-                if (Integer.parseInt(fullArray[i][column].replaceAll(" : ","")) < Integer.parseInt(fullArray[j][column].replaceAll(" : ",""))) {
-// swap values
+                if (Integer.parseInt(fullArray[i][column].replaceAll(" : ",""))
+                        < Integer.parseInt(fullArray[j][column].replaceAll(" : ",""))) {
                     String[] temp = fullArray[i];
                     fullArray[i] = fullArray[j];
                     fullArray[j] = temp;
@@ -175,23 +174,29 @@ public class Vysledky extends AppCompatActivity {
         setData();
     }
     //seřadí podle čísla závodníka sestupně
-    public void sortByCisloS(){
+    public void sortByCisloS() {
         for (int i = 0; i < fullArray.length; i++) {
             for (int j = 0; j < fullArray.length - 1; j++) {
-                if (Integer.parseInt(fullArray[i][2])  > Integer.parseInt(fullArray[j][2])) {
+                if (shouldSwapRowsReverse(fullArray[i], fullArray[j])) {
                     String[] temp = fullArray[i];
                     fullArray[i] = fullArray[j];
-                    fullArray[j] = temp;}}}
+                    fullArray[j] = temp;
+                }
+            }
+        }
         setData();
     }
     //seřadí podle čísla závodníka vzestupně
     public void sortByCisloVz(){
         for (int i = 0; i < fullArray.length; i++) {
             for (int j = 0; j < fullArray.length - 1; j++) {
-                if (Integer.parseInt(fullArray[i][2])  < Integer.parseInt(fullArray[j][2])) {
+                if (shouldSwapRows(fullArray[i], fullArray[j])) {
                     String[] temp = fullArray[i];
                     fullArray[i] = fullArray[j];
-                    fullArray[j] = temp;}}}
+                    fullArray[j] = temp;
+                }
+            }
+        }
         setData();
     }
     public void sortByNameAlph(){
@@ -243,6 +248,31 @@ public class Vysledky extends AppCompatActivity {
             podminka = true;
         }
     }
+    private boolean shouldSwapRows(String[] row1, String[] row2) {
+        if (isEmptyRow(row1) && isEmptyRow(row2)) {
+            return false;
+        } else if (isEmptyRow(row1)) {
+            return false;
+        } else if (isEmptyRow(row2)) {
+            return true;
+        } else {
+            return Integer.parseInt(row1[2]) < Integer.parseInt(row2[2]);
+        }
+    }
+    private boolean shouldSwapRowsReverse(String[] row1, String[] row2) {
+        if (isEmptyRow(row1) && isEmptyRow(row2)) {
+            return false;
+        } else if (isEmptyRow(row1)) {
+            return false;
+        } else if (isEmptyRow(row2)) {
+            return true;
+        } else {
+            return Integer.parseInt(row1[2]) > Integer.parseInt(row2[2]);
+        }
+    }
+    private boolean isEmptyRow(String[] row) {
+        return row == null || row.length < 3 || TextUtils.isEmpty(row[2]);
+    }
     public void share(View view){
 
         showDialog();
@@ -254,6 +284,9 @@ public class Vysledky extends AppCompatActivity {
 
         TableRow t1 = dialog.findViewById(R.id.row1);
         TableRow t2 = dialog.findViewById(R.id.row2);
+
+        ImageView imgv = dialog.findViewById(R.id.imageView2);
+        imgv.setColorFilter(isDarkMode(this) ? Color.WHITE : Color.GRAY);
 
         t1.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -268,11 +301,10 @@ public class Vysledky extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }});
-        t2.setOnClickListener(new View.OnClickListener(){
 
+        t2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
                 Dialog zapsatDialog = new Dialog(Vysledky.this);
                 zapsatDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 zapsatDialog.setContentView(R.layout.zapsatjmeno);
@@ -282,7 +314,6 @@ public class Vysledky extends AppCompatActivity {
                 EditText et1 = zapsatDialog.findViewById(R.id.jmeno);
                 et1.setHint("Běh na 100m");
 
-
                 ImageButton cancel = zapsatDialog.findViewById(R.id.cancel);
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -290,16 +321,12 @@ public class Vysledky extends AppCompatActivity {
                         zapsatDialog.cancel();
                     }
                 });
-
-                    EditText et = zapsatDialog.findViewById(R.id.jmeno);
                     ImageButton zapsat = zapsatDialog.findViewById(R.id.zapsat);
                     zapsat.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         DatabazeVysledkuZavodu rdb = new DatabazeVysledkuZavodu(v.getContext());
                         SQLiteDatabase db1 = rdb.getWritableDatabase();
-
                         DatabazeZavodu dtbz = new DatabazeZavodu(v.getContext());
                         SQLiteDatabase db2 = dtbz.getWritableDatabase();
                         ContentValues values1 = new ContentValues();
@@ -307,21 +334,14 @@ public class Vysledky extends AppCompatActivity {
                         Cursor cursor = db2.rawQuery("SELECT MAX(id) FROM race", null);
                         int lastId = cursor.moveToFirst() ? cursor.getInt(0) : 0;
                         cursor.close();
-
-
                         String raceId = Integer.toString(lastId + 1);
 
-
-
-
-                        Calendar calendar = Calendar.getInstance();
                         SimpleDateFormat sdf = new SimpleDateFormat("dd. MM. yyyy HH:mm");
                         String currentDateTime = sdf.format(new Date());
 
-
-                        values1.put("time", currentDateTime); // Set the race time
-                        values1.put("id", raceId); // Set the race ID
-                        values1.put("name", String.valueOf(et1.getText())); // Set the race name
+                        values1.put("time", currentDateTime);
+                        values1.put("id", raceId);
+                        values1.put("name", String.valueOf(et1.getText()));
                         db2.insert("race", null, values1);
                         db2.close();
 
@@ -331,25 +351,16 @@ public class Vysledky extends AppCompatActivity {
                             values2.put("racer_time", fullArray[i][1]);
                             values2.put("racer_number", fullArray[i][2]);
                             values2.put("position",fullArray[i][3]);
-
-
-                            values2.put("race_id", raceId); // Set the race ID from the selected race
-
+                            values2.put("race_id", raceId);
                             db1.insert("racer", null, values2);
                             zapsatDialog.dismiss();
                         }
-                        System.out.println("uloženo");
                         db1.close();
-
-
                         dialog.cancel();
-
                         imgb.setVisibility(View.VISIBLE);
                     }
-
                 });
                 zapsatDialog.show();
-
             }
 
         });
@@ -359,37 +370,31 @@ public class Vysledky extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.CENTER);
     }
     public static void exportToCSV(String[][] fullArray, Context context) throws IOException {
-        // get the file path for the app's private internal storage directory
         File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
-        // create a unique file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String fileName = "data_" + timeStamp + ".csv";
         File file = new File(dir, fileName);
-        // get the file path as a string
         String filePath = file.getAbsolutePath();
-        // open the file for writing
         FileOutputStream fileOutputStream = new FileOutputStream(filePath);
         OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
         BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-// write each row to the file
+
         for (String[] row : fullArray) {
-            // write the values, separated by commas
             bufferedWriter.write(String.join(";", row));
-            // add a newline character
             bufferedWriter.newLine();
         }
-        // close the BufferedWriter and OutputStreamWriter
+
         bufferedWriter.close();
         outputStreamWriter.close();
         fileOutputStream.close();
     }
     public void SnackBar(){
         RelativeLayout constraintLayout = findViewById(R.id.layoutR);
-
         Snackbar.make(constraintLayout, "Uloženo do složky Documents", Snackbar.LENGTH_LONG)
                 .setDuration(2000)
                 .show();
     }
+
 }
 
 

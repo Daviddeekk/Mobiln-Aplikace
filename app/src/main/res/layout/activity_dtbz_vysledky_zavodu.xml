@@ -26,7 +26,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:subtitleTextColor="@color/teal_700">
-
+        <ImageView
+            android:id="@+id/share"
+            android:layout_gravity="end"
+            android:onClick="share"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            app:srcCompat="@android:drawable/ic_menu_share"
+            />
         <TextView
             android:id="@+id/hromadny"
             android:layout_width="wrap_content"
@@ -58,7 +65,7 @@
     </androidx.appcompat.widget.Toolbar>
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_marginTop="60dp"
 
         >
@@ -123,22 +130,27 @@
     </TableLayout>
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="95dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:clickable="false"
         >
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
         <LinearLayout
 
             android:weightSum="1"
-            android:layout_marginTop="30dp"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/my_linear_layout"
             android:orientation="horizontal" />
+        </LinearLayout>
     </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

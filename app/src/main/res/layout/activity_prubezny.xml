@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Průběžný"
+            android:text="Stopky"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="24dp"></TextView>
@@ -182,7 +182,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop1" />
                 </TableRow>
@@ -238,7 +238,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop2" />
                 </TableRow>
@@ -294,7 +294,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop3" />
                 </TableRow>
@@ -350,7 +350,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop4" />
                 </TableRow>
@@ -406,10 +406,9 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop5"
-                        android:text="Stop"
                         android:textColor="?android:attr/textColorPrimary"
                         android:visibility="visible" />
                 </TableRow>
@@ -465,7 +464,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop6" />
                 </TableRow>
@@ -521,7 +520,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop7" />
                 </TableRow>
@@ -577,7 +576,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop8" />
                 </TableRow>
@@ -633,7 +632,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop9" />
                 </TableRow>
@@ -689,7 +688,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop10" />
                 </TableRow>
@@ -745,7 +744,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop11" />
                 </TableRow>
@@ -801,7 +800,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop12" />
                 </TableRow>
@@ -857,7 +856,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop13" />
                 </TableRow>
@@ -913,7 +912,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop14" />
                 </TableRow>
@@ -969,7 +968,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop15" />
                 </TableRow>
@@ -1025,7 +1024,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop16" />
                 </TableRow>
@@ -1081,7 +1080,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop17" />
                 </TableRow>
@@ -1137,7 +1136,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop18" />
                 </TableRow>
@@ -1193,7 +1192,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop19" />
                 </TableRow>
@@ -1249,7 +1248,7 @@
                         android:layout_height="55dp"
                         android:layout_weight="2"
                         android:background="#00FFFFFF"
-                        android:onClick="stop"
+                        android:onClick="startStop"
                         android:src="@android:drawable/ic_media_pause"
                         android:tag="stop20" />
                 </TableRow>

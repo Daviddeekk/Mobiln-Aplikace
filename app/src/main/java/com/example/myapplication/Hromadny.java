@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 public class Hromadny extends AppCompatActivity {
     private static final int READ_REQUEST_CODE = 42;
     private static final int REQUEST_CODE = 1;
@@ -46,8 +47,9 @@ public class Hromadny extends AppCompatActivity {
     private EditText[] zavodniciArray, cisloZavodnikaArray;
     private ImageButton[] stopButtonArray;
 
+    boolean bezi = false;
     Timer timer;
-    TimerTask timerTask;
+    TimerTask task;
     Double time = 0.0;
     private int num, zastavenych;
     boolean timerStarted = false, timerGoing = true;
@@ -56,37 +58,29 @@ public class Hromadny extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         {
-            if(zpet.isEnabled()){
-                stopTimer();
+            if(zpet.isEnabled()&&task !=null)
+            {
+                task.cancel();
+
                 goBackDialog();
-            }else{
-
             }
-        }
-    }
-
-    private void stopTimer() {
-        if (timerTask != null) {
-            timerTask.cancel();
-            timerTask = null;
-        }
-    }
+            else if(zpet.isEnabled()){
+                hlavni();
+                stopTimer();
+            }else{
+            }}}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hromadny);
-
         defineButtons();
-        defaultcisloZavodnika();
-        timer = new Timer();                                    //vytvoření timeru
-        odstran();//odstraní řádky, které nepotřebujeme
-
+                                              //odstraní řádky, které nepotřebujeme
     }
 
     private void defineButtons() {
 
-
+        timer = new Timer();
         zavodnici = (ImageButton) findViewById(R.id.zavodnici);
         zavodnici.setColorFilter(Color.rgb(18, 94, 188));
 
@@ -131,11 +125,25 @@ public class Hromadny extends AppCompatActivity {
             et.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
         }
         buttonReset(false);
+        defaultcisloZavodnika();                            //vytvoření timeru
+        odstran();
     }
-
+    private void stopTimer() {
+        if (task != null) {
+            task.cancel();
+            task = null;
+        }
+    }
     public void backButton(View view) {
-        stopTimer();
-        goBackDialog();
+        if(zpet.isEnabled()&&task !=null)
+        {
+            task.cancel();
+            goBackDialog();
+        }
+        else if(zpet.isEnabled()){
+            stopTimer();
+            hlavni();
+        }
     }
 
     private void hlavni() {
@@ -151,27 +159,26 @@ public class Hromadny extends AppCompatActivity {
         resetAlert.setPositiveButton("Ano", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (timerTask != null) {
-
-                    time = 0.0;
-                    timerTask.cancel();
-                    timerText.setText(formatTime(0, 0, 0));
+                if (task != null) {
                     timerStarted = false;
                     buttonReset(false);
                     buttonUpdate(true);
                     zastavenych = 0;
-                    textv.setEnabled(true);
-
                     for (int k = 1; k <= pocetZavodniku; k++) {
                         TextView textView = timesArray[k - 1];
                         textView.setEnabled(true);
-
                     }
                     resetButton.setEnabled(false);
                     resetButton.setColorFilter(Color.GRAY);
                 }
                 pokracovat = (ImageButton) findViewById(R.id.pokracovat);
                 pokracovat.setVisibility(View.INVISIBLE);
+                task.cancel();
+                time = 0.0;
+                bezi = false;
+
+                timerText.setText(formatTime(0, 0, 0));
+                setCasToAll();
             }
         });
         resetAlert.setNeutralButton("Ne", new DialogInterface.OnClickListener() {
@@ -184,6 +191,7 @@ public class Hromadny extends AppCompatActivity {
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(this, R.color.white));
         dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setTextColor(ContextCompat.getColor(this, R.color.white));
 
+
     }
     public void goBackDialog(){
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.MyAlertDialogTheme));
@@ -194,6 +202,7 @@ public class Hromadny extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
             {
+                stopTimer();
                 hlavni();
             }
         });
@@ -223,10 +232,10 @@ public class Hromadny extends AppCompatActivity {
             buttonUpdate(false);
             startTimer();
             zavodniciEditable(false);
-           // zpet.setEnabled(false);
+            bezi = true;
         } else {
             timerStarted = false;
-            timerTask.cancel();
+            task.cancel();
         }
     }
 
@@ -235,9 +244,9 @@ public class Hromadny extends AppCompatActivity {
         return casTag;
     }
 
-    private void startTimer()                 //po začátkpocetZavodnikutimeru
+    private void startTimer()
     {
-        timerTask = new TimerTask() {
+        task = new TimerTask() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() //okamžité spuštění, nečeká se
@@ -245,42 +254,46 @@ public class Hromadny extends AppCompatActivity {
                     @Override
                     public void run() {
                         time++;
-
                         //aby se čas pocetZavodnikuzávodníků nenastavoval pokaždé ale pouze po jedné sekundě, zbytečně mnoho operací
                         if (!timerText.getText().equals(timesArray[0].getText())) {
                             setCasToAll();
                         }
                         timerText.setText(getTimerText());
-                    }
-                });
-            }
-        };
-
-            timer.scheduleAtFixedRate(timerTask, 0, 10);
-
+                        if(!bezi){
+                            time = 0.0;
+                            timerText.setText(getTimerText());
+                            setCasToAll();
+                        }}});}};
+            timer.scheduleAtFixedRate(task, 0, 10);
     }
+    private void setCasToAll() {
+        String timerText = getTimerText();
+        for (int i = 0; i < timesArray.length; i++) {
+            TextView textView = timesArray[i];
+            if (textView.isEnabled() && !textView.getText().equals(timerText)) {
+                textView.setText(timerText);
+            }
+        }}
 
-    private String getTimerText() { //z time dostane minuty, hodiny, sekundy, setiny
-        int rounded = (int) Math.round(time);
-        int hours = rounded / 360000;
-        int minutes = (rounded / 6000) % 60;
-        int seconds = (rounded / 100) % 60;
-        int millis = rounded % 100;
+    public String getTimerText() {
+        int roundedTime = (int) Math.round(time);
+        int hours = roundedTime / 360000;
+        int minutes = (roundedTime / 6000) % 60;
+        int seconds = (roundedTime / 100) % 60;
+        int milliseconds = roundedTime % 100;
         if (casTag.equals("hromadny")) {
             return formatTime(seconds, minutes, hours);
         } else {
-            return formatTime(millis, seconds, minutes);
+            return formatTime(milliseconds, seconds, minutes);
         }
     }
-
-    private String formatTime(int seconds, int minutes, int hours) {
-        return String.format("%02d", hours) + " : " + String.format("%02d", minutes) + " : " + String.format("%02d", seconds);
+    public String formatTime(int seconds, int minutes, int hours) {
+        String formattedSeconds = (seconds < 10) ? "0" + seconds : String.valueOf(seconds);
+        String formattedMinutes = (minutes < 10) ? "0" + minutes : String.valueOf(minutes);
+        String formattedHours = (hours < 10) ? "0" + hours : String.valueOf(hours);
+        return formattedHours + " : " + formattedMinutes + " : " + formattedSeconds;
     }
 
-    public String getSport(String s) {
-        sport = s;
-        return sport;
-    }
 
     public int getNumber(int i) {
         pocetZavodniku = i;
@@ -298,7 +311,6 @@ public class Hromadny extends AppCompatActivity {
             et.setText(Integer.toString(i));
         }
     }
-
     //odstrani přebytečné řádky, nechá jenom ty potřebné
     private void odstran() {
         int k = pocetZavodniku;
@@ -316,26 +328,23 @@ public class Hromadny extends AppCompatActivity {
 
     //při zastavení časpocetZavodnikupocetZavodnikujenoho závodníka tlačítko a čas se vypnou
     public void stop(View view) {
-        String tag = view.getTag().toString();
+        String tag = view.getTag().toString();          //dostanu tag stisknutého tlačítka
         for (int i = 0; i < pocetZavodniku; i++) {
-            if (tag.equals("stop" + (i + 1))) {
+            if (tag.equals("stop" + (i + 1))) {         //pokud se tag rovná nějakému tlačítku stop tak...
                 TextView textView = timesArray[i];
                 ImageButton stopB = findViewById(getResources().getIdentifier("stop" + (i + 1), "id", getPackageName()));
-                textView.setEnabled(false);
+                textView.setEnabled(false);             //vypne se textView
                 stopB.setColorFilter(textView.isEnabled() ? Color.rgb(18, 94, 188) : Color.GRAY);
-                stopB.setEnabled(false);
-                zastavenych++;
-                textView.setText(getTimerText());
-            }
-        }
-        //pokud vypl všechny objeví se pokracovat
+                stopB.setEnabled(false);                //vypne se tlačítko.
+                zastavenych++;                          //k hodnotě zastavených se přičte 1
+                textView.setText(getTimerText());       //nastaví konečný čas
+            }}
+        //pokud vypl všechny objeví se tlačítko pokračovat
         if (pocetZavodniku == zastavenych) {
-
-            timerTask.cancel();
-
+            task.cancel();
             ImageButton pokracovat = findViewById(R.id.pokracovat);
             pokracovat.setVisibility(View.VISIBLE);
-            zpet.setEnabled(true);
+            zpet.setEnabled(true);              //zapnou se tlačítka, která byla vyplá.
             zpet.setColorFilter(Color.RED);
             importB.setEnabled(true);
             importB.setColorFilter(Color.rgb(18, 94, 188));
@@ -350,29 +359,19 @@ public class Hromadny extends AppCompatActivity {
         }
     }
 
-    private void setCasToAll() {
-        String timerText = getTimerText();
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            TextView textView = timesArray[i - 1];
-            if (textView.isEnabled() && !textView.getText().equals(timerText)) {
-                textView.setText(timerText);
-            }
-        }
-    }
 
-    private void buttonReset(boolean reset) { // otevře tlačíka a závodníky
+
+    private void buttonReset(boolean reset) { // ressetuje tlačíka a časy
         for (int i = 1; i <= pocetZavodniku; i++) {
             ImageButton imgButton = stopButtonArray[i - 1];
             TextView et = timesArray[i - 1];
 
             imgButton.setEnabled(reset);
-
             if (imgButton.isEnabled()) {
                 imgButton.setColorFilter(Color.RED);
             } else {
                 imgButton.setColorFilter(Color.GRAY);
             }
-
             et.setText(getTimerText());
             zavodniciEditable(true);
         }
@@ -394,7 +393,6 @@ public class Hromadny extends AppCompatActivity {
             zavodnici.setColorFilter(Color.GRAY);
             zpet.setEnabled(false);
             zpet.setColorFilter(Color.GRAY);
-
         }
     }
 
@@ -410,30 +408,25 @@ public class Hromadny extends AppCompatActivity {
         }
     }
 
-    private void openEd() { //otevře stránkpocetZavodnikus editací
-        pokracovat = (ImageButton) findViewById(R.id.pokracovat);
-
+    private void openEd() {
         int row = 0;
         for (int i = 1; i <= pocetZavodniku; i++) {
-
-            TextView cas = timesArray[i - 1];
+            TextView cas = timesArray[i - 1];           //definuje odkud budu brát data
             EditText zavodnici = zavodniciArray[i - 1];
             EditText cisloZavodnika = cisloZavodnikaArray[i - 1];
 
-            newArray[row][0] = zavodnici.getText().toString();
+            newArray[row][0] = zavodnici.getText().toString();      //do 2D array uložení dat závodu
             newArray[row][1] = cas.getText().toString();
             newArray[row][2] = cisloZavodnika.getText().toString();
             row = row + 1;
         }
-
         Editace e = new Editace();
-        e.getTag(casTag);
+        e.getTag(casTag);           //z třídy Editace volám metody, které přenesou data
         e.setArray(newArray);
         e.poc(pocetZavodniku);
         Intent intent = new Intent(this, Editace.class);
         startActivity(intent);
     }
-
     public void openEditace(View view) {
         openEd();
     }
@@ -448,9 +441,6 @@ public class Hromadny extends AppCompatActivity {
         zDatabaze.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog zapsatDialog = new Dialog(Hromadny.this);
-                zapsatDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                zapsatDialog.setContentView(R.layout.load);
 
                 Intent intent = new Intent(Hromadny.this, NacitaniZavodnikuZDatabaze.class);
                 NacitaniZavodnikuZDatabaze ds = new NacitaniZavodnikuZDatabaze();
@@ -462,43 +452,27 @@ public class Hromadny extends AppCompatActivity {
         nacteniZCsv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog zapsatDialog = new Dialog(Hromadny.this);
-                zapsatDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                zapsatDialog.setContentView(R.layout.load);
-                launchFilePicker();
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("text/*");
+                startActivityForResult(intent, READ_REQUEST_CODE);
                 dialog.cancel();
             }
         });
         dialog.show();
     }
-
-    private void launchFilePicker() {
-        // Create an intent for selecting a file via the file manager
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/*");
-        startActivityForResult(intent, READ_REQUEST_CODE);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
 
         super.onActivityResult(requestCode, resultCode, resultData);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-
             String[] names = resultData.getStringArrayExtra("selectedRows");
-            View layout = findViewById(R.id.hromadnyLayoutt);
-            Resources res = getResources();
             for (int i = 1; i <= names.length; i++) {
                 if (i <= pocetZavodniku) {
                     EditText zavodnici = zavodniciArray[i - 1];
                     zavodnici.setText(names[i - 1]);
-                }
-            }
-        }
-        // If the selection worked, we have a URI pointing to the file
+                }}}
         else if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // Get the URI of the selected file
             Uri uri = null;
             if (resultData != null) {
                 uri = resultData.getData();
@@ -511,20 +485,15 @@ public class Hromadny extends AppCompatActivity {
                         data.add(line.split(";"));
                     }
                     String[][] arrayData = data.toArray(new String[data.size()][]);
-
                     int dataLength = arrayData.length;
                     Resources res = getResources();
                     for (int i = 1; i <= dataLength; i++) {
                         if (i <= pocetZavodniku) {
                             EditText zavodnici = zavodniciArray[i - 1];
-
                             zavodnici.setText(arrayData[i - 1][0]);
-                        }
-                    }
+                        }}
                 } catch (IOException e) {
                     Toast.makeText(this, "Error reading file", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
+                }}}
     }
 }

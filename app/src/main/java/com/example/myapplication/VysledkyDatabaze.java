@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class VysledkyDatabaze extends AppCompatActivity {
     DatabazeZavodu db = new DatabazeZavodu(this);
-    DatabazeVysledkuZavodu db2 = new DatabazeVysledkuZavodu(this);
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -27,5 +26,6 @@ public class VysledkyDatabaze extends AppCompatActivity {
         layout.setOrientation(LinearLayout.VERTICAL);
         db.displayAllData(layout);
     }
+
     
 }

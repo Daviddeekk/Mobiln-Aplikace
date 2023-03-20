@@ -17,11 +17,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-
-        android:layout_marginStart="-1dp"
-        android:layout_marginTop="-3dp"
-        android:layout_marginBottom="37dp"
-
         android:background="@color/purple_200"
 
 
@@ -39,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textStyle="bold"
-            android:text="Časomíra"
+            android:text="Úvod"
             android:textColor="@color/white"
             android:textSize="24dp"
             tools:layout_editor_absoluteX="100dp"
@@ -47,6 +42,11 @@
 
 
     </androidx.appcompat.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       android:layout_marginBottom="60dp"
+        android:fillViewport="true">
 <LinearLayout
     android:layout_marginTop="60dp"
     android:layout_width="match_parent"
@@ -60,7 +60,7 @@
         >
         <TableRow>
         <ImageButton
-            android:onClick="openDatabase"
+            android:onClick="zavodnici"
             android:id="@+id/dtbs"
             android:layout_width="0dp"
             android:layout_weight="10"
@@ -68,10 +68,10 @@
             android:layout_gravity="start"
             android:background="#00FFFFFF"
             android:scaleType="fitCenter"
-
             app:srcCompat="?android:attr/actionModeFindDrawable"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="2dp" />
+            tools:layout_editor_absoluteY="2dp"
+            app:tint="@color/purple_200" />
 
             <ImageButton
                 android:id="@+id/vysledky"
@@ -83,21 +83,24 @@
                 android:background="#00FFFFFF"
                 android:onClick="vysledky"
                 android:scaleType="fitCenter"
-
+                android:tint="@color/purple_200"
                 app:srcCompat="@android:drawable/ic_menu_recent_history"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="2dp" />
         </TableRow>
         <TableRow>
             <TextView
+                android:id="@+id/databaze_zavodnici"
                 android:text="Závodníci"
                 android:gravity="center"
                 android:textSize="15dp"
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="30dp"
+
                 ></TextView>
             <TextView
+                android:id="@+id/databaze_zavody"
                 android:text="Výsledky"
                 android:gravity="center"
                 android:textSize="15dp"
@@ -110,7 +113,7 @@
 
 
         <TextView
-            android:layout_height="60dp"
+            android:layout_height="40dp"
             android:text="Formát závodu"
             android:gravity="center"
             android:textSize="20dp"
@@ -136,7 +139,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="wrap_content"
-                android:text="Hromadný"
+                android:text="S hromadným startem"
                 android:textSize="15dp"
                 android:checked="true"
                 android:buttonTint="@color/purple_200"
@@ -153,7 +156,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:text="Průběžný"
+                android:text="S průběžným startem"
                 android:textSize="15dp"
                 android:buttonTint="@color/purple_200"
                 />
@@ -169,7 +172,7 @@
             android:layout_weight="1" />
         <TextView
 
-            android:height="60dp"
+            android:height="40dp"
             android:text="Formát času"
             android:gravity="center"
             android:textSize="20dp"
@@ -228,7 +231,7 @@
             android:layout_height="50dp"
             android:layout_weight="1" />
     <TextView
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:textColor="?colorOnPrimary"
         android:text="Počet závodníků"
         android:textSize="20dp"
@@ -264,10 +267,13 @@
     </TableLayout>
 
 </LinearLayout>
+    </ScrollView>
     <ImageButton
         android:id="@+id/continueButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+
+
         android:background="@color/purple_200"
         android:src="@android:drawable/ic_media_play"
         app:layout_constraintBottom_toBottomOf="parent" />

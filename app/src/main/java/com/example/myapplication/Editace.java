@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
@@ -32,7 +33,7 @@ public class Editace extends AppCompatActivity {
     private ImageButton imgb, zpet, dalsi;
     public String sec, min, hod;
     private static String[][] array;
-    public  int radek, dulezite;
+    public  int radek, dulezite, time, row;
     String[][] finalArray = new String[pocetZavodniku][3];
     private EditText[] cisloZavodnikaArray, zavodniciArray;
     private Button[] timeButtonArray;
@@ -47,9 +48,12 @@ public class Editace extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editace);
+        defineButtons();
 
 
 
+    }
+    public void defineButtons(){
         timeButtonArray = new Button[pocetZavodniku];
         zavodniciArray = new EditText[pocetZavodniku];
         cisloZavodnikaArray = new EditText[pocetZavodniku];
@@ -77,12 +81,8 @@ public class Editace extends AppCompatActivity {
         zpet = (ImageButton) findViewById(R.id.zpet);
         zpet.setColorFilter(Color.rgb(255,7,107));
         textColor();
-
     }
-    public static void setArray(String[][] array) {
-        Editace.array = array;
 
-    }
     public int poc(int i){
         pocetZavodniku= i;
         return pocetZavodniku;
@@ -92,7 +92,6 @@ public class Editace extends AppCompatActivity {
     }
     public void dalsiStranka(View view){
         finalArray();
-
         Intent intent = new Intent(this, Vysledky.class);
         startActivity(intent);
 
@@ -144,8 +143,10 @@ public class Editace extends AppCompatActivity {
         Intent intent = new Intent(this, Hlavni.class);
         startActivity(intent);
     }
+    public static void setArray(String[][] array) {
+        Editace.array = array;
+    }
     public void setData(){
-
         int k = 0;
         for(int i = 1; i<=pocetZavodniku;i++){
             EditText et1 = zavodniciArray[i-1];
@@ -161,57 +162,49 @@ public class Editace extends AppCompatActivity {
     }}
 
     public void zavodniciEditable(View view) {
-
         for (int i = 1; i<=pocetZavodniku; i++) {
             ImageButton lck = lockButtonArray[i-1];
             if(view.getId()==lck.getId()){
-
                 if (lck.isActivated()) {
                     viewsEditable(false, i);
                     lck.setColorFilter(Color.rgb(255, 7, 107));
                     lck.setActivated(false);
-
                 } else {
                     viewsEditable(true, i);
                     lck.setColorFilter(Color.rgb(7, 255, 148));
                     lck.setActivated(true);
                 }}
     }}
-    public void buttonsColor(){ //při spuštění se nastaví barva tlačítka
-        for (int i = 1; i <= pocetZavodniku; i++){
-            ImageButton lck = lockButtonArray[i-1];
-            lck.setColorFilter(Color.rgb(255,7,107));
-        }
-    }
     public void viewsEditable(boolean edit, int i){
         EditText et1 = zavodniciArray[i-1];
         EditText et2 = cisloZavodnikaArray[i-1];
         Button bcas = timeButtonArray[i-1];
 
         et1.setEnabled(edit);
-
-        bcas.setEnabled(edit);
-
         et2.setEnabled(edit);
+        bcas.setEnabled(edit);
+    }
+
+    public void buttonsColor(){ //při spuštění se nastaví barva tlačítka
+        for (int i = 1; i <= pocetZavodniku; i++){
+            ImageButton lck = lockButtonArray[i-1];
+            lck.setColorFilter(Color.rgb(255,7,107));
+        }
     }
 
     public void openPicker(View view) {
         picker(view.getId());
     }
     public void picker(int cisloRadku){
-        //loop s podmínkou hledá číslo řádku a z něj dostává Čas
-        for (int i = 1; i<=pocetZavodniku; i++) {
+        for (int i = 1; i<=pocetZavodniku; i++) {                                                           //loop s podmínkou hledá číslo řádku a z něj dostává Čas
             Button bcas = timeButtonArray[i-1];
-
             if(cisloRadku == bcas.getId()){
                 String cas = bcas.getText().toString();
                 w = cas.replaceAll(" : ","");
-                radek = Integer.parseInt(w);
-                dulezite = i;}
-        }
-        int k = radek;
+                time = Integer.parseInt(w);
+                row = i;}}
+        int k = time;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         final View view = this.getLayoutInflater().inflate(R.layout.activity_picker, null);
         builder.setView(view);
 
@@ -221,24 +214,15 @@ public class Editace extends AppCompatActivity {
 
         NumberPicker picker2 = (NumberPicker) view.findViewById(R.id.picker2);
         picker2.setMinValue(0);
-
         picker2.setMaxValue(59);
 
         NumberPicker picker3 = (NumberPicker) view.findViewById(R.id.picker3);
         picker3.setMinValue(0);
         if (casTag.equals("rychlyHromadny") || casTag.equals("rychlyPrubezny")){
-            picker3.setMaxValue(99);
-        }
+            picker3.setMaxValue(99);}
         else{
-            picker3.setMaxValue(59);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            picker3.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
-            picker.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
-            picker2.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
-        }
-        // v numberPicker se rozdělí čísla podle dat
-        for(int i = 1; i<=3; i++){
+            picker3.setMaxValue(59);}
+        for(int i = 1; i<=3; i++){  // v numberPicker se rozdělí čísla podle dat
 
             if(i == 1) {
                 picker3.setValue(k % 100); //sekundy
@@ -250,26 +234,36 @@ public class Editace extends AppCompatActivity {
             }
             if(i == 3){
                 picker.setValue(k); //hodiny
-            }
+            }}
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            picker3.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
+            picker.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
+            picker2.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
         }
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
                         if(String.valueOf(picker3.getValue()).length() == 1){
-                            sec = "0"+picker3.getValue();} else {sec = String.valueOf(picker3.getValue());}
+                            sec = "0"+picker3.getValue();}
+                        else {sec = String.valueOf(picker3.getValue());}
+
                         if(String.valueOf(picker2.getValue()).length() == 1){
-                            min = "0"+picker2.getValue();} else { min = String.valueOf(picker2.getValue());}
+                            min = "0"+picker2.getValue();}
+                        else { min = String.valueOf(picker2.getValue());}
+
                         if(String.valueOf(picker.getValue()).length() == 1){
-                            hod = "0"+picker.getValue();} else { hod= String.valueOf(picker.getValue());}
+                            hod = "0"+picker.getValue();}
+                        else { hod= String.valueOf(picker.getValue());}
                         //pokud bude číslo jednociferné přídá se před jednotku 0
                         Resources res = getResources();
-                        int idk = res.getIdentifier("cas" + dulezite, "id", getPackageName());
+                        int idk = res.getIdentifier("cas" + row, "id", getPackageName());
                         view1 = findViewById(idk);
                         String cas = hod +" : "+ min+" : "+sec;
                         view1.setText(cas);
                         w = cas;
                     }})
+
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -293,11 +287,8 @@ public class Editace extends AppCompatActivity {
         }
     }
     public void finalArray(){
-        Resources res = getResources();
-
         int row = 0;
         for (int i = 1; i <=pocetZavodniku; i++){
-
             EditText et1 = zavodniciArray[i-1];
             EditText et2 = cisloZavodnikaArray[i-1];
             Button bcas = timeButtonArray[i-1];
@@ -310,7 +301,6 @@ public class Editace extends AppCompatActivity {
         Vysledky v = new Vysledky();
         v.poc(pocetZavodniku);
         v.finalArray(finalArray);
-        System.out.println(finalArray[0][0]);
     }
 
 }

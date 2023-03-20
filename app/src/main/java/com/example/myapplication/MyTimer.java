@@ -1,23 +1,20 @@
 package com.example.myapplication;
+import android.annotation.SuppressLint;
 import android.widget.TextView;
 public class MyTimer {
     TextView textv;
     boolean isRunning, ended;
     double counter;
     String tag;
-    public MyTimer(TextView button, String tags) {
+    public MyTimer(TextView txv, String tags) {
         tag = tags;
-        this.textv = button;
+        this.textv = txv;
         isRunning = false;
         counter = 0;
         ended = false;
     }
-    public String getT (String gtag){
-        tag = gtag;
-        return tag;
-    }
+    @SuppressLint("SuspiciousIndentation")
     public void start() {
-        System.out.println(tag);
         isRunning=true;
             textv.post(new Runnable() {
                 @Override

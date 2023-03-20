@@ -45,7 +45,6 @@ public class Prubezny extends AppCompatActivity {
     private EditText[] zavodniciArray, cisloZavodnikaArray;
     private ImageButton[] stopButtonArray;
 
-
     MyTimer[] timers = new MyTimer[pocetZavodniku];
     Timer timer;
     Double time = 0.0;
@@ -79,13 +78,9 @@ public class Prubezny extends AppCompatActivity {
         zavodnici = (ImageButton) findViewById(R.id.zavodnici);
         importB= (ImageButton) findViewById(R.id.importB);
 
-
-
         zpet.setColorFilter(Color.rgb(255,7,107));
-
         resetButton = (ImageButton) findViewById(R.id.reset);
         resetButton.setColorFilter(Color.rgb(18, 94, 188));
-
         pokracovat = (ImageButton)findViewById(R.id.pokracovat);
         pokracovat.setVisibility(View.INVISIBLE);
 
@@ -198,11 +193,6 @@ public class Prubezny extends AppCompatActivity {
             stopB.setTag("stop" +i);
         }
     }
-
-    public String getSport(String s){
-        sport = s;
-        return sport;
-    }
     public String getTag(String gtag){
         casTag = gtag;
         return casTag;
@@ -254,39 +244,32 @@ public class Prubezny extends AppCompatActivity {
     }
 
     //při zastavení času u jenoho závodníka tlačítko a čas se vypnou
-    public void stop(View view) {
-
+    public void startStop(View view) {
         zavodniciEditable(false);
         String tag = view.getTag().toString();
         for (int i = 1; i <= pocetZavodniku; i++){
             if(tag.equals("stop"+i)){
-
                 resetButton.setEnabled(false);
                 resetButton.setColorFilter(Color.GRAY);
-
                 num = 20+i;
-
                 TextView textv = timesArray[i-1];
                 ImageButton stopB = stopButtonArray[i-1];
                 stopB.setColorFilter(Color.RED);
-
                 timers[i-1] = new MyTimer(textv, casTag);
                 final int index = i-1;
                 timers[index].start();
-
                 stopB.setImageResource(R.drawable.stopimage_foreground);
                 stopB.setTag("started" + i);
             }
             else if(tag.equals("started" +i)){
-
                 String o = view.getTag().toString().replaceAll("[^0-9]+", "");
                 int k = Integer.parseInt(o);
+                System.out.println(k);
                 ImageButton stopB = stopButtonArray[i-1];
                 timers[k-1].stop();
                 zastavenych = zastavenych + 1;
                 stopB.setColorFilter(Color.GRAY);
                 stopB.setEnabled(false);
-
             }}
         //pokud vypl všechny objeví se pokracovat
         if(pocetZavodniku == zastavenych)
