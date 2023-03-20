@@ -129,6 +129,10 @@ public class NacteniZavodnikuDoDatabaze extends AppCompatActivity {
                 }
             }
         }
+        else{
+            setContentView(R.layout.activity_databaze);
+            displayData();
+        }
     }
 
 }
