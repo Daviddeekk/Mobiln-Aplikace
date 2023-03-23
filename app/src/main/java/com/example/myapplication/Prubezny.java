@@ -102,9 +102,12 @@ public class Prubezny extends AppCompatActivity {
 
             et = findViewById(id3);
             textv = findViewById(id2);
+            textv2 = findViewById(id1);
 
+            textv2.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
             textv.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
             et.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
+
             casy = (TextView) findViewById(id1);
             casy.setText("00 : 00 : 00");
         }

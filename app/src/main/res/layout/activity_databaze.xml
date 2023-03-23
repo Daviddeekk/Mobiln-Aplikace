@@ -46,7 +46,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Databáze závodníků"
-            android:textColor="?android:textColorPrimary"
+            android:textStyle="bold"
+            android:textColor="@color/white"
             android:textSize="25dp"></TextView>
         <ImageButton
             android:onClick="newData"

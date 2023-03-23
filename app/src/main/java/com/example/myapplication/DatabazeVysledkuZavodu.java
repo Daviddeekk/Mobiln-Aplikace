@@ -71,7 +71,7 @@ public class DatabazeVysledkuZavodu extends SQLiteOpenHelper {
             LinearLayout.LayoutParams column1TextViewParams = new LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
-                    0.2f
+                    0.15f
             );
             column1TextView.setLayoutParams(column1TextViewParams);
             column1TextView.setText(String.valueOf(pozice));
@@ -85,7 +85,7 @@ public class DatabazeVysledkuZavodu extends SQLiteOpenHelper {
             LinearLayout.LayoutParams column2TextViewParams = new LinearLayout.LayoutParams(
                     0,
                     LinearLayout.LayoutParams.WRAP_CONTENT,
-                    0.3f
+                    0.35f
             );
             column2TextView.setLayoutParams(column2TextViewParams);
             column2TextView.setText(jmeno);

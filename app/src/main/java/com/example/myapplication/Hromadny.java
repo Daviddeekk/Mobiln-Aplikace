@@ -61,7 +61,6 @@ public class Hromadny extends AppCompatActivity {
             if(zpet.isEnabled()&&task !=null)
             {
                 task.cancel();
-
                 goBackDialog();
             }
             else if(zpet.isEnabled()){
@@ -120,7 +119,9 @@ public class Hromadny extends AppCompatActivity {
 
             et = findViewById(id3);
             textv = findViewById(id2);
+            textv2 = findViewById(id1);
 
+            textv2.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
             textv.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
             et.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
         }
@@ -342,6 +343,7 @@ public class Hromadny extends AppCompatActivity {
         //pokud vypl všechny objeví se tlačítko pokračovat
         if (pocetZavodniku == zastavenych) {
             task.cancel();
+            timerText.setText(getTimerText());
             ImageButton pokracovat = findViewById(R.id.pokracovat);
             pokracovat.setVisibility(View.VISIBLE);
             zpet.setEnabled(true);              //zapnou se tlačítka, která byla vyplá.
