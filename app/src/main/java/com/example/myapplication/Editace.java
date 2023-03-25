@@ -106,14 +106,15 @@ public class Editace extends AppCompatActivity {
     }
 
     public void textColor(){
-            for (int i = 1; i <= pocetZavodniku; i++) {
-                EditText et1 = zavodniciArray[i-1];
-                EditText et2 = cisloZavodnikaArray[i-1];
-                Button bcas = timeButtonArray[i-1];
+        int i = 0;
+            for (EditText et1 : zavodniciArray) {
+                EditText et2 = cisloZavodnikaArray[i];
+                Button bcas = timeButtonArray[i];
 
                 et1.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
                 et2.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
                 bcas.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
+                i++;
             }
     }
     public void goBackDialog(){
@@ -148,14 +149,14 @@ public class Editace extends AppCompatActivity {
     }
     public void setData(){
         int k = 0;
-        for(int i = 1; i<=pocetZavodniku;i++){
-            EditText et1 = zavodniciArray[i-1];
+        for(EditText et1 : zavodniciArray){
+
             et1.setText(array[k][0]);
 
-            Button bcas = timeButtonArray[i-1];
+            Button bcas = timeButtonArray[k];
             bcas.setText(array[k][1]);
 
-            EditText et2 = cisloZavodnikaArray[i-1];
+            EditText et2 = cisloZavodnikaArray[k];
             et2.setText(array[k][2]);
 
             k = k+1;
@@ -186,9 +187,9 @@ public class Editace extends AppCompatActivity {
     }
 
     public void buttonsColor(){ //při spuštění se nastaví barva tlačítka
-        for (int i = 1; i <= pocetZavodniku; i++){
-            ImageButton lck = lockButtonArray[i-1];
+        for (ImageButton lck : lockButtonArray){
             lck.setColorFilter(Color.rgb(255,7,107));
+
         }
     }
 
@@ -196,6 +197,7 @@ public class Editace extends AppCompatActivity {
         picker(view.getId());
     }
     public void picker(int cisloRadku){
+
         for (int i = 1; i<=pocetZavodniku; i++) {                                                           //loop s podmínkou hledá číslo řádku a z něj dostává Čas
             Button bcas = timeButtonArray[i-1];
             if(cisloRadku == bcas.getId()){
@@ -271,6 +273,7 @@ public class Editace extends AppCompatActivity {
                     }
                 });
         builder.create().show();
+
     }
     public void odstran() {
         int k = pocetZavodniku;
@@ -288,10 +291,9 @@ public class Editace extends AppCompatActivity {
     }
     public void finalArray(){
         int row = 0;
-        for (int i = 1; i <=pocetZavodniku; i++){
-            EditText et1 = zavodniciArray[i-1];
-            EditText et2 = cisloZavodnikaArray[i-1];
-            Button bcas = timeButtonArray[i-1];
+        for (EditText et1 : zavodniciArray){
+            EditText et2 = cisloZavodnikaArray[row];
+            Button bcas = timeButtonArray[row];
 
            finalArray[row][0] = et1.getText().toString();
            finalArray[row][1] = bcas.getText().toString();

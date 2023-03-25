@@ -124,12 +124,10 @@ public class Vysledky extends AppCompatActivity {
 
     public void setData(){
         int k = 0;
-        for(int i = 1; i<=pocetZavodniku;i++){
-
-            TextView txv1 = zavodniciArray[i-1];
-            TextView txv2 = casArray[i-1];
-            TextView txv3 = cisloZavodnikaArray[i-1];
-            TextView txv4 = poziceArray[i-1];
+        for(TextView txv1 : zavodniciArray){
+            TextView txv2 = casArray[k];
+            TextView txv3 = cisloZavodnikaArray[k];
+            TextView txv4 = poziceArray[k];
 
             txv1.setText(fullArray[k][0]);
             txv2.setText(fullArray[k][1]);

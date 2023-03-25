@@ -188,12 +188,14 @@ public class Prubezny extends AppCompatActivity {
         dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setTextColor(ContextCompat.getColor(this, R.color.white));
     }
     private void startTimerManyTimes(){
-        for (int i = 1; i <= pocetZavodniku; i++){
-            ImageButton stopB = stopButtonArray[i - 1];
+        int i = 1;
+        for (ImageButton stopB : stopButtonArray){
+           // ImageButton stopB = stopButtonArray[i - 1];
             stopB.setImageResource(R.drawable.playimage_foreground);
             stopB.setColorFilter(Color.rgb(18, 94, 188));
             stopB.setEnabled(true);
             stopB.setTag("stop" +i);
+            i++;
         }
     }
     public String getTag(String gtag){
@@ -206,13 +208,14 @@ public class Prubezny extends AppCompatActivity {
     }
     //resetuje jména závodníků
     public void jmenaZavodnikuReset (View view){
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            TextView textView = zavodniciArray[i - 1];
+        int i = 1;
+        for (TextView textView : zavodniciArray) {
             textView.setEnabled(true);
             textView.setHint("Jméno závodníka");
             textView.setText(null);
             EditText et = cisloZavodnikaArray[i - 1];
             et.setText(Integer.toString(i));
+            i++;
         }
     }
     public boolean isDarkMode(Context context) {
@@ -220,13 +223,12 @@ public class Prubezny extends AppCompatActivity {
         return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
     private void allZavodniciTextColor(){
-
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            EditText et2= zavodniciArray[i - 1];
+        int i = 1;
+        for (EditText et2 : zavodniciArray) {
             EditText et = cisloZavodnikaArray[i - 1];
-
             et2.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
             et.setTextColor(isDarkMode(this)? Color.WHITE : Color.BLACK);
+            i++;
         }
     }
     //odstrani přebytečné řádky, nechá jenom ty potřebné
@@ -289,17 +291,17 @@ public class Prubezny extends AppCompatActivity {
     }
     //nastaví na začátku alespon cislo zavodnika
     private void defaultcisloZavodnika() {
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            EditText et = cisloZavodnikaArray[i - 1];
+        int i = 1;
+        for (EditText et : cisloZavodnikaArray) {
             et.setText(Integer.toString(i));
+            i++;
         }
     }
 
     private void buttonReset(boolean reset) { // otevře tlačíka a závodníky
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            ImageButton imgButton = stopButtonArray[i - 1];
-            TextView et = timesArray[i - 1];
-
+        int i = 0;
+        for (ImageButton imgButton : stopButtonArray) {
+            TextView et = timesArray[i];
             imgButton.setEnabled(reset);
 
             if (imgButton.isEnabled()) {
@@ -309,6 +311,7 @@ public class Prubezny extends AppCompatActivity {
             }
             et.setText("00 : 00 : 00");
             zavodniciEditable(true);
+            i++;
         }
     }
 
@@ -330,12 +333,12 @@ public class Prubezny extends AppCompatActivity {
             zavodnici.setColorFilter(Color.GRAY);
             importB.setColorFilter(Color.GRAY);
         }
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            EditText et = zavodniciArray[i - 1];
+        int i = 0;
+        for (EditText et : zavodniciArray) {
             et.setEnabled(edit);
-
-            EditText et2 = cisloZavodnikaArray[i - 1];
+            EditText et2 = cisloZavodnikaArray[i];
             et2.setEnabled(edit);
+            i++;
         }
     }
     public void openEd(){ //otevře stránku s editací
@@ -343,16 +346,14 @@ public class Prubezny extends AppCompatActivity {
         Resources res = getResources();
 
         int row = 0;
-        for (int i = 1; i <= pocetZavodniku; i++) {
+        for (EditText zavodnici : zavodniciArray) {
+            TextView cas = timesArray[row];
+            EditText cisloZavodnika = cisloZavodnikaArray[row];
 
-            TextView cas = timesArray[i - 1];
-            EditText zavodnici = zavodniciArray[i - 1];
-            EditText cisloZavodnika = cisloZavodnikaArray[i - 1];
-
-            newArray[row][0] = zavodnici.getText().toString();
+            newArray[row][0] = zavodnici.getText().toString();      //do 2D array uložení dat závodu
             newArray[row][1] = cas.getText().toString();
             newArray[row][2] = cisloZavodnika.getText().toString();
-            row = row + 1;
+            row = row +1;
         }
         Editace e = new Editace();
         e.setArray(newArray);

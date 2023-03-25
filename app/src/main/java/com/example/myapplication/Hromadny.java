@@ -73,6 +73,7 @@ public class Hromadny extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hromadny);
+
         defineButtons();
                                               //odstraní řádky, které nepotřebujeme
     }
@@ -269,12 +270,13 @@ public class Hromadny extends AppCompatActivity {
     }
     private void setCasToAll() {
         String timerText = getTimerText();
-        for (int i = 0; i < timesArray.length; i++) {
-            TextView textView = timesArray[i];
+        for (TextView textView : timesArray){
             if (textView.isEnabled() && !textView.getText().equals(timerText)) {
                 textView.setText(timerText);
             }
-        }}
+        }
+    }
+
 
     public String getTimerText() {
         int roundedTime = (int) Math.round(time);
@@ -303,13 +305,14 @@ public class Hromadny extends AppCompatActivity {
 
     //resetuje jména závodníků
     public void jmenaZavodnikuReset(View view) {
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            TextView textView = zavodniciArray[i - 1];
+        int i = 1;
+        for (TextView textView : zavodniciArray) {
             textView.setEnabled(true);
             textView.setHint("Jméno závodníka");
             textView.setText(null);
             EditText et = cisloZavodnikaArray[i - 1];
             et.setText(Integer.toString(i));
+            i++;
         }
     }
     //odstrani přebytečné řádky, nechá jenom ty potřebné
@@ -350,24 +353,25 @@ public class Hromadny extends AppCompatActivity {
             zpet.setColorFilter(Color.RED);
             importB.setEnabled(true);
             importB.setColorFilter(Color.rgb(18, 94, 188));
+
         }
     }
 
     //nastaví na začátkpocetZavodnikualespon cislo zavodnika
     private void defaultcisloZavodnika() {
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            EditText et = cisloZavodnikaArray[i - 1];
+        int i = 1;
+        for (EditText et : cisloZavodnikaArray) {
             et.setText(Integer.toString(i));
+            i++;
         }
     }
 
 
 
     private void buttonReset(boolean reset) { // ressetuje tlačíka a časy
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            ImageButton imgButton = stopButtonArray[i - 1];
-            TextView et = timesArray[i - 1];
-
+        int i = 0;
+        for (ImageButton imgButton : stopButtonArray) {
+            TextView et = timesArray[i];
             imgButton.setEnabled(reset);
             if (imgButton.isEnabled()) {
                 imgButton.setColorFilter(Color.RED);
@@ -376,6 +380,7 @@ public class Hromadny extends AppCompatActivity {
             }
             et.setText(getTimerText());
             zavodniciEditable(true);
+            i++;
         }
     }
 
@@ -401,26 +406,26 @@ public class Hromadny extends AppCompatActivity {
     private void zavodniciEditable(boolean edit) {
         zavodnici.setEnabled(edit);
         importB.setEnabled(edit);
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            EditText et = zavodniciArray[i - 1];
+        int index = 0;
+        for (EditText et : zavodniciArray) {
             et.setEnabled(edit);
 
-            EditText et2 = cisloZavodnikaArray[i - 1];
+            EditText et2 = cisloZavodnikaArray[index];
             et2.setEnabled(edit);
+            index++;
         }
     }
 
     private void openEd() {
         int row = 0;
-        for (int i = 1; i <= pocetZavodniku; i++) {
-            TextView cas = timesArray[i - 1];           //definuje odkud budu brát data
-            EditText zavodnici = zavodniciArray[i - 1];
-            EditText cisloZavodnika = cisloZavodnikaArray[i - 1];
+        for (EditText zavodnici : zavodniciArray) {
+            TextView cas = timesArray[row];
+            EditText cisloZavodnika = cisloZavodnikaArray[row];
 
             newArray[row][0] = zavodnici.getText().toString();      //do 2D array uložení dat závodu
             newArray[row][1] = cas.getText().toString();
             newArray[row][2] = cisloZavodnika.getText().toString();
-            row = row + 1;
+            row = row +1;
         }
         Editace e = new Editace();
         e.getTag(casTag);           //z třídy Editace volám metody, které přenesou data
