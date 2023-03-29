@@ -1,7 +1,7 @@
 package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.widget.TextView;
-public class MyTimer {
+public class MyTimer { //timer pro závod s průběžným startem
     TextView textv;
     boolean isRunning, ended;
     double counter;
@@ -14,7 +14,7 @@ public class MyTimer {
         ended = false;
     }
     @SuppressLint("SuspiciousIndentation")
-    public void start() {
+    public void start() {//po spuštění
         isRunning=true;
             textv.post(new Runnable() {
                 @Override

@@ -21,7 +21,7 @@ public class VysledkyDatabaze extends AppCompatActivity {
     public void zpet(View view) {
         onBackPressed();
     }
-    public void displayData() { //
+    public void displayData() { //zobrazí data z databáze do layoutu
         LinearLayout layout = findViewById(R.id.my_linear_layout);
         layout.setOrientation(LinearLayout.VERTICAL);
         db.displayAllData(layout);

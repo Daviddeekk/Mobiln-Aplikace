@@ -40,6 +40,7 @@ public class DatabazeVysledkuZavodu extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS racer");
         onCreate(db);
     }
+    //zobrazí data podle cizího klíče
     public void displayDataByForeignId(LinearLayout layout, int foreignId, String columnName, String sortOrder) {
         SQLiteDatabase db = getReadableDatabase();
         String[] columns = {"position", "racer_name", "racer_number", "racer_time"};
@@ -66,7 +67,6 @@ public class DatabazeVysledkuZavodu extends SQLiteOpenHelper {
             );
             rowLayout.setLayoutParams(rowLayoutParams);
 
-            // create four text views to hold the values
             TextView column1TextView = new TextView(layout.getContext());
             LinearLayout.LayoutParams column1TextViewParams = new LinearLayout.LayoutParams(
                     0,
@@ -132,7 +132,7 @@ public class DatabazeVysledkuZavodu extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-    }
+    } //exportuje data do csv
     public void exportDataByForeignId(int foreignId, String columnName, String sortOrder, Context context) {
         SQLiteDatabase db = getReadableDatabase();
         String selection = "race_id = ?";

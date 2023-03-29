@@ -63,7 +63,7 @@ public class Vysledky extends AppCompatActivity {
 
 
     }
-    public void defineButtons(){
+    public void defineButtons(){//definice tlačítek, polí, ....
         poziceArray = new TextView[pocetZavodniku];
         zavodniciArray = new TextView[pocetZavodniku];
         cisloZavodnikaArray = new TextView[pocetZavodniku];
@@ -87,23 +87,23 @@ public class Vysledky extends AppCompatActivity {
         table = findViewById(R.id.table);
         sortByCasVz();
     }
-    public void zpetNaHlavni(View view) {
+    public void zpetNaHlavni(View view) { //vrátí zpět na hlavní stranu
         Intent intent = new Intent(this, Hlavni.class);
         startActivity(intent);
     }
-    public int poc(int i){
+    public int poc(int i){ //získá počet zadaných závodníků
         pocetZavodniku= i;
         return pocetZavodniku;
     }
-    public static void finalArray(String[][] array) {
+    public static void finalArray(String[][] array) {//získá array z editace
         Vysledky.array = array;
     }
 
-    public void zpet(View view){
+    public void zpet(View view){ //vrátí zpět na editaci
         onBackPressed();
 
     }
-    public void odstran() {
+    public void odstran() { //odstraní zbytečné řádky
         int k = pocetZavodniku;
         int kolikrat = 20-k;
         int smaz = 20;
@@ -117,12 +117,12 @@ public class Vysledky extends AppCompatActivity {
             smaz = smaz -1;
         }
     }
-    public boolean isDarkMode(Context context) {
+    public boolean isDarkMode(Context context) { //pokud je darkmode...
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
         return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
 
-    public void setData(){
+    public void setData(){  //z array nastaví data celé tabulce
         int k = 0;
         for(TextView txv1 : zavodniciArray){
             TextView txv2 = casArray[k];
@@ -196,7 +196,7 @@ public class Vysledky extends AppCompatActivity {
             }
         }
         setData();
-    }
+    }//seřadí podle jména závodníků
     public void sortByNameAlph(){
         for (int i = 0; i < fullArray.length; i++) {
             for (int j = 0; j < fullArray.length - 1; j++) {
@@ -206,7 +206,7 @@ public class Vysledky extends AppCompatActivity {
                     fullArray[j + 1] = temp;}}}
         setData();
     }
-    public void sortByNameRev(){
+    public void sortByNameRev(){//seřadí podle jména závodníků naopak
         for (int i = 0; i < fullArray.length; i++) {
             for (int j = 0; j < fullArray.length - 1; j++) {
                 if (fullArray[j][0].compareTo(fullArray[j + 1][0]) < 0) {
@@ -216,7 +216,7 @@ public class Vysledky extends AppCompatActivity {
         setData();
     }
 
-    public void sortingByCasAPozice(View view){
+    public void sortingByCasAPozice(View view){//seřadí podle času naopak
         if(podminka == true){
             sortByCasS();
             podminka = false;
@@ -226,7 +226,7 @@ public class Vysledky extends AppCompatActivity {
             podminka = true;
         }
     }
-    public void sortingByCislo(View view){
+    public void sortingByCislo(View view){//seřadí podle čísla naopak
         if(podminka == true){
             sortByCisloS();
             podminka = false;
@@ -236,7 +236,7 @@ public class Vysledky extends AppCompatActivity {
             podminka = true;
         }
     }
-    public void sortingByName(View view){
+    public void sortingByName(View view){//seřadí podle jména naopak
         if(podminka == true){
             sortByNameAlph();
             podminka = false;
@@ -246,7 +246,7 @@ public class Vysledky extends AppCompatActivity {
             podminka = true;
         }
     }
-    private boolean shouldSwapRows(String[] row1, String[] row2) {
+    private boolean shouldSwapRows(String[] row1, String[] row2) { //byl problém pokud je bylo vynechané místo, tato metoda řadí i s prázdným místem
         if (isEmptyRow(row1) && isEmptyRow(row2)) {
             return false;
         } else if (isEmptyRow(row1)) {
@@ -257,7 +257,7 @@ public class Vysledky extends AppCompatActivity {
             return Integer.parseInt(row1[2]) < Integer.parseInt(row2[2]);
         }
     }
-    private boolean shouldSwapRowsReverse(String[] row1, String[] row2) {
+    private boolean shouldSwapRowsReverse(String[] row1, String[] row2) { //stejná metoda jako předchozí ale naopak
         if (isEmptyRow(row1) && isEmptyRow(row2)) {
             return false;
         } else if (isEmptyRow(row1)) {
@@ -268,14 +268,14 @@ public class Vysledky extends AppCompatActivity {
             return Integer.parseInt(row1[2]) > Integer.parseInt(row2[2]);
         }
     }
-    private boolean isEmptyRow(String[] row) {
+    private boolean isEmptyRow(String[] row) { //používá se u předchozích metod zjišťuje jestli je řádek prázdný
         return row == null || row.length < 3 || TextUtils.isEmpty(row[2]);
     }
     public void share(View view){
 
         showDialog();
     }
-    private void showDialog() {
+    private void showDialog() { //otevře dialog pro export do souboru nebo uložení do databáze
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.export);
@@ -286,7 +286,7 @@ public class Vysledky extends AppCompatActivity {
         ImageView imgv = dialog.findViewById(R.id.imageView2);
         imgv.setColorFilter(isDarkMode(this) ? Color.WHITE : Color.GRAY);
 
-        t1.setOnClickListener(new View.OnClickListener(){
+        t1.setOnClickListener(new View.OnClickListener(){ //export do csv
             @Override
             public void onClick(View v) {
 
@@ -300,7 +300,7 @@ public class Vysledky extends AppCompatActivity {
                 }
             }});
 
-        t2.setOnClickListener(new View.OnClickListener(){
+        t2.setOnClickListener(new View.OnClickListener(){ //uložení do databáze
             @Override
             public void onClick(View v) {
                 Dialog zapsatDialog = new Dialog(Vysledky.this);
@@ -367,7 +367,7 @@ public class Vysledky extends AppCompatActivity {
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.getWindow().setGravity(Gravity.CENTER);
     }
-    public static void exportToCSV(String[][] fullArray, Context context) throws IOException {
+    public static void exportToCSV(String[][] fullArray, Context context) throws IOException { //uložení do souboru, pojmenování souboru, oddělovač, ...
         File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String fileName = "data_" + timeStamp + ".csv";
@@ -386,7 +386,7 @@ public class Vysledky extends AppCompatActivity {
         outputStreamWriter.close();
         fileOutputStream.close();
     }
-    public void SnackBar(){
+    public void SnackBar(){ //zobrazí se po exportu do csv snackbar
         RelativeLayout constraintLayout = findViewById(R.id.layoutR);
         Snackbar.make(constraintLayout, "Uloženo do složky Documents", Snackbar.LENGTH_LONG)
                 .setDuration(2000)

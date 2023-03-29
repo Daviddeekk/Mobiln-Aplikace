@@ -43,7 +43,7 @@ public class VysledkyZavoduZDatabaze extends AppCompatActivity {
             finish();
         }
 
-       pozice.setOnClickListener(new View.OnClickListener() {
+       pozice.setOnClickListener(new View.OnClickListener() { //řazení podle sloupců
             @Override
             public void onClick(View v) {
                 LinearLayout layout = findViewById(R.id.my_linear_layout);
@@ -113,7 +113,7 @@ public class VysledkyZavoduZDatabaze extends AppCompatActivity {
         });
 
     }
-    public void displayData() { //
+    public void displayData() { //zobrazí data z databáze do layoutu, seřadí, ...
         LinearLayout layout = findViewById(R.id.my_linear_layout);
         layout.setOrientation(LinearLayout.VERTICAL);
         db.displayDataByForeignId(layout, id, "position", "ASC");

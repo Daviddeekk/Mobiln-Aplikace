@@ -29,7 +29,7 @@ public class NacteniZavodnikuDoDatabaze extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_databaze); //access to activity_main
+        setContentView(R.layout.activity_databaze);
         displayData();
     }
 
@@ -41,7 +41,7 @@ public class NacteniZavodnikuDoDatabaze extends AppCompatActivity {
         layout.setOrientation(LinearLayout.VERTICAL);
         dbHelper.displayAllData(layout);
     }
-    public void newData(View view) { //
+    public void newData(View view) { //nový závodník, buď z csv nebo ruční zapsání
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.load);
@@ -89,7 +89,6 @@ public class NacteniZavodnikuDoDatabaze extends AppCompatActivity {
         dialog.show();
     }
     public void launchFilePicker() {
-        // Create an intent for selecting a file via the file manager
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/*");
@@ -99,9 +98,8 @@ public class NacteniZavodnikuDoDatabaze extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
-        // If the selection worked, we have a URI pointing to the file
+
         if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // Get the URI of the selected file
             Uri uri = null;
             if (resultData != null) {
                 uri = resultData.getData();

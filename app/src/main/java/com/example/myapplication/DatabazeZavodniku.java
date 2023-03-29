@@ -32,7 +32,7 @@ public class DatabazeZavodniku extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) { //vytvoří databázi pokud neexistuje
         String sql = "CREATE TABLE " + TABLE_NAME + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_NAME + " TEXT);";
@@ -40,7 +40,7 @@ public class DatabazeZavodniku extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Handle any necessary upgrades to the database schema
+
     }
     public void addData(String name) {
         SQLiteDatabase db = getWritableDatabase();
@@ -49,7 +49,7 @@ public class DatabazeZavodniku extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
-    public void displayAllData(LinearLayout layout) {
+    public void displayAllData(LinearLayout layout) { //zobrazí databázi
         SQLiteDatabase db = getReadableDatabase();
         String[] columns = { COLUMN_ID, COLUMN_NAME };
         Cursor cursor = db.query(TABLE_NAME, columns, null, null, null, null, null);
@@ -109,7 +109,7 @@ public class DatabazeZavodniku extends SQLiteOpenHelper {
         cursor.close();
         db.close();
     }
-    public boolean isDarkMode(Context context) {
+    public boolean isDarkMode(Context context) { //dark mode
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
         return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }

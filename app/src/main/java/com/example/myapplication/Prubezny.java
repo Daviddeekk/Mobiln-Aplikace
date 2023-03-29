@@ -71,7 +71,8 @@ public class Prubezny extends AppCompatActivity {
         timer = new Timer();
         allZavodniciTextColor();
     } //jak bude vypadat stránka po spuštění
-    private void defineButtons(){
+    private void defineButtons(){//definice tlačítek, polí, ....
+
         zastavenych = 0;
 
         zpet = (ImageButton) findViewById(R.id.zpet);
@@ -117,15 +118,15 @@ public class Prubezny extends AppCompatActivity {
         zavodniciEditable(true);
         odstran();
     }
-    public void backButton(View view){
+    public void backButton(View view){ //při stisknutí červeného kříže otevře dialog
         goBackDialog();
     }
 
-    public void hlavni() {
+    public void hlavni() { //vrátí zpět na hlavní stránku
         Intent intent = new Intent(this, Hlavni.class);
-        startActivity(intent);                                  //metoda pro otevření první stránky
+        startActivity(intent);
     }
-    public void goBackDialog(){
+    public void goBackDialog(){ //dialog, zpět na hlavní stránku
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.MyAlertDialogTheme));
         resetAlert.setMessage("Opravdu chcete odejít, prijdete o všechna naměřená data");
         resetAlert.setTitle("Odejít?");
@@ -150,7 +151,7 @@ public class Prubezny extends AppCompatActivity {
     }
 
 
-    public void resetVysledky(View view)                                //resetuje stopky i s výsledky
+    public void resetVysledky(View view) //resetuje stopky i s výsledky
     {
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.MyAlertDialogTheme));
         resetAlert.setMessage("Opravdu chcete resetovat stopky i s výsledky?");
@@ -187,10 +188,9 @@ public class Prubezny extends AppCompatActivity {
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(this, R.color.white));
         dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setTextColor(ContextCompat.getColor(this, R.color.white));
     }
-    private void startTimerManyTimes(){
+    private void startTimerManyTimes(){ //definuje spouštěcí tlačítka
         int i = 1;
         for (ImageButton stopB : stopButtonArray){
-           // ImageButton stopB = stopButtonArray[i - 1];
             stopB.setImageResource(R.drawable.playimage_foreground);
             stopB.setColorFilter(Color.rgb(18, 94, 188));
             stopB.setEnabled(true);
@@ -198,11 +198,11 @@ public class Prubezny extends AppCompatActivity {
             i++;
         }
     }
-    public String getTag(String gtag){
+    public String getTag(String gtag){//získá tag
         casTag = gtag;
         return casTag;
     }
-    public int getNumber(int i){
+    public int getNumber(int i){ //získá počet závodníků
         pocetZavodniku = i;
         return pocetZavodniku;
     }
@@ -218,11 +218,11 @@ public class Prubezny extends AppCompatActivity {
             i++;
         }
     }
-    public boolean isDarkMode(Context context) {
+    public boolean isDarkMode(Context context) { //pokud je zaplý dark mode
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
         return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
-    private void allZavodniciTextColor(){
+    private void allZavodniciTextColor(){ //barva textu, pokud je dark mode
         int i = 1;
         for (EditText et2 : zavodniciArray) {
             EditText et = cisloZavodnikaArray[i - 1];
@@ -298,7 +298,7 @@ public class Prubezny extends AppCompatActivity {
         }
     }
 
-    private void buttonReset(boolean reset) { // otevře tlačíka a závodníky
+    private void buttonReset(boolean reset) { // resetuje časy
         int i = 0;
         for (ImageButton imgButton : stopButtonArray) {
             TextView et = timesArray[i];
@@ -315,7 +315,7 @@ public class Prubezny extends AppCompatActivity {
         }
     }
 
-    public void zavodniciEditable(boolean edit)
+    public void zavodniciEditable(boolean edit) //závodníci budou moci být přepsáni
     {
         zavodnici.setEnabled(edit);
         importB.setEnabled(edit);
@@ -365,8 +365,7 @@ public class Prubezny extends AppCompatActivity {
     public void openEditace(View view){
         openEd();
     }
-    public void upload(View view) {
-        // launchFilePicker();
+    public void upload(View view) { //načtení závodníků z databáze nebo z csv
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.selector);
@@ -412,7 +411,7 @@ public class Prubezny extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-
+//result z launch pickeru, pokud se zvolil soubor nebo jména z databáze, tak získá request code, který poté provede svoje
         super.onActivityResult(requestCode, resultCode, resultData);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
 
@@ -424,9 +423,8 @@ public class Prubezny extends AppCompatActivity {
                     EditText zavodnici = zavodniciArray[i - 1];
                     zavodnici.setText(names[i - 1]);
                 }}}
-        // If the selection worked, we have a URI pointing to the file
+
         else if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // Get the URI of the selected file
             Uri uri = null;
             if (resultData != null) {
                 uri = resultData.getData();

@@ -41,10 +41,10 @@ public class Editace extends AppCompatActivity {
 
 
     public void onBackPressed() {
-        {goBackDialog();}
+        goBackDialog();// pokud zmáčku tlačítko zpět na mobilu
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //po vytvoření
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editace);
@@ -53,7 +53,7 @@ public class Editace extends AppCompatActivity {
 
 
     }
-    public void defineButtons(){
+    public void defineButtons(){ //definuje tlačítka, pole, ...
         timeButtonArray = new Button[pocetZavodniku];
         zavodniciArray = new EditText[pocetZavodniku];
         cisloZavodnikaArray = new EditText[pocetZavodniku];
@@ -83,29 +83,29 @@ public class Editace extends AppCompatActivity {
         textColor();
     }
 
-    public int poc(int i){
+    public int poc(int i){ //získá počet závodníků
         pocetZavodniku= i;
         return pocetZavodniku;
     }
-    public void back(View view){
+    public void back(View view){ //pokud stiskneme zpět v levém horním rohu
         goBackDialog();
     }
-    public void dalsiStranka(View view){
+    public void dalsiStranka(View view){ // přesun na výsledky
         finalArray();
         Intent intent = new Intent(this, Vysledky.class);
         startActivity(intent);
 
     }
-    public String getTag(String gtag){
+    public String getTag(String gtag){ //získá tag
         casTag = gtag;
         return casTag;
     }
-    public boolean isDarkMode(Context context) {
+    public boolean isDarkMode(Context context) { // pokud je dark mode
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
         return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
 
-    public void textColor(){
+    public void textColor(){    //text color pokud je dark mode
         int i = 0;
             for (EditText et1 : zavodniciArray) {
                 EditText et2 = cisloZavodnikaArray[i];
@@ -144,10 +144,10 @@ public class Editace extends AppCompatActivity {
         Intent intent = new Intent(this, Hlavni.class);
         startActivity(intent);
     }
-    public static void setArray(String[][] array) {
+    public static void setArray(String[][] array) { //získá array s výsledky
         Editace.array = array;
     }
-    public void setData(){
+    public void setData(){ // nastaví data do tabulky
         int k = 0;
         for(EditText et1 : zavodniciArray){
 
@@ -162,7 +162,7 @@ public class Editace extends AppCompatActivity {
             k = k+1;
     }}
 
-    public void zavodniciEditable(View view) {
+    public void zavodniciEditable(View view) { //po stisknutí tlačítka zámečku budou závodníci editable
         for (int i = 1; i<=pocetZavodniku; i++) {
             ImageButton lck = lockButtonArray[i-1];
             if(view.getId()==lck.getId()){
@@ -176,7 +176,7 @@ public class Editace extends AppCompatActivity {
                     lck.setActivated(true);
                 }}
     }}
-    public void viewsEditable(boolean edit, int i){
+    public void viewsEditable(boolean edit, int i){ //závodníci budou v daném řádku editable
         EditText et1 = zavodniciArray[i-1];
         EditText et2 = cisloZavodnikaArray[i-1];
         Button bcas = timeButtonArray[i-1];
@@ -196,7 +196,7 @@ public class Editace extends AppCompatActivity {
     public void openPicker(View view) {
         picker(view.getId());
     }
-    public void picker(int cisloRadku){
+    public void picker(int cisloRadku){ //picker, kde uživatel může editova čas
 
         for (int i = 1; i<=pocetZavodniku; i++) {                                                           //loop s podmínkou hledá číslo řádku a z něj dostává Čas
             Button bcas = timeButtonArray[i-1];
@@ -275,7 +275,7 @@ public class Editace extends AppCompatActivity {
         builder.create().show();
 
     }
-    public void odstran() {
+    public void odstran() {//odstaní přebytečné řádky
         int k = pocetZavodniku;
         int kolikrat = 20-k;
         int smaz = 20;
@@ -289,7 +289,7 @@ public class Editace extends AppCompatActivity {
             smaz = smaz -1;
         }
     }
-    public void finalArray(){
+    public void finalArray(){ //array která se exportuje do výsledků
         int row = 0;
         for (EditText et1 : zavodniciArray){
             EditText et2 = cisloZavodnikaArray[row];

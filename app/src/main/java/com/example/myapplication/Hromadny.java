@@ -55,19 +55,6 @@ public class Hromadny extends AppCompatActivity {
     boolean timerStarted = false, timerGoing = true;
     String[][] newArray = new String[pocetZavodniku][3];
 
-    @Override
-    public void onBackPressed() {
-        {
-            if(zpet.isEnabled()&&task !=null)
-            {
-                task.cancel();
-                goBackDialog();
-            }
-            else if(zpet.isEnabled()){
-                hlavni();
-                stopTimer();
-            }else{
-            }}}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +62,9 @@ public class Hromadny extends AppCompatActivity {
         setContentView(R.layout.activity_hromadny);
 
         defineButtons();
-                                              //odstraní řádky, které nepotřebujeme
-    }
 
-    private void defineButtons() {
+    }
+    private void defineButtons() { //definice tlačítek, polí, ....
 
         timer = new Timer();
         zavodnici = (ImageButton) findViewById(R.id.zavodnici);
@@ -107,7 +93,7 @@ public class Hromadny extends AppCompatActivity {
         cisloZavodnikaArray = new EditText[pocetZavodniku];
         stopButtonArray = new ImageButton[pocetZavodniku];
 
-        for (int i = 1; i <= pocetZavodniku; i++) {
+        for (int i = 1; i <= pocetZavodniku; i++) { //definice polí
             int id1 = getResources().getIdentifier("textView" + (20 + i), "id", getPackageName());
             int id2 = getResources().getIdentifier("textView" + i, "id", getPackageName());
             int id3 = getResources().getIdentifier("cisloZavodnika" + i, "id", getPackageName());
@@ -122,7 +108,7 @@ public class Hromadny extends AppCompatActivity {
             textv = findViewById(id2);
             textv2 = findViewById(id1);
 
-            textv2.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
+            textv2.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK); //dark mode
             textv.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
             et.setTextColor(isDarkMode(this) ? Color.WHITE : Color.BLACK);
         }
@@ -130,13 +116,27 @@ public class Hromadny extends AppCompatActivity {
         defaultcisloZavodnika();                            //vytvoření timeru
         odstran();
     }
-    private void stopTimer() {
+    @Override
+    public void onBackPressed() {   //při stisknutí tlačítka zpět na mobilu
+        {
+            if(zpet.isEnabled()&&task !=null)
+            {
+                task.cancel();
+                goBackDialog();
+            }
+            else if(zpet.isEnabled()){
+                hlavni();
+                stopTimer();
+            }else{
+            }}}
+
+    private void stopTimer() { //zastavení počítání času
         if (task != null) {
             task.cancel();
             task = null;
         }
     }
-    public void backButton(View view) {
+    public void backButton(View view) { // tlačítko kříže v levém horním rohu
         if(zpet.isEnabled()&&task !=null)
         {
             task.cancel();
@@ -148,12 +148,12 @@ public class Hromadny extends AppCompatActivity {
         }
     }
 
-    private void hlavni() {
+    private void hlavni() {  //metoda pro otevření první stránky
         Intent intent = new Intent(this, Hlavni.class);
-        startActivity(intent);                                  //metoda pro otevření první stránky
+        startActivity(intent);
     }
 
-    public void resetVysledky(View view)                                //resetuje stopky i s výsledky
+    public void resetVysledky(View view) //resetuje stopky i s výsledky
     {
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.MyAlertDialogTheme));
         resetAlert.setMessage("Opravd chcete resetovat stopky i s výsledky?");
@@ -195,7 +195,7 @@ public class Hromadny extends AppCompatActivity {
 
 
     }
-    public void goBackDialog(){
+    public void goBackDialog(){ //dialog, který nás přesune zpět na hlavní stránku
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.MyAlertDialogTheme));
         resetAlert.setMessage("Opravdu chcete odejít, prijdete o všechna naměřená data");
         resetAlert.setTitle("Odejít?");
@@ -220,12 +220,12 @@ public class Hromadny extends AppCompatActivity {
         dialog.getButton(DialogInterface.BUTTON_NEUTRAL).setTextColor(ContextCompat.getColor(this, R.color.white));
     }
 
-    private boolean isDarkMode(Context context) {
+    private boolean isDarkMode(Context context) { // pokud je mobil v režimu darkmode ....
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
         return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
 
-    public void startButton(View view) {
+    public void startButton(View view) { //zapnutí časomíry pro všechny
         if (timerStarted == false) {
             resetButton.setEnabled(true);
             resetButton.setColorFilter(Color.rgb(18, 94, 188));
@@ -241,12 +241,12 @@ public class Hromadny extends AppCompatActivity {
         }
     }
 
-    public String getTag(String gtag) {
+    public String getTag(String gtag) { //získání tagu z první stránky,
         casTag = gtag;
         return casTag;
     }
 
-    private void startTimer()
+    private void startTimer() //metoda která začne počítat čas
     {
         task = new TimerTask() {
             @Override
@@ -268,7 +268,7 @@ public class Hromadny extends AppCompatActivity {
                         }}});}};
             timer.scheduleAtFixedRate(task, 0, 10);
     }
-    private void setCasToAll() {
+    private void setCasToAll() { //nastavení času všem
         String timerText = getTimerText();
         for (TextView textView : timesArray){
             if (textView.isEnabled() && !textView.getText().equals(timerText)) {
@@ -278,7 +278,7 @@ public class Hromadny extends AppCompatActivity {
     }
 
 
-    public String getTimerText() {
+    public String getTimerText() { //získání času z počítaného čísla
         int roundedTime = (int) Math.round(time);
         int hours = roundedTime / 360000;
         int minutes = (roundedTime / 6000) % 60;
@@ -290,7 +290,7 @@ public class Hromadny extends AppCompatActivity {
             return formatTime(milliseconds, seconds, minutes);
         }
     }
-    public String formatTime(int seconds, int minutes, int hours) {
+    public String formatTime(int seconds, int minutes, int hours) { //formátování času
         String formattedSeconds = (seconds < 10) ? "0" + seconds : String.valueOf(seconds);
         String formattedMinutes = (minutes < 10) ? "0" + minutes : String.valueOf(minutes);
         String formattedHours = (hours < 10) ? "0" + hours : String.valueOf(hours);
@@ -330,7 +330,7 @@ public class Hromadny extends AppCompatActivity {
         }
     }
 
-    //při zastavení časpocetZavodnikupocetZavodnikujenoho závodníka tlačítko a čas se vypnou
+    //při kliknutí tlačítka u závodníka se tlačítko a celý řádek zastaví
     public void stop(View view) {
         String tag = view.getTag().toString();          //dostanu tag stisknutého tlačítka
         for (int i = 0; i < pocetZavodniku; i++) {
@@ -357,7 +357,7 @@ public class Hromadny extends AppCompatActivity {
         }
     }
 
-    //nastaví na začátkpocetZavodnikualespon cislo zavodnika
+    //nastaví na defaultní číslo závodníka
     private void defaultcisloZavodnika() {
         int i = 1;
         for (EditText et : cisloZavodnikaArray) {
@@ -368,7 +368,7 @@ public class Hromadny extends AppCompatActivity {
 
 
 
-    private void buttonReset(boolean reset) { // ressetuje tlačíka a časy
+    private void buttonReset(boolean reset) { // resetuje stopovací tlačítka a časy
         int i = 0;
         for (ImageButton imgButton : stopButtonArray) {
             TextView et = timesArray[i];
@@ -384,7 +384,7 @@ public class Hromadny extends AppCompatActivity {
         }
     }
 
-    private void buttonUpdate(boolean resetStart) {
+    private void buttonUpdate(boolean resetStart) { //update barev tlačítek
         start.setEnabled(resetStart);
 
         if (resetStart == true) {
@@ -403,7 +403,7 @@ public class Hromadny extends AppCompatActivity {
         }
     }
 
-    private void zavodniciEditable(boolean edit) {
+    private void zavodniciEditable(boolean edit) { //aby po spuštění nebylo možno se závodníky manipulovat
         zavodnici.setEnabled(edit);
         importB.setEnabled(edit);
         int index = 0;
@@ -416,7 +416,7 @@ public class Hromadny extends AppCompatActivity {
         }
     }
 
-    private void openEd() {
+    private void openEd() { //otevře editaci a přesune tam array s výsledky
         int row = 0;
         for (EditText zavodnici : zavodniciArray) {
             TextView cas = timesArray[row];
@@ -438,7 +438,7 @@ public class Hromadny extends AppCompatActivity {
         openEd();
     }
 
-    public void uploadJmena(View view) {
+    public void uploadJmena(View view) { //dialog pro upload jména pomocí csv nebo databáze
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.selector);
@@ -469,7 +469,7 @@ public class Hromadny extends AppCompatActivity {
         dialog.show();
     }
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) { //získá výsledky z uploadu, podle request kódu rozezná a zapíše do tabulky
 
         super.onActivityResult(requestCode, resultCode, resultData);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {

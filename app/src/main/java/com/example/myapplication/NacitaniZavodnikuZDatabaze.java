@@ -31,7 +31,7 @@ public class NacitaniZavodnikuZDatabaze extends AppCompatActivity {
     public static int maxSelections;
    public String[] names;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //z databáze načte závodníky a umožní je vybírat
         super.onCreate(savedInstanceState);
         DatabazeZavodniku dbHelper = new DatabazeZavodniku(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -120,7 +120,7 @@ public class NacitaniZavodnikuZDatabaze extends AppCompatActivity {
         listView.addFooterView(saveButton);
 
     }
-    public int getNumber(int i) {
+    public int getNumber(int i) { //maximální počet závodníků
         maxSelections = i;
         return maxSelections;
     }

@@ -29,7 +29,7 @@ public class Hlavni extends AppCompatActivity {
         defineButtons();
     }
     //definuje barvu imageButtons
-    private void defineButtons(){
+    private void defineButtons(){   //definování tlačítek, polí, nastavení barev (funguje i dark mode pokud je zaplý na mobilubtw)
         datButton = findViewById(R.id.dtbs);
         sportView = findViewById(R.id.zvolteSport);
 
@@ -47,7 +47,7 @@ public class Hlavni extends AppCompatActivity {
 
         slider = findViewById(R.id.seekBar);
         value = findViewById(R.id.selectedValueTextView);
-        slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { //slider na s počtem závodníků
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Update the selected value TextView
@@ -62,7 +62,7 @@ public class Hlavni extends AppCompatActivity {
             }
         });
         continu = findViewById(R.id.continueButton);
-        continu.setOnClickListener(new View.OnClickListener() {
+        continu.setOnClickListener(new View.OnClickListener() { //po stisknutí tlačítka na spodní straně
             @Override
             public void onClick(View v) {
                 if(formatRB1.isChecked() &&  casRB1.isChecked()){
@@ -92,14 +92,14 @@ public class Hlavni extends AppCompatActivity {
                     startPrubezny();
                 }}});
     }
-    public boolean isDarkMode(Context context) {
+    public boolean isDarkMode(Context context) { //pokud je zaplý dark mode na mobilu
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
         return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
     public void onBackPressed() {
         this.finishAffinity();
     }
-    public void startHromadny() {
+    public void startHromadny() { //přepínání obrazovek
         Intent intent = new Intent(this, Hromadny.class);
         startActivity(intent);
     }

@@ -33,16 +33,16 @@ public class DatabazeZavodu extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) { //vytvoří databázi pokud neexistuje
         String CREATE_RACE_TABLE = "CREATE TABLE race (id INTEGER PRIMARY KEY, name TEXT, time TEXT)";
         db.execSQL(CREATE_RACE_TABLE);
     }
-    @Override
+    @Override //pokud existuje
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS race");
         onCreate(db);
     }
-    public void displayAllData(LinearLayout layout) {
+    public void displayAllData(LinearLayout layout) {//zobrazí data z databáze
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM race", null);
 
@@ -126,7 +126,7 @@ public class DatabazeZavodu extends SQLiteOpenHelper {
                     layout.removeView(horizontalLayout);
                 });
                 d.setNeutralButton("Ne", null);
-                // d.show();
+
 
                 AlertDialog dialog = d.create();
                 dialog.show();
@@ -139,13 +139,13 @@ public class DatabazeZavodu extends SQLiteOpenHelper {
         cursor.close();
         db.close();
     }
-    public boolean isDarkMode(Context context) {
+    public boolean isDarkMode(Context context) { //pokud je dark mode
         UiModeManager uiModeManager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
         return uiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
     public void zpet(View view) {
-        SQLiteDatabase db = getReadableDatabase();
-        // do something with the database
+
+
         Intent intent = new Intent(view.getContext(), Hlavni.class);
         view.getContext().startActivity(intent);
     }
